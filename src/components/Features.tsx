@@ -11,7 +11,7 @@ const features = [{
 }, {
   icon: Zap,
   title: "24/7 Voice Agent",
-  description: "Process requests, payments, and operations in real-time, eliminating manual workflows."
+  description: "Answers, books, and provides information instantly — never miss a call again."
 }, {
   icon: BarChart3,
   title: "Analytics & Insights",
