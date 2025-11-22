@@ -26,9 +26,6 @@ const Header = () => {
             <a href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
               About
             </a>
-            <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
-              Contact
-            </a>
           </nav>
 
           <div className="flex items-center gap-4">
