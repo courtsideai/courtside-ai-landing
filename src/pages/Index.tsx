@@ -5,6 +5,7 @@ import Features from "@/components/Features";
 import Benefits from "@/components/Benefits";
 import Comparison from "@/components/Comparison";
 import Waitlist from "@/components/Waitlist";
+import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -19,6 +20,7 @@ const Index = () => {
         <Benefits />
         <Comparison />
         <Waitlist />
+        <FAQ />
         <CTA />
       </main>
       <Footer />
