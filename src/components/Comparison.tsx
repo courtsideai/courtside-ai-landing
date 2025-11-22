@@ -7,57 +7,49 @@ const Comparison = () => {
       icon: Phone,
       feature: "24/7 Availability",
       courtside: true,
-      otherAI: "Limited",
       answeringService: true,
     },
     {
       icon: Brain,
       feature: "AI-Powered Intelligence",
       courtside: true,
-      otherAI: "Basic",
       answeringService: false,
     },
     {
       icon: Calendar,
       feature: "Automated Booking",
       courtside: true,
-      otherAI: false,
       answeringService: false,
     },
     {
       icon: DollarSign,
       feature: "Cost per Call",
       courtside: "$0.50",
-      otherAI: "$2-5",
       answeringService: "$5-15",
     },
     {
       icon: Zap,
       feature: "Instant Response",
       courtside: true,
-      otherAI: "Varies",
       answeringService: false,
     },
     {
       icon: BarChart3,
       feature: "Analytics Dashboard",
       courtside: true,
-      otherAI: "Limited",
       answeringService: false,
     },
     {
       icon: Users,
       feature: "Natural Conversations",
       courtside: true,
-      otherAI: "Robotic",
       answeringService: true,
     },
     {
       icon: Clock,
-      feature: "Setup Time",
-      courtside: "48 hours",
-      otherAI: "1-2 weeks",
-      answeringService: "1-2 weeks",
+      feature: "Training Time",
+      courtside: "72 hours",
+      answeringService: "2-3 weeks",
     },
   ];
 
@@ -80,7 +72,7 @@ const Comparison = () => {
               Why Choose Courtside AI?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              See how we compare to traditional answering services and other AI solutions
+              See how we compare to traditional customer service representatives
             </p>
           </div>
 
@@ -94,10 +86,7 @@ const Comparison = () => {
                       Courtside AI
                     </TableHead>
                     <TableHead className="text-center font-bold text-foreground">
-                      Other AI Services
-                    </TableHead>
-                    <TableHead className="text-center font-bold text-foreground">
-                      Answering Services
+                      Customer Service Rep
                     </TableHead>
                   </TableRow>
                 </TableHeader>
@@ -117,9 +106,6 @@ const Comparison = () => {
                         </TableCell>
                         <TableCell className="text-center bg-primary/5">
                           {renderValue(row.courtside)}
-                        </TableCell>
-                        <TableCell className="text-center">
-                          {renderValue(row.otherAI)}
                         </TableCell>
                         <TableCell className="text-center">
                           {renderValue(row.answeringService)}
