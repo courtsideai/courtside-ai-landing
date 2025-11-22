@@ -50,7 +50,7 @@ const About = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="pt-32 pb-16 bg-gradient-subtle">
+        <section className="pt-32 pb-12 bg-gradient-subtle">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center space-y-6">
               <h1 className="text-4xl md:text-6xl font-bold">
@@ -67,7 +67,7 @@ const About = () => {
         </section>
 
         {/* Our Story */}
-        <section className="py-24 bg-background">
+        <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="rounded-3xl border border-border/50 bg-card/50 backdrop-blur-sm p-8 md:p-12 space-y-6">
@@ -94,7 +94,7 @@ const About = () => {
         </section>
 
         {/* What We Believe */}
-        <section className="py-24 bg-gradient-subtle">
+        <section className="py-16 bg-gradient-subtle">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">What We Believe</h2>
@@ -123,7 +123,7 @@ const About = () => {
         </section>
 
         {/* Meet the Team */}
-        <section className="py-24 bg-background">
+        <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Meet the Team</h2>
@@ -152,7 +152,7 @@ const About = () => {
         </section>
 
         {/* Waitlist CTA */}
-        <section className="py-24 bg-gradient-subtle">
+        <section className="py-16 bg-gradient-subtle">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="rounded-3xl bg-gradient-primary p-12 md:p-16 text-center space-y-8">
