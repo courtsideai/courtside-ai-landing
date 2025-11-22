@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import LogoCarousel from "@/components/LogoCarousel";
 import Features from "@/components/Features";
 import Benefits from "@/components/Benefits";
+import Comparison from "@/components/Comparison";
 import Waitlist from "@/components/Waitlist";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
@@ -16,6 +17,7 @@ const Index = () => {
         <LogoCarousel />
         <Features />
         <Benefits />
+        <Comparison />
         <Waitlist />
         <CTA />
       </main>
