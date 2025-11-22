@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-
 const CTA = () => {
-  return (
-    <section id="contact" className="py-24 bg-gradient-subtle">
+  return <section id="contact" className="py-24 bg-gradient-subtle">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
@@ -16,7 +14,7 @@ const CTA = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Button variant="hero" size="lg" className="group" asChild>
               <a href="#waitlist">
-                Start Free Trial
+                Join Waitlist 
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
@@ -29,8 +27,6 @@ const CTA = () => {
           </p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CTA;
