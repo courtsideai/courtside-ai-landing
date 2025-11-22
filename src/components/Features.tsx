@@ -10,7 +10,7 @@ const features = [{
   description: "Handle customer inquiries, confirmations, and updates instantly with AI-powered messaging."
 }, {
   icon: Zap,
-  title: "Instant Processing",
+  title: "24/7 Voice Agent",
   description: "Process requests, payments, and operations in real-time, eliminating manual workflows."
 }, {
   icon: BarChart3,
