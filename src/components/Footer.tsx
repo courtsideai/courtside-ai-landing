@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div className="col-span-2 md:col-span-1">
             <div className="mb-4">
-              <img alt="Courtside AI" className="h-8" src="/lovable-uploads/aef6f963-0b6d-481b-bc94-2a5efd80b3c2.png" />
+              <img alt="Courtside AI" className="h-12" src="/lovable-uploads/aef6f963-0b6d-481b-bc94-2a5efd80b3c2.png" />
             </div>
             <p className="text-sm text-gray-400">
               Intelligent automation for modern venues and facilities.
