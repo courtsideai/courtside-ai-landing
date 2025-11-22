@@ -6,7 +6,7 @@ const Header = () => {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <a href="/">
-              <img alt="Courtside AI" className="h-10" src="/lovable-uploads/5ff4c1ad-d80d-42bf-b505-ef6a42b1d6e3.png" />
+              <img alt="Courtside AI" className="h-10" src="/lovable-uploads/63e1d143-df02-4c3f-b665-a8bf33a4007e.png" />
             </a>
           </div>
           
