@@ -35,8 +35,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Courtside AI streamlines facility operations with cutting-edge automation. 
-            Save time, reduce costs, and deliver exceptional experiences.
+            Your Facility On Autopilot
           </p>
 
           {/* CTA Buttons */}
