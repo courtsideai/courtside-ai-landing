@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import LogoCarousel from "@/components/LogoCarousel";
 import Features from "@/components/Features";
 import Benefits from "@/components/Benefits";
 import Waitlist from "@/components/Waitlist";
@@ -12,6 +13,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <LogoCarousel />
         <Features />
         <Benefits />
         <Waitlist />
