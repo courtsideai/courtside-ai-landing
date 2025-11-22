@@ -1,11 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-bg.jpg";
+
 const Hero = () => {
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img src={heroImage} alt="AI-powered venue management" className="w-full h-full object-cover" />
+        <img 
+          src={heroImage} 
+          alt="AI-powered venue management" 
+          className="w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/80 to-background"></div>
       </div>
 
@@ -20,10 +26,10 @@ const Hero = () => {
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            <span className="text-foreground">Your Facility On   </span>
+            <span className="text-foreground">Automate Your Venue</span>
             <br />
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Autopilot
+              With Intelligent AI
             </span>
           </h1>
 
@@ -63,6 +69,8 @@ const Hero = () => {
 
       {/* Bottom Gradient Fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10"></div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
