@@ -1,70 +1,57 @@
-import { Check, X, Phone, Brain, Calendar, DollarSign, Zap, BarChart3, Users, Clock } from "lucide-react";
+import { X, Phone, Brain, Calendar, DollarSign, Zap, BarChart3, Users, Clock } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
 const Comparison = () => {
-  const comparisonData = [
-    {
-      icon: Phone,
-      feature: "24/7 Availability",
-      courtside: true,
-      answeringService: true,
-    },
-    {
-      icon: Brain,
-      feature: "AI-Powered Intelligence",
-      courtside: true,
-      answeringService: false,
-    },
-    {
-      icon: Calendar,
-      feature: "Automated Booking",
-      courtside: true,
-      answeringService: false,
-    },
-    {
-      icon: DollarSign,
-      feature: "Cost per Call",
-      courtside: "$0.50",
-      answeringService: "$5-15",
-    },
-    {
-      icon: Zap,
-      feature: "Instant Response",
-      courtside: true,
-      answeringService: false,
-    },
-    {
-      icon: BarChart3,
-      feature: "Analytics Dashboard",
-      courtside: true,
-      answeringService: false,
-    },
-    {
-      icon: Users,
-      feature: "Natural Conversations",
-      courtside: true,
-      answeringService: true,
-    },
-    {
-      icon: Clock,
-      feature: "Training Time",
-      courtside: "72 hours",
-      answeringService: "2-3 weeks",
-    },
-  ];
-
+  const comparisonData = [{
+    icon: Phone,
+    feature: "24/7 Availability",
+    courtside: true,
+    answeringService: true
+  }, {
+    icon: Brain,
+    feature: "AI-Powered Intelligence",
+    courtside: true,
+    answeringService: false
+  }, {
+    icon: Calendar,
+    feature: "Automated Booking",
+    courtside: true,
+    answeringService: false
+  }, {
+    icon: DollarSign,
+    feature: "Cost per Call",
+    courtside: "$0.50",
+    answeringService: "$5-15"
+  }, {
+    icon: Zap,
+    feature: "Instant Response",
+    courtside: true,
+    answeringService: false
+  }, {
+    icon: BarChart3,
+    feature: "Analytics Dashboard",
+    courtside: true,
+    answeringService: false
+  }, {
+    icon: Users,
+    feature: "Natural Conversations",
+    courtside: true,
+    answeringService: true
+  }, {
+    icon: Clock,
+    feature: "Training Time",
+    courtside: "72 hours",
+    answeringService: "2-3 weeks"
+  }];
   const renderValue = (value: boolean | string) => {
     if (value === true) {
-      return <Check className="h-5 w-5 text-accent mx-auto" />;
+      return <X className="h-5 w-5 text-accent mx-auto" />;
     }
     if (value === false) {
       return <X className="h-5 w-5 text-muted-foreground mx-auto" />;
     }
     return <span className="text-sm text-foreground">{value}</span>;
   };
-
-  return (
-    <section className="py-24 bg-gradient-subtle">
+  return <section className="py-24 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -92,12 +79,8 @@ const Comparison = () => {
                 </TableHeader>
                 <TableBody>
                   {comparisonData.map((row, index) => {
-                    const Icon = row.icon;
-                    return (
-                      <TableRow
-                        key={index}
-                        className="border-b border-border/30 hover:bg-muted/30 transition-colors"
-                      >
+                  const Icon = row.icon;
+                  return <TableRow key={index} className="border-b border-border/30 hover:bg-muted/30 transition-colors">
                         <TableCell className="font-medium">
                           <div className="flex items-center gap-3">
                             <Icon className="h-5 w-5 text-primary" />
@@ -110,17 +93,14 @@ const Comparison = () => {
                         <TableCell className="text-center">
                           {renderValue(row.answeringService)}
                         </TableCell>
-                      </TableRow>
-                    );
-                  })}
+                      </TableRow>;
+                })}
                 </TableBody>
               </Table>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Comparison;
