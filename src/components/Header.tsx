@@ -15,6 +15,12 @@ const Header = () => {
             <a href="#benefits" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
               Benefits
             </a>
+            <a href="#comparison" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
+              Comparison
+            </a>
+            <a href="#faqs" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
+              FAQs
+            </a>
             <a href="#contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
               Contact
             </a>

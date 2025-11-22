@@ -64,7 +64,7 @@ const Comparison = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-subtle">
+    <section id="comparison" className="py-24 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
