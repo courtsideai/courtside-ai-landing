@@ -3,54 +3,42 @@ import Footer from "@/components/Footer";
 import { Target, Zap, Users, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-
 const About = () => {
-  const beliefs = [
-    {
-      icon: Target,
-      title: "Purpose-Built for Sports",
-      description: "We're not a generic AI solution. Every feature is designed specifically for sports facility operations.",
-    },
-    {
-      icon: Zap,
-      title: "Effortless Technology",
-      description: "Technology should simplify operations, not complicate them. We make powerful AI accessible to everyone.",
-    },
-    {
-      icon: Users,
-      title: "Facility Owner First",
-      description: "We're facility owners ourselves. We build solutions that we actually want to use.",
-    },
-  ];
-
-  const team = [
-    {
-      name: "Shiv Sekhon",
-      role: "Co-Founder, COO",
-      initial: "S",
-      bio: "Sports facility owner and automation strategist with 10+ years in facility management.",
-    },
-    {
-      name: "Vi",
-      role: "Co-Founder, CEO",
-      initial: "V",
-      bio: "Sports entrepreneur and AI visionary passionate about transforming facility operations.",
-    },
-    {
-      name: "Dragan",
-      role: "Co-Founder, CTO",
-      initial: "D",
-      bio: "Technical architect handling all automation systems. Previous experience building scalable solutions for complex operations.",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const beliefs = [{
+    icon: Target,
+    title: "Purpose-Built for Sports",
+    description: "We're not a generic AI solution. Every feature is designed specifically for sports facility operations."
+  }, {
+    icon: Zap,
+    title: "Effortless Technology",
+    description: "Technology should simplify operations, not complicate them. We make powerful AI accessible to everyone."
+  }, {
+    icon: Users,
+    title: "Facility Owner First",
+    description: "We're facility owners ourselves. We build solutions that we actually want to use."
+  }];
+  const team = [{
+    name: "Shiv Sekhon",
+    role: "Co-Founder, COO",
+    initial: "S",
+    bio: "Sports facility owner and automation strategist with 10+ years in facility management."
+  }, {
+    name: "Vi",
+    role: "Co-Founder, CEO",
+    initial: "V",
+    bio: "Sports entrepreneur and AI visionary passionate about transforming facility operations."
+  }, {
+    name: "Dragan",
+    role: "Co-Founder, CTO",
+    initial: "D",
+    bio: "Technical architect handling all automation systems. Previous experience building scalable solutions for complex operations."
+  }];
+  return <div className="min-h-screen">
       <Header />
       
       <main>
         {/* Hero Section */}
-        <section className="pt-32 pb-12 bg-gradient-subtle">
+        <section className="pt-36 pb-25 bg-gradient-subtle">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center space-y-6">
               <h1 className="text-4xl md:text-6xl font-bold">
@@ -101,12 +89,8 @@ const About = () => {
               
               <div className="grid md:grid-cols-3 gap-8">
                 {beliefs.map((belief, index) => {
-                  const Icon = belief.icon;
-                  return (
-                    <div
-                      key={index}
-                      className="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-8 text-center space-y-4"
-                    >
+                const Icon = belief.icon;
+                return <div key={index} className="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-8 text-center space-y-4">
                       <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10">
                         <Icon className="h-8 w-8 text-accent" />
                       </div>
@@ -114,9 +98,8 @@ const About = () => {
                       <p className="text-muted-foreground leading-relaxed">
                         {belief.description}
                       </p>
-                    </div>
-                  );
-                })}
+                    </div>;
+              })}
               </div>
             </div>
           </div>
@@ -129,11 +112,7 @@ const About = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Meet the Team</h2>
               
               <div className="grid md:grid-cols-3 gap-8">
-                {team.map((member, index) => (
-                  <div
-                    key={index}
-                    className="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-8 text-center space-y-4"
-                  >
+                {team.map((member, index) => <div key={index} className="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-8 text-center space-y-4">
                     <Avatar className="w-24 h-24 mx-auto">
                       <AvatarFallback className="bg-gradient-primary text-primary-foreground text-3xl font-bold">
                         {member.initial}
@@ -144,8 +123,7 @@ const About = () => {
                       <p className="text-accent font-semibold mb-4">{member.role}</p>
                       <p className="text-muted-foreground leading-relaxed">{member.bio}</p>
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
           </div>
@@ -180,8 +158,6 @@ const About = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;
