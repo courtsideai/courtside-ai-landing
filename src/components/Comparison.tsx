@@ -7,7 +7,7 @@ const Comparison = () => {
       icon: Phone,
       feature: "24/7 Availability",
       courtside: true,
-      answeringService: true,
+      answeringService: false,
     },
     {
       icon: Brain,
