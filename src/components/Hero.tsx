@@ -20,10 +20,10 @@ const Hero = () => {
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            <span className="text-foreground">Your Facility</span>
+            <span className="text-foreground text-7xl">Your Facility On  </span>
             <br />
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              On Autopilot
+            <span className="bg-gradient-primary bg-clip-text text-transparent text-7xl">
+              Autopilot
             </span>
           </h1>
 
@@ -47,7 +47,7 @@ const Hero = () => {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
             <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-bold text-foreground">80%</div>
+              <div className="text-3xl sm:text-4xl font-bold text-foreground">100%</div>
               <div className="text-sm text-muted-foreground">Time Saved</div>
             </div>
             <div className="space-y-1">
@@ -55,8 +55,8 @@ const Hero = () => {
               <div className="text-sm text-muted-foreground">Automation</div>
             </div>
             <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-bold text-foreground">500+</div>
-              <div className="text-sm text-muted-foreground">Venues Trust Us</div>
+              <div className="text-3xl sm:text-4xl font-bold text-foreground">15%</div>
+              <div className="text-sm text-muted-foreground">After Hours Revenue      </div>
             </div>
           </div>
         </div>
