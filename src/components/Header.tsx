@@ -1,14 +1,11 @@
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/courtside-logo-icon.png";
-
 const Header = () => {
-
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-lg">
+  return <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-lg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <img src={logo} alt="Courtside AI" className="h-8" />
+            <img alt="Courtside AI" className="h-8" src="/lovable-uploads/b81bbcb5-fb77-4886-8c89-1bf0d26212c6.png" />
           </div>
           
           <nav className="hidden md:flex items-center gap-8">
@@ -30,8 +27,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
-
 export default Header;
