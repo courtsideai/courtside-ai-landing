@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-bg.jpg";
+import courtsideLogo from "@/assets/courtside-logo-square-light.svg";
 const Hero = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -12,6 +13,15 @@ const Hero = () => {
       {/* Content */}
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
+          {/* Logo */}
+          <div className="flex justify-center mb-6">
+            <img 
+              src={courtsideLogo} 
+              alt="Courtside AI" 
+              className="h-16 w-16 sm:h-20 sm:w-20"
+            />
+          </div>
+
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent">
             <Sparkles className="h-4 w-4" />
