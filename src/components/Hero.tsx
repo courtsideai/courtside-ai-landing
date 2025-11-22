@@ -20,9 +20,9 @@ const Hero = () => {
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            <span className="text-foreground text-7xl text-center">Courtside AI                         </span>
+            <span className="text-foreground">Courtside AI</span>
             <br />
-            <span className="bg-gradient-primary bg-clip-text text-transparent text-6xl">
+            <span className="bg-gradient-primary bg-clip-text text-transparent">
               Your Facility On Autopilot
             </span>
           </h1>
