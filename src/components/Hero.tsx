@@ -12,13 +12,6 @@ const Hero = () => {
       {/* Content */}
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          {/* Brand Name */}
-          <div className="mb-6">
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Courtside AI
-            </h2>
-          </div>
-
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent">
             <Sparkles className="h-4 w-4" />
