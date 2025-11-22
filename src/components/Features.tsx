@@ -1,6 +1,10 @@
 import { Card } from "@/components/ui/card";
-import { Calendar, MessageSquare, Zap, BarChart3, Phone } from "lucide-react";
+import { Calendar, MessageSquare, Phone, BarChart3 } from "lucide-react";
 const features = [{
+  icon: Phone,
+  title: "24/7 Voice Agent",
+  description: "Answers, books, and provides information instantly — never miss a call again."
+}, {
   icon: Calendar,
   title: "Smart Scheduling",
   description: "Automatically manage bookings, reservations, and resource allocation with intelligent AI algorithms."
@@ -8,10 +12,6 @@ const features = [{
   icon: MessageSquare,
   title: "Automated Communication",
   description: "Handle customer inquiries, confirmations, and updates instantly with AI-powered messaging."
-}, {
-  icon: Zap,
-  title: "24/7 Voice Agent",
-  description: "Answers, books, and provides information instantly — never miss a call again."
 }, {
   icon: BarChart3,
   title: "Analytics & Insights",
