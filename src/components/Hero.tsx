@@ -47,7 +47,7 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 max-w-3xl mx-auto">
             <div className="space-y-1">
               <div className="text-3xl sm:text-4xl font-bold text-foreground">100%</div>
               <div className="text-sm text-muted-foreground">Time Saved</div>
@@ -57,8 +57,12 @@ const Hero = () => {
               <div className="text-sm text-muted-foreground">Automation</div>
             </div>
             <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-bold text-foreground">15%</div>
-              <div className="text-sm text-muted-foreground">After Hours Revenue      </div>
+              <div className="text-3xl sm:text-4xl font-bold text-foreground">+15%</div>
+              <div className="text-sm text-muted-foreground">After Hours Revenue</div>
+            </div>
+            <div className="space-y-1">
+              <div className="text-3xl sm:text-4xl font-bold text-foreground">$4850</div>
+              <div className="text-sm text-muted-foreground">Costs Saved</div>
             </div>
           </div>
         </div>
