@@ -10,6 +10,7 @@ import mayaAvatar from "@/assets/maya-avatar.jpg";
 const MayaIntro = () => {
   const { toast } = useToast();
   const N8N_WEBHOOK_URL = "https://courtsideai.app.n8n.cloud/webhook-test/dba8ef39-8b35-4b6f-8374-957a39571cb8";
+  const RECAPTCHA_SITE_KEY = "6LeWjhUsAAAAAHfvT9c2w1T80WX9PbejFrPqQFdG";
   
   const [formData, setFormData] = useState({
     name: "",
@@ -18,6 +19,21 @@ const MayaIntro = () => {
     facilityName: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+
+  // Load reCAPTCHA script
+  useState(() => {
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => setRecaptchaLoaded(true);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  });
 
   // Format phone number as user types
   const formatPhoneNumber = (value: string) => {
@@ -39,9 +55,22 @@ const MayaIntro = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!recaptchaLoaded) {
+      toast({
+        title: "Error",
+        description: "Security verification is loading. Please try again in a moment.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
+      // Execute reCAPTCHA
+      const token = await (window as any).grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
+      
       // Get just the numbers from the formatted phone
       const phoneNumbers = formData.phone.replace(/\D/g, '');
       
@@ -51,6 +80,7 @@ const MayaIntro = () => {
         phone: `+1${phoneNumbers}`,
         email: formData.email,
         facilityName: formData.facilityName,
+        recaptchaToken: token,
         timestamp: new Date().toISOString(),
       };
 
