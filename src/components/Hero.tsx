@@ -17,7 +17,7 @@ const Hero = () => {
           <div className="flex flex-col items-center gap-3">
             {/* Brand Pill - Subtle */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-muted/30 border border-muted-foreground/10 text-muted-foreground">
-              <img src={courtsideIcon} alt="Courtside AI" className="h-3.5 w-3.5 opacity-60 grayscale" />
+              <img src={courtsideIcon} alt="Courtside AI" className="h-3.5 w-3.5 opacity-70 grayscale" />
               <span className="text-sm font-medium">Courtside AI</span>
             </div>
             
