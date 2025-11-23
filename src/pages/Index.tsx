@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import LogoCarousel from "@/components/LogoCarousel";
+import MayaIntro from "@/components/MayaIntro";
 import Features from "@/components/Features";
 import Benefits from "@/components/Benefits";
 import Comparison from "@/components/Comparison";
@@ -16,6 +17,7 @@ const Index = () => {
       <main>
         <Hero />
         <LogoCarousel />
+        <MayaIntro />
         <Features />
         <Benefits />
         <Comparison />
