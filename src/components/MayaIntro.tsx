@@ -134,7 +134,7 @@ const MayaIntro = () => {
   };
 
   return (
-    <section className="pt-32 pb-20 bg-background">
+    <section id="maya" className="pt-32 pb-20 bg-background">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Left side - Maya Flip Card */}

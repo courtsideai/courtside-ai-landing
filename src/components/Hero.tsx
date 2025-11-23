@@ -49,8 +49,8 @@ const Hero = () => {
               <a href="#waitlist">Join Waitlist<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
-            <Button variant="outline" size="lg">
-              Watch Demo
+            <Button variant="outline" size="lg" asChild>
+              <a href="#maya">Try Maya</a>
             </Button>
           </div>
 
