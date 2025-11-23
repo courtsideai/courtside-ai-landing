@@ -180,7 +180,7 @@ const MayaIntro = () => {
                     Your AI-Powered Voice Assistant
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 pb-6">
                   <p className="text-foreground/80 leading-relaxed">
                     Maya is our intelligent voice agent designed specifically for sports facilities. 
                     She handles inquiries, schedules bookings, and provides information about your 
