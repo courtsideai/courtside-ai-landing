@@ -139,7 +139,7 @@ const MayaIntro = () => {
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Left side - Maya Flip Card */}
-          <div className="group perspective min-h-[500px]">
+          <div className="group perspective min-h-[650px] md:min-h-[500px]">
             <div 
               className={`relative preserve-3d transition-transform duration-700 h-full cursor-pointer ${isCardFlipped ? 'rotate-y-180' : ''} md:group-hover:rotate-y-180`}
               onClick={() => setIsCardFlipped(!isCardFlipped)}
@@ -168,7 +168,7 @@ const MayaIntro = () => {
               </Card>
 
               {/* Back of card - visible on mobile/tablet */}
-              <Card className="absolute inset-0 backface-hidden rotate-y-180 border-border/50 shadow-lg overflow-auto">
+              <Card className="absolute inset-0 backface-hidden rotate-y-180 border-border/50 shadow-lg">
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
