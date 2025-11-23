@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Phone } from "lucide-react";
 import heroImage from "@/assets/hero-bg.jpg";
 import courtsideIcon from "@/assets/courtside-icon.ico";
 const Hero = () => {
@@ -50,7 +50,10 @@ const Hero = () => {
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="#maya">Try Maya</a>
+              <a href="#maya" className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                Try Maya
+              </a>
             </Button>
           </div>
 
