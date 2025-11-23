@@ -20,7 +20,7 @@ const Hero = () => {
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            <span className="text-foreground">Your Facility On          </span>
+            <span className="text-foreground">Your Facility On</span>
             <br />
             <span className="bg-gradient-primary bg-clip-text text-transparent text-7xl">
               Autopilot
@@ -36,7 +36,7 @@ const Hero = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Button variant="hero" size="lg" className="group" asChild>
-              <a href="#waitlist">Join Waitlist      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <a href="#waitlist">Join Waitlist<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
             <Button variant="outline" size="lg">
