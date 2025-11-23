@@ -288,7 +288,11 @@ const MayaIntro = () => {
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
-                  By submitting, you agree to receive a call from our AI assistant Maya
+                  By submitting, you agree to receive a call from our AI assistant Maya. This site is protected by reCAPTCHA and the Google{' '}
+                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Privacy Policy</a>{' '}
+                  and{' '}
+                  <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Terms of Service</a>{' '}
+                  apply.
                 </p>
               </form>
             </CardContent>
