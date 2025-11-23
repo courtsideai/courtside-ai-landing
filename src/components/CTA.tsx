@@ -22,9 +22,7 @@ const CTA = () => {
               <a href="#maya">Try Maya</a>
             </Button>
           </div>
-          <p className="text-sm text-muted-foreground">
-            No credit card required • 14-day free trial • Cancel anytime
-          </p>
+          
         </div>
       </div>
     </section>;
