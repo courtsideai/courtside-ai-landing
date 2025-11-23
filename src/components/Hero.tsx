@@ -18,6 +18,11 @@ const Hero = () => {
             <span className="text-sm font-medium">AI-Powered Automation</span>
           </div>
 
+          {/* Subheading */}
+          <p className="text-sm font-normal text-muted-foreground tracking-wide -mt-4 mb-2">
+            Built by Courtside AI
+          </p>
+
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
             <span className="text-foreground">Your Facility On</span>
