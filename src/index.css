@@ -108,11 +108,6 @@ All colors MUST be HSL.
 body {
   @apply bg-background text-foreground;
 }
-
-/* Hide reCAPTCHA badge */
-.grecaptcha-badge {
-  visibility: hidden;
-}
 }
 
 @layer utilities {
@@ -131,4 +126,9 @@ body {
   .rotate-y-180 {
     transform: rotateY(180deg);
   }
+}
+
+/* Hide reCAPTCHA badge - must be outside layers to override Google's styles */
+.grecaptcha-badge {
+  display: none !important;
 }
