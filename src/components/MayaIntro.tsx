@@ -139,7 +139,7 @@ const MayaIntro = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Left side - Maya Flip Card */}
           <div className="group perspective min-h-[500px]">
-            <div className="relative preserve-3d transition-transform duration-700 md:group-hover:rotate-y-180 h-full">
+            <div className="relative preserve-3d transition-transform duration-700 md:group-hover:rotate-y-180 active:rotate-y-180 h-full">
               {/* Front of card */}
               <Card 
                 className="absolute inset-0 backface-hidden border-border/50 shadow-lg overflow-hidden"
