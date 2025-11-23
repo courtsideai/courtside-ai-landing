@@ -32,7 +32,7 @@ const Hero = () => {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
             <span className="text-foreground">Your Facility On</span>
             <br />
-            <span className="bg-gradient-primary bg-clip-text text-transparent text-7xl">
+            <span className="bg-gradient-primary bg-clip-text text-transparent text-5xl sm:text-6xl md:text-7xl">
               Autopilot
             </span>
           </h1>
@@ -45,11 +45,11 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Button variant="hero" size="lg" className="group" asChild>
+            <Button variant="hero" size="lg" className="group w-full sm:w-auto" asChild>
               <a href="#waitlist">Join Waitlist<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" size="lg" className="w-full sm:w-auto" asChild>
               <a href="#maya" className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
                 Try Maya
