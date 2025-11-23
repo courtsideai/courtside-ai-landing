@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Building2 } from "lucide-react";
 import heroImage from "@/assets/hero-bg.jpg";
 const Hero = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -15,7 +15,8 @@ const Hero = () => {
           {/* Badges */}
           <div className="flex flex-col items-center gap-3">
             {/* Brand Pill - Subtle */}
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-muted/30 border border-muted-foreground/10 text-muted-foreground">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-muted/30 border border-muted-foreground/10 text-muted-foreground">
+              <Building2 className="h-3.5 w-3.5" />
               <span className="text-sm font-medium">Courtside AI</span>
             </div>
             
