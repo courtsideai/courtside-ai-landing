@@ -1,14 +1,19 @@
+import kcLogo from "@/assets/logos/kc-logo.png";
+import catchcornerLogo from "@/assets/logos/catchcorner-logo.jpg";
+import ezFacilityLogo from "@/assets/logos/ez-facility-logo.png";
+import skeddaLogo from "@/assets/logos/skedda-logo.svg";
+import fitCourtsLogo from "@/assets/logos/fit-courts-logo.png";
+import kcMarkhamLogo from "@/assets/logos/kc-markham-logo.png";
+
 const LogoCarousel = () => {
-  // Placeholder logos - can be replaced with actual company logos
+  // Client logos in randomized order
   const logos = [
-    { name: "Company 1", width: "120px" },
-    { name: "Company 2", width: "140px" },
-    { name: "Company 3", width: "130px" },
-    { name: "Company 4", width: "125px" },
-    { name: "Company 5", width: "135px" },
-    { name: "Company 6", width: "120px" },
-    { name: "Company 7", width: "145px" },
-    { name: "Company 8", width: "128px" },
+    { name: "Skedda", image: skeddaLogo, width: "140px" },
+    { name: "EZFacility", image: ezFacilityLogo, width: "160px" },
+    { name: "KC Markham", image: kcMarkhamLogo, width: "120px" },
+    { name: "Catchcorner by Sports Illustrated", image: catchcornerLogo, width: "180px" },
+    { name: "Fit Courts", image: fitCourtsLogo, width: "130px" },
+    { name: "Kings Court Sports Facility", image: kcLogo, width: "125px" },
   ];
 
   return (
@@ -29,9 +34,11 @@ const LogoCarousel = () => {
                 className="flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                 style={{ minWidth: logo.width }}
               >
-                <div className="w-full h-16 bg-foreground/10 rounded-lg flex items-center justify-center text-xs font-semibold text-foreground/60">
-                  {logo.name}
-                </div>
+                <img
+                  src={logo.image}
+                  alt={logo.name}
+                  className="w-full h-16 object-contain"
+                />
               </div>
             ))}
           </div>
@@ -44,9 +51,11 @@ const LogoCarousel = () => {
                 className="flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                 style={{ minWidth: logo.width }}
               >
-                <div className="w-full h-16 bg-foreground/10 rounded-lg flex items-center justify-center text-xs font-semibold text-foreground/60">
-                  {logo.name}
-                </div>
+                <img
+                  src={logo.image}
+                  alt={logo.name}
+                  className="w-full h-16 object-contain"
+                />
               </div>
             ))}
           </div>
