@@ -19,7 +19,7 @@ const Hero = () => {
           </div>
 
           {/* Subheading */}
-          <p className="text-sm font-normal text-foreground/55 tracking-[0.25px] mt-7 mb-3">
+          <p className="text-sm font-normal text-muted-foreground tracking-wide -mt-4 mb-2">
             Built by Courtside AI
           </p>
 
