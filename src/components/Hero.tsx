@@ -12,10 +12,18 @@ const Hero = () => {
       {/* Content */}
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent">
-            <Sparkles className="h-4 w-4" />
-            <span className="text-sm font-medium">AI-Powered Automation</span>
+          {/* Badges */}
+          <div className="flex flex-col items-center gap-3">
+            {/* Brand Pill - Subtle */}
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-muted/30 border border-muted-foreground/10 text-muted-foreground">
+              <span className="text-xs font-normal">Courtside AI</span>
+            </div>
+            
+            {/* Main Pill - Primary */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent">
+              <Sparkles className="h-4 w-4" />
+              <span className="text-sm font-medium">AI-Powered Automation</span>
+            </div>
           </div>
 
           {/* Headline */}
