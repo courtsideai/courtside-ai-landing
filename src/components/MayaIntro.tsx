@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,8 +7,18 @@ import { Phone, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import mayaAvatar from "@/assets/maya-avatar.jpg";
 
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
+
 const MayaIntro = () => {
   const { toast } = useToast();
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  const RECAPTCHA_SITE_KEY = "YOUR_RECAPTCHA_SITE_KEY"; // User needs to replace this
+  const N8N_WEBHOOK_URL = "https://courtsideai.app.n8n.cloud/webhook-test/dba8ef39-8b35-4b6f-8374-957a39571cb8";
+  
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -17,19 +27,82 @@ const MayaIntro = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Load reCAPTCHA script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => setRecaptchaLoaded(true);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!recaptchaLoaded) {
+      toast({
+        title: "Please wait",
+        description: "Security verification is still loading...",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Execute reCAPTCHA
+      const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
+      
+      if (!token) {
+        throw new Error("reCAPTCHA verification failed");
+      }
+
+      // Send data to n8n webhook
+      const webhookData = {
+        name: formData.name,
+        phone: `+1${formData.phone}`,
+        email: formData.email,
+        facilityName: formData.facilityName,
+        recaptchaToken: token,
+        timestamp: new Date().toISOString(),
+      };
+
+      console.log("Sending to n8n webhook:", webhookData);
+
+      const response = await fetch(N8N_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(webhookData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Webhook request failed");
+      }
+
       toast({
         title: "Request Received!",
         description: "Maya will call you shortly to demonstrate her capabilities.",
       });
+      
       setFormData({ name: "", phone: "", email: "", facilityName: "" });
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Error",
+        description: "Failed to submit your request. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -142,15 +215,24 @@ const MayaIntro = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone Number *</Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+1 (555) 123-4567"
-                    required
-                  />
+                  <div className="flex gap-2">
+                    <div className="flex items-center justify-center px-3 py-2 bg-muted rounded-md border border-input text-sm font-medium">
+                      +1
+                    </div>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="(555) 123-4567"
+                      pattern="[0-9]{10}"
+                      maxLength={10}
+                      required
+                      className="flex-1"
+                    />
+                  </div>
+                  <p className="text-xs text-muted-foreground">US/Canada numbers only</p>
                 </div>
 
                 <div className="space-y-2">
@@ -181,13 +263,14 @@ const MayaIntro = () => {
                   type="submit"
                   className="w-full"
                   size="lg"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !recaptchaLoaded}
                 >
-                  {isSubmitting ? "Submitting..." : "Have Maya Call Me"}
+                  {isSubmitting ? "Submitting..." : !recaptchaLoaded ? "Loading..." : "Have Maya Call Me"}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
-                  By submitting, you agree to receive a call from our AI assistant Maya
+                  By submitting, you agree to receive a call from our AI assistant Maya.
+                  This site is protected by reCAPTCHA.
                 </p>
               </form>
             </CardContent>
