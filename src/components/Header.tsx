@@ -11,11 +11,11 @@ const Header = () => {
           </div>
           
           <nav className="hidden md:flex items-center gap-8">
+            <a href="/#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
+              How It Works
+            </a>
             <a href="/#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
               Features
-            </a>
-            <a href="/#benefits" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
-              Benefits
             </a>
             <a href="/#comparison" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
               Comparison
