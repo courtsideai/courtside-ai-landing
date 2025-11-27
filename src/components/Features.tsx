@@ -11,7 +11,7 @@ const features = [{
 }, {
   icon: MessageSquare,
   title: "Automated Communication",
-  description: "Handle customer inquiries, confirmations, and updates instantly with AI-powered messaging."
+  description: "Handle follow-ups, reminders, and last-minute bookings — all without lifting a finger."
 }, {
   icon: BarChart3,
   title: "Analytics & Insights",
