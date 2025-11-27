@@ -41,17 +41,17 @@ const HowItWorks = () => {
             return (
               <div key={step.number} className="relative">
                 <Card className="border-border/50 bg-card/50 backdrop-blur-sm hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] active:bg-accent/5 transition-all duration-300">
-                  <CardContent className="p-8">
-                    <div className="flex items-start gap-6">
+                  <CardContent className="p-6 sm:p-8">
+                    <div className="flex items-start gap-4 sm:gap-6">
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <Icon className="w-8 h-8 text-primary transition-transform duration-300 hover:scale-110 hover:rotate-6" />
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 min-w-[3.5rem] sm:min-w-[4rem] rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                          <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-primary transition-transform duration-300 hover:scale-110 hover:rotate-6" />
                         </div>
                       </div>
                       
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-3">
-                          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold">
+                          <span className="inline-flex items-center justify-center w-10 h-10 min-w-[2.5rem] flex-shrink-0 rounded-full bg-primary text-primary-foreground text-base font-bold">
                             {step.number}
                           </span>
                           <h3 className="text-xl md:text-2xl font-semibold">
