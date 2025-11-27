@@ -21,8 +21,8 @@ const Index = () => {
         <Features />
         <Benefits />
         <Comparison />
-        <Waitlist />
         <FAQ />
+        <Waitlist />
         <CTA />
       </main>
       <Footer />
