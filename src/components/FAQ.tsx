@@ -12,6 +12,10 @@ const FAQ = () => {
       answer: "3-5 business days from contract signing to go-live.",
     },
     {
+      question: "What does setup look like?",
+      answer: "Setup takes about 72 hours. We meet with your team, collect your pricing, rules, and scripts, configure Maya, test her with real scenarios, make adjustments, and deploy your live voice agent.",
+    },
+    {
       question: "Can it integrate with my booking system?",
       answer: "Yes, we support most major schedulers for facilities and venues.",
     },
