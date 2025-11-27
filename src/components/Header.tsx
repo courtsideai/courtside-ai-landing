@@ -26,7 +26,7 @@ const Header = () => {
           
           {/* Navigation - Center */}
           <nav className="hidden md:flex items-center justify-center gap-8">
-            <a href="/#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
+            <a href="/#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth whitespace-nowrap">
               How It Works
             </a>
             <a href="/#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
