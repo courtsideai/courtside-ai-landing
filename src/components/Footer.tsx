@@ -1,4 +1,5 @@
-import logo from "@/assets/courtside-logo-horizontal.svg";
+import { Instagram, Linkedin, Twitter } from "lucide-react";
+
 const Footer = () => {
   return <footer className="border-t border-white/10 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -37,7 +38,37 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8">
+        <div className="border-t border-white/10 pt-8 pb-4">
+          <div className="flex justify-center gap-6 mb-6">
+            <a 
+              href="https://instagram.com/courtsideai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-smooth"
+              aria-label="Instagram"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a 
+              href="https://linkedin.com/company/courtsideai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-smooth"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+            <a 
+              href="https://twitter.com/courtsideai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-smooth"
+              aria-label="X (Twitter)"
+            >
+              <Twitter className="h-5 w-5" />
+            </a>
+          </div>
+          
           <p className="text-center text-sm text-gray-400">
             © {new Date().getFullYear()} Courtside AI. All rights reserved.
           </p>
