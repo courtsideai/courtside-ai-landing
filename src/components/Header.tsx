@@ -29,6 +29,9 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-4">
+            <Button variant="outline" size="sm" asChild>
+              <a href="#maya">Try Maya</a>
+            </Button>
             <Button variant="hero" size="sm" asChild>
               <a href="#waitlist">Get Started</a>
             </Button>
