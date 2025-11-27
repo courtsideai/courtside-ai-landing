@@ -47,13 +47,13 @@ const Features = () => {
             </Card>)}
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
-          <div className="space-y-4">
-            {benefits.map((benefit, index) => <div key={index} className="flex items-start gap-3">
-                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/10">
+        <div className="grid lg:grid-cols-[1.2fr,1fr] gap-16 items-start max-w-7xl mx-auto">
+          <div className="space-y-5">
+            {benefits.map((benefit, index) => <div key={index} className="flex items-start gap-4 p-4 rounded-lg hover:bg-accent/5 transition-colors">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 mt-0.5">
                   <Check className="h-4 w-4 text-accent" />
                 </div>
-                <p className="text-foreground font-medium">{benefit}</p>
+                <p className="text-foreground font-medium text-lg leading-relaxed">{benefit}</p>
               </div>)}
           </div>
 
