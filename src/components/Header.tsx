@@ -16,7 +16,7 @@ const Header = () => {
 
   return <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-lg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-3 h-16 items-center">
+        <div className="flex lg:grid lg:grid-cols-3 h-16 items-center justify-between">
           {/* Logo - Left */}
           <div className="flex items-center">
             <a href="/">
@@ -24,8 +24,8 @@ const Header = () => {
             </a>
           </div>
           
-          {/* Navigation - Center */}
-          <nav className="hidden md:flex items-center justify-center gap-8">
+          {/* Navigation - Center (Desktop only) */}
+          <nav className="hidden lg:flex items-center justify-center gap-8">
             <a href="/#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth whitespace-nowrap">
               How It Works
             </a>
@@ -43,10 +43,10 @@ const Header = () => {
             </a>
           </nav>
 
-          {/* CTA Buttons - Right */}
+          {/* CTA Buttons & Mobile Menu - Right */}
           <div className="flex items-center justify-end gap-4">
             {/* Desktop CTA buttons */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               <Button variant="outline" size="sm" asChild>
                 <a href="#maya">Try Maya</a>
               </Button>
@@ -56,7 +56,7 @@ const Header = () => {
             </div>
 
             {/* Mobile hamburger menu */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon">
