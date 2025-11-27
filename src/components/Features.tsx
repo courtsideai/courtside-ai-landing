@@ -47,8 +47,8 @@ const Features = () => {
             </Card>)}
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-12 items-center max-w-7xl mx-auto">
-          <div className="lg:col-span-3 grid md:grid-cols-2 gap-4">
+        <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
+          <div className="space-y-4">
             {benefits.map((benefit, index) => <div key={index} className="flex items-start gap-3">
                 <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/10">
                   <Check className="h-4 w-4 text-accent" />
@@ -57,7 +57,7 @@ const Features = () => {
               </div>)}
           </div>
 
-          <div className="lg:col-span-2 relative">
+          <div className="relative">
             <div className="aspect-square rounded-2xl bg-gradient-primary opacity-10 blur-3xl absolute inset-0"></div>
             <div className="relative rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-8 shadow-medium">
               <div className="space-y-6">
