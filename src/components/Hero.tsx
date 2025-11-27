@@ -64,7 +64,7 @@ const Hero = () => {
               <div className="text-sm text-muted-foreground">After Hours Revenue</div>
             </div>
             <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-bold text-foreground">$4850</div>
+              <div className="text-3xl sm:text-4xl font-bold text-foreground">$3050+</div>
               <div className="text-sm text-muted-foreground">Saved Monthly </div>
             </div>
             <div className="space-y-1">
