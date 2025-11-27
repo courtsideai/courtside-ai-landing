@@ -24,7 +24,7 @@ const Comparison = () => {
     {
       icon: DollarSign,
       feature: "Cost per Day",
-      courtside: "$10",
+      courtside: "Starts at $10",
       answeringService: "$120-150",
     },
     {
