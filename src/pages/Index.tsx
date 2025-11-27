@@ -4,7 +4,6 @@ import LogoCarousel from "@/components/LogoCarousel";
 import MayaIntro from "@/components/MayaIntro";
 import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
-import Benefits from "@/components/Benefits";
 import Comparison from "@/components/Comparison";
 import Waitlist from "@/components/Waitlist";
 import FAQ from "@/components/FAQ";
@@ -21,7 +20,6 @@ const Index = () => {
         <MayaIntro />
         <HowItWorks />
         <Features />
-        <Benefits />
         <Comparison />
         <FAQ />
         <Waitlist />
