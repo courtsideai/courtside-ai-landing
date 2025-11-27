@@ -17,15 +17,13 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="#features" className="hover:text-white transition-smooth">Features</a></li>
               <li><a href="#" className="hover:text-white transition-smooth">Pricing</a></li>
-              <li><a href="#" className="hover:text-white transition-smooth">Case Studies</a></li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-semibold text-white mb-4">Company</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-white transition-smooth">About</a></li>
-              <li><a href="#" className="hover:text-white transition-smooth">Blog</a></li>
+              <li><a href="/about" className="hover:text-white transition-smooth">About</a></li>
               <li><a href="#contact" className="hover:text-white transition-smooth">Contact</a></li>
             </ul>
           </div>
@@ -33,9 +31,8 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-white mb-4">Legal</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-white transition-smooth">Privacy</a></li>
-              <li><a href="#" className="hover:text-white transition-smooth">Terms</a></li>
-              <li><a href="#" className="hover:text-white transition-smooth">Security</a></li>
+              <li><a href="/privacy" className="hover:text-white transition-smooth">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-white transition-smooth">Terms of Service</a></li>
             </ul>
           </div>
         </div>
