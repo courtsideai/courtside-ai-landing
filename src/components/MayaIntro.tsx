@@ -6,17 +6,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Phone, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import mayaAvatar from "@/assets/maya-avatar.jpg";
-
 const MayaIntro = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const N8N_WEBHOOK_URL = "https://courtsideai.app.n8n.cloud/webhook-test/dba8ef39-8b35-4b6f-8374-957a39571cb8";
   const RECAPTCHA_SITE_KEY = "6LeWjhUsAAAAAHfvT9c2w1T80WX9PbejFrPqQFdG";
-  
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    facilityName: "",
+    facilityName: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
@@ -30,7 +30,6 @@ const MayaIntro = () => {
     script.defer = true;
     script.onload = () => setRecaptchaLoaded(true);
     document.head.appendChild(script);
-
     return () => {
       document.head.removeChild(script);
     };
@@ -40,10 +39,10 @@ const MayaIntro = () => {
   const formatPhoneNumber = (value: string) => {
     // Remove all non-numeric characters
     const numbers = value.replace(/\D/g, '');
-    
+
     // Limit to 10 digits
     const limited = numbers.slice(0, 10);
-    
+
     // Format as (XXX) XXX-XXXX
     if (limited.length <= 3) {
       return limited;
@@ -53,28 +52,26 @@ const MayaIntro = () => {
       return `(${limited.slice(0, 3)}) ${limited.slice(3, 6)}-${limited.slice(6)}`;
     }
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!recaptchaLoaded) {
       toast({
         title: "Error",
         description: "Security verification is loading. Please try again in a moment.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
     setIsSubmitting(true);
-
     try {
       // Execute reCAPTCHA
-      const token = await (window as any).grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
-      
+      const token = await (window as any).grecaptcha.execute(RECAPTCHA_SITE_KEY, {
+        action: 'submit'
+      });
+
       // Get just the numbers from the formatted phone
       const phoneNumbers = formData.phone.replace(/\D/g, '');
-      
+
       // Send data to n8n webhook
       const webhookData = {
         name: formData.name,
@@ -82,44 +79,45 @@ const MayaIntro = () => {
         email: formData.email,
         facilityName: formData.facilityName,
         recaptchaToken: token,
-        timestamp: new Date().toISOString(),
+        timestamp: new Date().toISOString()
       };
-
       console.log("Sending to n8n webhook:", webhookData);
-
       const response = await fetch(N8N_WEBHOOK_URL, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(webhookData),
+        body: JSON.stringify(webhookData)
       });
-
       if (!response.ok) {
         throw new Error("Webhook request failed");
       }
-
       toast({
         title: "Request Received!",
-        description: "Maya will call you shortly to demonstrate her capabilities.",
+        description: "Maya will call you shortly to demonstrate her capabilities."
       });
-      
-      setFormData({ name: "", phone: "", email: "", facilityName: "" });
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        facilityName: ""
+      });
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
         title: "Error",
         description: "Failed to submit your request. Please try again.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    
+    const {
+      name,
+      value
+    } = e.target;
     if (name === "phone") {
       // Format phone number as user types
       setFormData(prev => ({
@@ -133,26 +131,18 @@ const MayaIntro = () => {
       }));
     }
   };
-
-  return (
-    <section id="maya" className="pt-32 pb-20 bg-background">
+  return <section id="maya" className="pt-32 pb-20 bg-background">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Left side - Maya Flip Card */}
           <div className="group perspective min-h-[650px] md:min-h-[500px]">
-            <div 
-              className={`relative preserve-3d transition-transform duration-700 h-full cursor-pointer ${isCardFlipped ? 'rotate-y-180' : ''} md:group-hover:rotate-y-180`}
-              onClick={() => setIsCardFlipped(!isCardFlipped)}
-            >
+            <div className={`relative preserve-3d transition-transform duration-700 h-full cursor-pointer ${isCardFlipped ? 'rotate-y-180' : ''} md:group-hover:rotate-y-180`} onClick={() => setIsCardFlipped(!isCardFlipped)}>
               {/* Front of card */}
-              <Card 
-                className="absolute inset-0 backface-hidden border-border/50 shadow-lg overflow-hidden"
-                style={{
-                  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(${mayaAvatar})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}
-              >
+              <Card className="absolute inset-0 backface-hidden border-border/50 shadow-lg overflow-hidden" style={{
+              backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(${mayaAvatar})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
                 <CardContent className="flex flex-col items-center justify-center h-full min-h-[500px] p-8">
                   <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-6">
                     <Sparkles className="w-10 h-10 text-primary" />
@@ -219,7 +209,7 @@ const MayaIntro = () => {
           {/* Right side - Contact Form */}
           <Card className="border-border/50 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl">Try Maya Now</CardTitle>
+              <CardTitle className="text-2xl">​Let Maya Call You — See the Magic </CardTitle>
               <CardDescription>
                 Fill out the form below and Maya will call you to demonstrate her capabilities
               </CardDescription>
@@ -228,14 +218,7 @@ const MayaIntro = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name *</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your full name"
-                    required
-                  />
+                  <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Your full name" required />
                 </div>
 
                 <div className="space-y-2">
@@ -244,50 +227,22 @@ const MayaIntro = () => {
                     <div className="flex items-center justify-center px-3 py-2 bg-muted rounded-md border border-input text-sm font-medium">
                       +1
                     </div>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="(555) 123-4567"
-                      required
-                      className="flex-1"
-                    />
+                    <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="(555) 123-4567" required className="flex-1" />
                   </div>
                   <p className="text-xs text-muted-foreground">US/Canada numbers only</p>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="you@example.com"
-                    required
-                  />
+                  <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="you@example.com" required />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="facilityName">Facility Name (Optional)</Label>
-                  <Input
-                    id="facilityName"
-                    name="facilityName"
-                    value={formData.facilityName}
-                    onChange={handleChange}
-                    placeholder="Your facility name"
-                  />
+                  <Input id="facilityName" name="facilityName" value={formData.facilityName} onChange={handleChange} placeholder="Your facility name" />
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full"
-                  size="lg"
-                  disabled={isSubmitting}
-                >
+                <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
                   {isSubmitting ? "Submitting..." : "Have Maya Call Me"}
                 </Button>
 
@@ -303,8 +258,6 @@ const MayaIntro = () => {
           </Card>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default MayaIntro;
