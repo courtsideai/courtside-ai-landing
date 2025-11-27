@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import courtsideLogo from "@/assets/courtside-logo-new.svg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ const Header = () => {
           {/* Logo - Left */}
           <div className="flex items-center">
             <a href="/">
-              <img alt="Courtside AI" className="h-10" src="/lovable-uploads/63e1d143-df02-4c3f-b665-a8bf33a4007e.png" />
+              <img alt="Courtside AI" className="h-10" src={courtsideLogo} />
             </a>
           </div>
           
