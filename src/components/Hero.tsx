@@ -27,7 +27,7 @@ const Hero = () => {
             
             {/* Main Pill - Primary */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent">
-              <span className="text-base">⚡</span>
+              <span className="text-sm">⚡</span>
               <span className="text-sm font-medium">AI-Powered Automation by Courtside AI</span>
             </div>
           </div>
