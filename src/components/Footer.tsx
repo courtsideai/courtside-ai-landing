@@ -38,40 +38,42 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 pb-4">
-          <div className="flex justify-center gap-6 mb-6">
-            <a 
-              href="https://instagram.com/courtsideai" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-smooth"
-              aria-label="Instagram"
-            >
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a 
-              href="https://linkedin.com/company/courtsideai" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-smooth"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a 
-              href="https://twitter.com/courtsideai" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-smooth"
-              aria-label="X (Twitter)"
-            >
-              <Twitter className="h-5 w-5" />
-            </a>
+        <div className="border-t border-white/10 pt-8 pb-2">
+          <div className="flex justify-between items-center">
+            <p className="text-sm text-gray-400">
+              © 2025 Courtside AI. Proudly Canadian
+            </p>
+            
+            <div className="flex gap-4">
+              <a 
+                href="https://instagram.com/courtsideai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-300 transition-smooth"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-3.5 w-3.5" />
+              </a>
+              <a 
+                href="https://linkedin.com/company/courtsideai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-300 transition-smooth"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-3.5 w-3.5" />
+              </a>
+              <a 
+                href="https://twitter.com/courtsideai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-300 transition-smooth"
+                aria-label="X (Twitter)"
+              >
+                <Twitter className="h-3.5 w-3.5" />
+              </a>
+            </div>
           </div>
-          
-          <p className="text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} Courtside AI. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>;
