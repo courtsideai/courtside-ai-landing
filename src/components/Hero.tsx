@@ -49,8 +49,7 @@ const Hero = () => {
           animationDelay: "0.4s",
           animationFillMode: "both"
         }}>
-            Courtside AI streamlines facility operations with cutting-edge automation. 
-            Save time, reduce costs, and deliver exceptional experiences.
+            ​Automate your facility operations from end to end. Save time, reduce costs, and deliver exceptional experiences.
           </p>
 
           {/* CTA Buttons */}
