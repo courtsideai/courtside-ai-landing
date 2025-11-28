@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Phone, Zap } from "lucide-react";
+import { ArrowRight, Sparkles, Phone, Loader } from "lucide-react";
 import { useCounterAnimation } from "@/hooks/use-counter-animation";
 import heroImage from "@/assets/hero-bg.jpg";
 import courtsideIcon from "@/assets/courtside-icon.ico";
@@ -27,7 +27,7 @@ const Hero = () => {
             
             {/* Main Pill - Primary */}
             <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 border border-accent/20 text-accent px-[14px] py-[7px]">
-              <Zap className="h-4 w-4" />
+              <Loader className="h-4 w-4" />
               <span className="text-sm font-medium">AI-Powered Automation by Courtside AI</span>
             </div>
           </div>
