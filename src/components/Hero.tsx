@@ -20,13 +20,10 @@ const Hero = () => {
           {/* Badges */}
           <div className="flex flex-col items-center gap-3 animate-fade-in">
             {/* Brand Pill - Subtle */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/30 border border-muted-foreground/10 text-muted-foreground">
-              <Sparkles className="h-3 w-3 opacity-70" />
-              <span className="text-xs font-medium">AI-Powered Automation</span>
-            </div>
+            
             
             {/* Main Pill - Primary */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent">
+            <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 border-accent/20 text-accent border px-[13px] py-[7px]">
               <span className="text-sm">⚡</span>
               <span className="text-sm font-medium">AI-Powered Automation by Courtside AI</span>
             </div>
