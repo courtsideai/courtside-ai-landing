@@ -38,9 +38,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 pb-2">
+        <div className="border-t border-white/10 pt-8 pb-0">
           <div className="flex justify-between items-center">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-300">
               © 2025 Courtside AI. Proudly Canadian
             </p>
             
@@ -49,28 +49,28 @@ const Footer = () => {
                 href="https://instagram.com/courtsideai" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-300 transition-smooth"
+                className="text-gray-400 hover:text-white transition-smooth"
                 aria-label="Instagram"
               >
-                <Instagram className="h-3.5 w-3.5" />
+                <Instagram className="h-4 w-4" />
               </a>
               <a 
                 href="https://linkedin.com/company/courtsideai" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-300 transition-smooth"
+                className="text-gray-400 hover:text-white transition-smooth"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="h-3.5 w-3.5" />
+                <Linkedin className="h-4 w-4" />
               </a>
               <a 
                 href="https://twitter.com/courtsideai" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-300 transition-smooth"
+                className="text-gray-400 hover:text-white transition-smooth"
                 aria-label="X (Twitter)"
               >
-                <Twitter className="h-3.5 w-3.5" />
+                <Twitter className="h-4 w-4" />
               </a>
             </div>
           </div>
