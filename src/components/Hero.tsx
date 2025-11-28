@@ -3,7 +3,6 @@ import { ArrowRight, Sparkles, Phone } from "lucide-react";
 import { useCounterAnimation } from "@/hooks/use-counter-animation";
 import heroImage from "@/assets/hero-bg.jpg";
 import courtsideIcon from "@/assets/courtside-icon.ico";
-
 const Hero = () => {
   const revenueCount = useCounterAnimation(15, 2000);
   const savingsCount = useCounterAnimation(3050, 2000);
@@ -29,12 +28,15 @@ const Hero = () => {
             {/* Main Pill - Primary */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent">
               <img src={courtsideIcon} alt="Courtside AI" className="h-4 w-4" />
-              <span className="text-sm font-medium">Courtside AI</span>
+              <span className="text-sm font-medium">AI-Powered Automation by Courtside AI</span>
             </div>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "both" }}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in" style={{
+          animationDelay: "0.2s",
+          animationFillMode: "both"
+        }}>
             <span className="text-foreground">Your Facility On</span>
             <br />
             <span className="bg-gradient-primary bg-clip-text text-transparent text-5xl sm:text-6xl md:text-7xl drop-shadow-[0_0_30px_rgba(59,130,246,0.5)]">
@@ -43,13 +45,19 @@ const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: "0.4s", animationFillMode: "both" }}>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{
+          animationDelay: "0.4s",
+          animationFillMode: "both"
+        }}>
             Courtside AI streamlines facility operations with cutting-edge automation. 
             Save time, reduce costs, and deliver exceptional experiences.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in" style={{ animationDelay: "0.6s", animationFillMode: "both" }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in" style={{
+          animationDelay: "0.6s",
+          animationFillMode: "both"
+        }}>
             <Button variant="hero" size="lg" className="group w-full sm:w-auto" asChild>
               <a href="#waitlist">Join Waitlist<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
@@ -63,7 +71,10 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.8s", animationFillMode: "both" }}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 max-w-3xl mx-auto animate-fade-in" style={{
+          animationDelay: "0.8s",
+          animationFillMode: "both"
+        }}>
             <div className="space-y-1">
               <div className="text-3xl sm:text-4xl font-bold text-foreground">+{revenueCount}%</div>
               <div className="text-sm text-muted-foreground">After Hours Revenue</div>
