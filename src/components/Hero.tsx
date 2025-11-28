@@ -22,14 +22,14 @@ const Hero = () => {
           <div className="flex flex-col items-center gap-3 animate-fade-in">
             {/* Brand Pill - Subtle */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/30 border border-muted-foreground/10 text-muted-foreground">
-              <img src={courtsideIcon} alt="Courtside AI" className="h-3 w-3 opacity-70 grayscale" />
-              <span className="text-xs font-medium">Courtside AI</span>
+              <Sparkles className="h-3 w-3 opacity-70" />
+              <span className="text-xs font-medium">AI-Powered Automation</span>
             </div>
             
             {/* Main Pill - Primary */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent animate-pulse">
-              <Sparkles className="h-4 w-4" />
-              <span className="text-sm font-medium">AI-Powered Automation</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent">
+              <img src={courtsideIcon} alt="Courtside AI" className="h-4 w-4" />
+              <span className="text-sm font-medium">Courtside AI</span>
             </div>
           </div>
 
