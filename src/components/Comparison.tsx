@@ -19,7 +19,7 @@ const Comparison = () => {
       icon: Calendar,
       feature: "Automated Booking",
       courtside: true,
-      answeringService: false,
+      answeringService: true,
     },
     {
       icon: DollarSign,
@@ -31,7 +31,7 @@ const Comparison = () => {
       icon: Zap,
       feature: "Instant Response",
       courtside: true,
-      answeringService: false,
+      answeringService: true,
     },
     {
       icon: BarChart3,
