@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { Instagram, Linkedin, X } from "lucide-react";
 
 const Footer = () => {
   return <footer className="border-t border-white/10 bg-black">
@@ -70,7 +70,7 @@ const Footer = () => {
                 className="text-gray-400 hover:text-white transition-smooth"
                 aria-label="X (Twitter)"
               >
-                <Twitter className="h-4 w-4" />
+                <X className="h-4 w-4" />
               </a>
             </div>
           </div>
