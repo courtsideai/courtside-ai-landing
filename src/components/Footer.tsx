@@ -1,4 +1,5 @@
-import { Instagram, Linkedin, X } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
+import xIcon from "@/assets/x-icon.ico";
 
 const Footer = () => {
   return <footer className="border-t border-white/10 bg-black">
@@ -70,7 +71,7 @@ const Footer = () => {
                 className="text-gray-400 hover:text-white transition-smooth"
                 aria-label="X (Twitter)"
               >
-                <X className="h-4 w-4" />
+                <img src={xIcon} alt="X" className="h-4 w-4 invert opacity-60 hover:opacity-100 transition-smooth" />
               </a>
             </div>
           </div>
