@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Phone, Loader } from "lucide-react";
+import { ArrowRight, Phone, Loader } from "lucide-react";
 import { useCounterAnimation } from "@/hooks/use-counter-animation";
 import heroImage from "@/assets/hero-bg.jpg";
 import courtsideIcon from "@/assets/courtside-icon.ico";
@@ -19,12 +19,6 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           {/* Badges */}
           <div className="flex flex-col items-center gap-3 animate-fade-in">
-            {/* Brand Pill - Subtle */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/30 border border-muted-foreground/10 text-muted-foreground">
-              <Sparkles className="h-3 w-3 opacity-70" />
-              <span className="text-xs font-medium">AI-Powered Automation</span>
-            </div>
-            
             {/* Main Pill - Primary */}
             <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 border border-accent/20 text-accent px-[14px] py-[7px]">
               <Loader className="h-4 w-4" />
