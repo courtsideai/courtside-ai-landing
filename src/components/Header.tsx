@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import courtsideLogo from "@/assets/courtside-logo-new.svg";
+import courtsideLogo from "@/assets/courtside-logo-transparent.svg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
