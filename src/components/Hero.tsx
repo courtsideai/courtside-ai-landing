@@ -78,7 +78,7 @@ const Hero = () => {
             </div>
             <div className="space-y-1">
               <div className="text-3xl sm:text-4xl font-bold text-foreground">{timeCount}%</div>
-              <div className="text-sm text-muted-foreground">Time Saved</div>
+              <div className="text-sm text-muted-foreground">Calls Answered </div>
             </div>
             <div className="space-y-1">
               <div className="text-3xl sm:text-4xl font-bold text-foreground">24/7</div>
