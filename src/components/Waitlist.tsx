@@ -1,11 +1,12 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { supabase } from "@/integrations/supabase/client";
 
 const waitlistSchema = z.object({
   name: z.string().trim().min(1, { message: "Name is required" }).max(100, { message: "Name must be less than 100 characters" }),
@@ -17,6 +18,8 @@ const waitlistSchema = z.object({
 type WaitlistFormData = z.infer<typeof waitlistSchema>;
 
 const Waitlist = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const form = useForm<WaitlistFormData>({
     resolver: zodResolver(waitlistSchema),
     defaultValues: {
@@ -27,8 +30,27 @@ const Waitlist = () => {
     },
   });
 
-  const onSubmit = (data: WaitlistFormData) => {
-    console.log("Waitlist submission:", data);
+  const onSubmit = async (data: WaitlistFormData) => {
+    setIsSubmitting(true);
+    
+    const { error } = await supabase
+      .from('courtside_waitlist')
+      .insert({
+        name: data.name,
+        email: data.email,
+        company: data.company || null,
+        phone: data.phone || null,
+      });
+
+    setIsSubmitting(false);
+
+    if (error) {
+      toast.error("Failed to join waitlist", {
+        description: "Please try again later.",
+      });
+      return;
+    }
+
     toast.success("Successfully joined the waitlist!", {
       description: "We'll be in touch soon with early access details.",
     });
@@ -107,8 +129,8 @@ const Waitlist = () => {
                 )}
               />
 
-              <Button type="submit" variant="hero" size="lg" className="w-full">
-                Join Waitlist
+              <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "Joining..." : "Join Waitlist"}
               </Button>
 
               <p className="text-sm text-muted-foreground text-center">
