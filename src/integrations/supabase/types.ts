@@ -41,6 +41,27 @@ export type Database = {
         }
         Relationships: []
       }
+      kc_booking_email_dedupe: {
+        Row: {
+          bucket_minute: string
+          created_at: string
+          recipient_email: string
+          space: string
+        }
+        Insert: {
+          bucket_minute: string
+          created_at?: string
+          recipient_email: string
+          space: string
+        }
+        Update: {
+          bucket_minute?: string
+          created_at?: string
+          recipient_email?: string
+          space?: string
+        }
+        Relationships: []
+      }
       kc_bookings: {
         Row: {
           attendee_email: string | null
