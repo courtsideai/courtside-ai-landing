@@ -17,8 +17,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-white mb-4">Product</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#features" className="hover:text-white transition-smooth">Features</a></li>
-              <li><a href="#" className="hover:text-white transition-smooth">Pricing</a></li>
+              <li><a href="/#features" className="hover:text-white transition-smooth">Features</a></li>
             </ul>
           </div>
 
@@ -26,7 +25,8 @@ const Footer = () => {
             <h3 className="font-semibold text-white mb-4">Company</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="/about" className="hover:text-white transition-smooth">About</a></li>
-              <li><a href="#contact" className="hover:text-white transition-smooth">Contact</a></li>
+              <li><a href="/#contact" className="hover:text-white transition-smooth">Contact</a></li>
+              <li><a href="/support" className="hover:text-white transition-smooth">Support</a></li>
             </ul>
           </div>
 
@@ -35,6 +35,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="/privacy" className="hover:text-white transition-smooth">Privacy Policy</a></li>
               <li><a href="/terms" className="hover:text-white transition-smooth">Terms of Service</a></li>
+              <li><a href="/delete-account" className="hover:text-white transition-smooth">Delete Account</a></li>
             </ul>
           </div>
         </div>
@@ -42,7 +43,7 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-8 pb-0">
           <div className="flex justify-between items-center">
             <p className="text-sm text-gray-300">
-              © 2025 Courtside AI. Proudly Canadian
+              © 2026 Courtside AI. Proudly Canadian
             </p>
             
             <div className="flex gap-4">
