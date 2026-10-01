@@ -1,5 +1,6 @@
 // Facilities that run on Courtside. Add a venue here and it appears on /venues and the homepage.
 export interface Venue {
+  slug: string;
   name: string;
   city: string;
   sports: string[];
@@ -9,6 +10,7 @@ export interface Venue {
 
 export const VENUES: Venue[] = [
   {
+    slug: "kings-court-markham-2",
     name: "Kings Court Markham 2",
     city: "Markham, ON",
     sports: ["Basketball", "Volleyball", "Pickleball"],
@@ -16,3 +18,5 @@ export const VENUES: Venue[] = [
     hours: "Open 24 hours",
   },
 ];
+
+export const getVenue = (slug?: string) => VENUES.find((v) => v.slug === slug);

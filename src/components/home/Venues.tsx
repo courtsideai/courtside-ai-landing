@@ -12,7 +12,7 @@ const SPORT_COLOURS: Record<string, string> = {
 };
 
 export const VenueCard = ({ v }: { v: Venue }) => (
-  <a href={v.bookingUrl} target="_blank" rel="noopener noreferrer" className={`${card} group flex flex-col gap-4 p-6 transition hover:border-[var(--a)]`}>
+  <a href={`/venues/${v.slug}`} className={`${card} group flex flex-col gap-4 p-6 transition hover:border-[var(--a)]`}>
     <div className="flex items-start gap-3">
       <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-[var(--a)] to-[var(--b)] font-bold text-[var(--on-primary)]">
         {v.name.split(" ").map((w) => w[0]).slice(0, 2).join("")}
@@ -29,7 +29,7 @@ export const VenueCard = ({ v }: { v: Venue }) => (
     </div>
     <div className="mt-auto flex items-center justify-between pt-2 text-sm">
       {v.hours ? <span className="flex items-center gap-1 text-[var(--muted)]"><Clock className="h-3.5 w-3.5" />{v.hours}</span> : <span />}
-      <span className="flex items-center gap-1 font-semibold text-[var(--b)]">Book now <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+      <span className="flex items-center gap-1 font-semibold text-[var(--b)]">View venue <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
     </div>
   </a>
 );
@@ -55,7 +55,7 @@ export const VenuesSection = () => (
         <a href="/venues" className={btnSecondary}>See all venues <ArrowRight className="ml-2 h-4 w-4" /></a>
       </div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {VENUES.slice(0, 5).map((v) => <VenueCard key={v.bookingUrl} v={v} />)}
+        {VENUES.slice(0, 5).map((v) => <VenueCard key={v.slug} v={v} />)}
         <GetListedCard />
       </div>
     </div>

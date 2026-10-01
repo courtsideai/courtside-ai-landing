@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { type LucideIcon, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
+import { type LucideIcon, Moon, DoorOpen, Phone, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
 import kcLogo from "@/assets/logos/kc-markham-logo.png";
 import { SPORTS } from "@/data/sports";
+import { PROOF } from "@/data/proof";
 import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
 import { CallMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
 
@@ -76,9 +77,10 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
           <a href="#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
           <a href={DEMO_URL} className={btnSecondary}>Book a demo</a>
         </div>
-        <a href="/venues" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]">
-          Looking to play? Book a court <ArrowRight className="h-3.5 w-3.5" />
-        </a>
+        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--muted)]">
+          <a href="#maya" className="inline-flex items-center gap-1 hover:text-[var(--fg)]">Hear Maya answer a call <ArrowRight className="h-3.5 w-3.5" /></a>
+          <a href="/venues" className="inline-flex items-center gap-1 hover:text-[var(--fg)]">Looking to play? Book a court <ArrowRight className="h-3.5 w-3.5" /></a>
+        </div>
       </div>
       <ScheduleMock />
     </Wrap>
@@ -96,6 +98,42 @@ export const OperatorStrip = () => (
         <img src={kcLogo} alt="Kings Court Markham" className="h-10 w-auto" />
         <span className="text-left text-sm font-semibold text-slate-800">Live at Kings Court<br /><span className="font-normal text-slate-500">Open the booking page →</span></span>
       </a>
+    </Wrap>
+  </section>
+);
+
+// Hidden until src/data/proof.ts has at least 3 real stats.
+export const ProofStrip = () =>
+  PROOF.length >= 3 ? (
+    <section className="border-y border-[var(--line)] bg-[var(--bg2)] py-10">
+      <Wrap className={`grid gap-8 text-center ${["", "", "sm:grid-cols-2", "sm:grid-cols-3", "sm:grid-cols-4"][Math.min(PROOF.length, 4)]}`}>
+        {PROOF.slice(0, 4).map((p) => (
+          <div key={p.label}>
+            <div className={`text-4xl font-bold ${gradText}`}>{p.value}</div>
+            <div className="mt-1 text-sm text-[var(--muted)]">{p.label}</div>
+          </div>
+        ))}
+      </Wrap>
+    </section>
+  ) : null;
+
+export const AlwaysOpen = () => (
+  <section id="always-open" className="py-24">
+    <Wrap>
+      <SectionHead eyebrow="Always open" title={<>Your facility never closes. <span className={gradText}>Your front desk doesn't have to be open.</span></>} sub="Run a 24/7 facility without staff at the desk." />
+      <div className="grid gap-5 md:grid-cols-3">
+        {([
+          [Moon, "Book and pay any hour", "Players book and pay online at 2 a.m. as easily as 2 p.m. The schedule updates the moment they do."],
+          [DoorOpen, "Door codes, automatically", "Access details go out with the booking confirmation, so players get in without anyone at the desk."],
+          [Phone, "Maya answers the phone", "Calls after hours get answered, booked and confirmed, not sent to voicemail."],
+        ] as [LucideIcon, string, string][]).map(([Icon, t, d]) => (
+          <div key={t} className={`${card} p-6`}>
+            <Icon className="mb-4 h-7 w-7 text-[var(--b)]" />
+            <h3 className="mb-2 text-lg font-semibold">{t}</h3>
+            <p className="text-[var(--muted)]">{d}</p>
+          </div>
+        ))}
+      </div>
     </Wrap>
   </section>
 );

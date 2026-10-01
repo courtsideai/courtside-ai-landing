@@ -27,7 +27,7 @@ const Venues = () => {
           </label>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((v) => <VenueCard key={v.bookingUrl} v={v} />)}
+          {list.map((v) => <VenueCard key={v.slug} v={v} />)}
           <GetListedCard />
         </div>
         {list.length === 0 && <p className="mt-6 text-[var(--muted)]">No venues match “{q}”.</p>}
