@@ -38,7 +38,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-[var(--bg)]/80 backdrop-blur-lg">
       <Wrap className="flex h-16 items-center justify-between">
-        <a href={`${prefix || "#"}${prefix ? "" : "top"}`}><img src={logo} alt="Courtside AI" className={`h-9 ${theme === "dark" ? "brightness-0 invert" : ""}`} /></a>
+        <a href={`${prefix || "#"}${prefix ? "" : "top"}`}><img src={theme === "dark" ? "/lovable-uploads/aef6f963-0b6d-481b-bc94-2a5efd80b3c2.png" : logo} alt="Courtside AI" className={theme === "dark" ? "h-11" : "h-9"} /></a>
         <nav className="hidden gap-8 text-sm text-[var(--muted)] lg:flex">
           {links.map(([l, h]) => <a key={h} href={prefix + h} className="hover:text-[var(--fg)] transition">{l}</a>)}
         </nav>
