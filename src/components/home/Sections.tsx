@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { type LucideIcon, Moon, DoorOpen, Phone, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
+import { type LucideIcon, MapPin, Moon, DoorOpen, Phone, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
@@ -43,7 +43,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
           {links.map(([l, h]) => <a key={h} href={prefix + h} className="hover:text-[var(--fg)] transition">{l}</a>)}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
-          <a href="/venues" className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a court</a>
+          <a href="/venues" className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--fg)]/35 px-4 py-2 text-sm font-medium text-[var(--fg)] transition hover:border-[var(--fg)]/70 hover:bg-[var(--fg)]/5"><MapPin className="h-4 w-4" />Book a court</a>
           <a href={`${prefix}#early-access`} className={`${btnPrimary} !py-2 text-sm`}>Get started</a>
         </div>
         <button className="lg:hidden" aria-label="Menu" onClick={() => setOpen(!open)}><Menu /></button>
@@ -51,7 +51,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
       {open && (
         <div className="space-y-3 border-t border-[var(--line)] bg-[var(--bg)] px-4 py-4 lg:hidden">
           {links.map(([l, h]) => <a key={h} href={prefix + h} onClick={() => setOpen(false)} className="block text-[var(--muted)]">{l}</a>)}
-          <a href="/venues" className="block text-[var(--muted)]">Book a court</a>
+          <a href="/venues" className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-[var(--fg)]/35 px-4 py-2.5 font-medium text-[var(--fg)]"><MapPin className="h-4 w-4" />Book a court</a>
           <a href={`${prefix}#early-access`} onClick={() => setOpen(false)} className={`${btnPrimary} w-full`}>Get started</a>
         </div>
       )}
