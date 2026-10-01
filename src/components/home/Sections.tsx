@@ -24,7 +24,7 @@ const SectionHead = ({ eyebrow, title, sub }: { eyebrow: string; title: React.Re
   </div>
 );
 
-export const Nav = ({ theme }: { theme: HomeTheme }) => {
+export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string }) => {
   const [open, setOpen] = useState(false);
   const links = [
     ["Platform", "#platform"],
@@ -36,20 +36,20 @@ export const Nav = ({ theme }: { theme: HomeTheme }) => {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-[var(--bg)]/80 backdrop-blur-lg">
       <Wrap className="flex h-16 items-center justify-between">
-        <a href="#top"><img src={logo} alt="Courtside AI" className={`h-9 ${theme === "dark" ? "brightness-0 invert" : ""}`} /></a>
+        <a href={`${prefix || "#"}${prefix ? "" : "top"}`}><img src={logo} alt="Courtside AI" className={`h-9 ${theme === "dark" ? "brightness-0 invert" : ""}`} /></a>
         <nav className="hidden gap-8 text-sm text-[var(--muted)] lg:flex">
-          {links.map(([l, h]) => <a key={h} href={h} className="hover:text-[var(--fg)] transition">{l}</a>)}
+          {links.map(([l, h]) => <a key={h} href={prefix + h} className="hover:text-[var(--fg)] transition">{l}</a>)}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
           <a href={DEMO_MAILTO} className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a demo</a>
-          <a href="#early-access" className={`${btnPrimary} !py-2 text-sm`}>Get started</a>
+          <a href={`${prefix}#early-access`} className={`${btnPrimary} !py-2 text-sm`}>Get started</a>
         </div>
         <button className="lg:hidden" aria-label="Menu" onClick={() => setOpen(!open)}><Menu /></button>
       </Wrap>
       {open && (
         <div className="space-y-3 border-t border-[var(--line)] bg-[var(--bg)] px-4 py-4 lg:hidden">
-          {links.map(([l, h]) => <a key={h} href={h} onClick={() => setOpen(false)} className="block text-[var(--muted)]">{l}</a>)}
-          <a href="#early-access" onClick={() => setOpen(false)} className={`${btnPrimary} w-full`}>Get started</a>
+          {links.map(([l, h]) => <a key={h} href={prefix + h} onClick={() => setOpen(false)} className="block text-[var(--muted)]">{l}</a>)}
+          <a href={`${prefix}#early-access`} onClick={() => setOpen(false)} className={`${btnPrimary} w-full`}>Get started</a>
         </div>
       )}
     </header>

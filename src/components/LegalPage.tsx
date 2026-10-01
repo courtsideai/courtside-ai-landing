@@ -1,14 +1,24 @@
-import { ReactNode } from "react";
-import Header from "@/components/Header";
+import { CSSProperties, ReactNode } from "react";
 import Footer from "@/components/Footer";
+import { Nav } from "@/components/home/Sections";
+import { themeStyle } from "@/components/home/theme";
 
-export const LegalPage = ({ title, updated, children }: { title: string; updated?: string; children: ReactNode }) => (
-  <div className="min-h-screen bg-background">
-    <Header />
-    <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
-      <h1 className="text-4xl font-bold text-foreground mb-4">{title}</h1>
-      {updated && <p className="text-muted-foreground mb-8">Last Updated: {updated}</p>}
-      <div className="space-y-8 text-foreground/90 leading-relaxed">{children}</div>
+// Dark themed wrapper; also re-points the shadcn colour tokens so text-foreground / text-primary read on dark.
+const darkStyle = {
+  ...themeStyle("dark"),
+  "--background": "222 47% 6%",
+  "--foreground": "0 0% 100%",
+  "--muted-foreground": "215 20% 65%",
+  "--primary": "199 90% 62%",
+} as CSSProperties;
+
+export const LegalPage = ({ title, updated, wide, children }: { title: string; updated?: string; wide?: boolean; children: ReactNode }) => (
+  <div style={darkStyle} className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
+    <Nav theme="dark" prefix="/" />
+    <main className={`container mx-auto px-4 py-28 sm:px-6 ${wide ? "max-w-4xl" : "max-w-3xl"}`}>
+      {title && <h1 className="mb-4 text-4xl font-bold">{title}</h1>}
+      {updated && <p className="mb-8 text-[var(--muted)]">Last Updated: {updated}</p>}
+      <div className="space-y-8 leading-relaxed text-foreground/90">{children}</div>
     </main>
     <Footer />
   </div>

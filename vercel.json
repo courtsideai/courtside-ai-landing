@@ -1,16 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/privacy",
-      "destination": "https://book.court-side.ai/legal/privacy",
-      "permanent": false
-    },
-    {
-      "source": "/terms",
-      "destination": "https://book.court-side.ai/legal/terms",
-      "permanent": false
-    }
-  ],
   "rewrites": [
     {
       "source": "/(.*)",
