@@ -44,7 +44,6 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
           <a href="/venues" className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a court</a>
-          <a href={DEMO_URL} className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a demo</a>
           <a href={`${prefix}#early-access`} className={`${btnPrimary} !py-2 text-sm`}>Get started</a>
         </div>
         <button className="lg:hidden" aria-label="Menu" onClick={() => setOpen(!open)}><Menu /></button>
