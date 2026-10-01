@@ -1,10 +1,11 @@
 import { Instagram, Linkedin } from "lucide-react";
 import xIcon from "@/assets/x-icon.ico";
+import { SPORTS } from "@/data/sports";
 
 const Footer = () => {
   return <footer className="border-t border-white/10 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
           <div className="col-span-2 md:col-span-1">
             <div className="mb-4">
               <img alt="Courtside AI" className="h-12" src="/lovable-uploads/aef6f963-0b6d-481b-bc94-2a5efd80b3c2.png" />
@@ -20,10 +21,15 @@ const Footer = () => {
               <li><a href="/#platform" className="hover:text-white transition-smooth">Platform</a></li>
               <li><a href="/#maya" className="hover:text-white transition-smooth">Maya AI</a></li>
               <li><a href="/#api" className="hover:text-white transition-smooth">Open API</a></li>
-              <li><a href="/venues" className="hover:text-white transition-smooth">Book a court</a></li>
-              <li><a href="/sports/pickleball" className="hover:text-white transition-smooth">Pickleball</a></li>
-              <li><a href="/sports/basketball" className="hover:text-white transition-smooth">Basketball</a></li>
-              <li><a href="/sports/tennis" className="hover:text-white transition-smooth">Tennis</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-white mb-4">Sports</h3>
+            <ul className="space-y-2 text-sm text-gray-400">
+              {SPORTS.map((s) => (
+                <li key={s.slug}><a href={`/sports/${s.slug}`} className="hover:text-white transition-smooth">{s.name}</a></li>
+              ))}
             </ul>
           </div>
 
@@ -33,6 +39,7 @@ const Footer = () => {
               <li><a href="/about" className="hover:text-white transition-smooth">About</a></li>
               <li><a href="/#contact" className="hover:text-white transition-smooth">Contact</a></li>
               <li><a href="/support" className="hover:text-white transition-smooth">Support</a></li>
+              <li><a href="/venues" className="hover:text-white transition-smooth">Book a court</a></li>
             </ul>
           </div>
 

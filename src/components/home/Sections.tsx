@@ -354,7 +354,7 @@ export const HowItWorks = () => (
 export const Sports = () => (
   <section id="sports" className="py-24">
     <Wrap>
-      <SectionHead eyebrow="Sports" title={<>Built for <span className={gradText}>every court sport.</span></>} />
+      <SectionHead eyebrow="Sports" title={<>Built for <span className={gradText}>every court sport.</span></>} sub="One facility, any mix of sports, any number of courts and spaces." />
       <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3">
         {SPORTS.map((s) => (
           <a key={s.slug} href={`/sports/${s.slug}`} className={`${card} group flex items-center justify-between p-5 font-semibold transition hover:border-[var(--a)]`}>
