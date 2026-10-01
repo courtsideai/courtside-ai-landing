@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
+import { type LucideIcon, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
@@ -41,6 +41,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
           {links.map(([l, h]) => <a key={h} href={prefix + h} className="hover:text-[var(--fg)] transition">{l}</a>)}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
+          <a href="/venues" className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a court</a>
           <a href={DEMO_MAILTO} className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a demo</a>
           <a href={`${prefix}#early-access`} className={`${btnPrimary} !py-2 text-sm`}>Get started</a>
         </div>
@@ -49,6 +50,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
       {open && (
         <div className="space-y-3 border-t border-[var(--line)] bg-[var(--bg)] px-4 py-4 lg:hidden">
           {links.map(([l, h]) => <a key={h} href={prefix + h} onClick={() => setOpen(false)} className="block text-[var(--muted)]">{l}</a>)}
+          <a href="/venues" className="block text-[var(--muted)]">Book a court</a>
           <a href={`${prefix}#early-access`} onClick={() => setOpen(false)} className={`${btnPrimary} w-full`}>Get started</a>
         </div>
       )}
@@ -73,8 +75,8 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
           <a href="#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
           <a href={DEMO_MAILTO} className={btnSecondary}>Book a demo</a>
         </div>
-        <a href={SANDBOX_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]">
-          See a live booking page <ArrowRight className="h-3.5 w-3.5" />
+        <a href="/venues" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]">
+          Looking to play? Book a court <ArrowRight className="h-3.5 w-3.5" />
         </a>
       </div>
       <ScheduleMock />
@@ -102,11 +104,11 @@ export const Problem = () => (
     <Wrap>
       <SectionHead eyebrow="The problem" title={<>Your front desk shouldn't run on a <span className={gradText}>spreadsheet and a ringing phone.</span></>} />
       <div className="grid gap-5 md:grid-cols-3">
-        {[
+        {([
           [PhoneMissed, "Missed calls are missed bookings", "Nobody answers at 9 p.m. or mid-game. The caller books somewhere else."],
           [CalendarX, "Double bookings and no-shows", "Texts, DMs and sticky notes don't agree. Courts sit empty while people get turned away."],
           [Layers, "Five tools that don't talk", "Scheduling here, payments there, waivers somewhere else. You become the integration."],
-        ].map(([Icon, t, d]: any) => (
+        ] as [LucideIcon, string, string][]).map(([Icon, t, d]) => (
           <div key={t} className={`${card} p-6`}>
             <Icon className="mb-4 h-7 w-7 text-[var(--b)]" />
             <h3 className="mb-2 text-lg font-semibold">{t}</h3>
@@ -123,12 +125,12 @@ export const Platform = () => (
     <Wrap>
       <SectionHead eyebrow="The platform" title={<>Everything a facility runs on, <span className={gradText}>in one system.</span></>} sub="Booking, members, payments and reporting built together, so nothing gets re-typed." />
       <div className="grid gap-6 md:grid-cols-2">
-        {[
+        {([
           ["Courts and bookings", "A live schedule for every court and sport. Players book online, staff book at the desk, Maya books by phone. All in the same calendar.", <ScheduleMock key="s" floating={false} />],
           ["Members, waivers and passes", "Profiles, memberships, passes and signed waivers in one place. No paper, no chasing.", <MembersMock key="m" />],
           ["Payments", "Players pay at checkout. Receipts and door codes go out automatically.", <PaymentsMock key="p" />],
           ["Reporting", "See revenue, court utilization and your busiest hours without exporting anything.", <ReportsMock key="r" />],
-        ].map(([t, d, mock]: any) => (
+        ] as [string, string, React.ReactNode][]).map(([t, d, mock]) => (
           <div key={t} className={`${card} flex flex-col gap-5 p-6`}>
             <div>
               <h3 className="mb-2 text-xl font-semibold">{t}</h3>
@@ -174,7 +176,8 @@ const MayaForm = () => {
     if (!ready) return toast.error("Security check is loading. Try again in a moment.");
     setBusy(true);
     try {
-      const token = await (window as any).grecaptcha.execute(KEY, { action: "submit" });
+      const { grecaptcha } = window as unknown as { grecaptcha: { execute: (key: string, o: { action: string }) => Promise<string> } };
+      const token = await grecaptcha.execute(KEY, { action: "submit" });
       const res = await fetch(N8N, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -232,7 +235,7 @@ export const OpenApi = () => (
         <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Your data. <span className={gradText}>Your stack. No lock-in.</span></h2>
         <p className="text-lg text-[var(--muted)]">Most facility software keeps your bookings behind a wall. Courtside is open, so you can connect door locks, accounting, CRM or anything else you already run.</p>
         <div className="grid gap-4 sm:grid-cols-3">
-          {[[Plug, "Connect anything"], [Webhook, "Webhooks on every event"], [Database, "Your data stays yours"]].map(([Icon, t]: any) => (
+          {([[Plug, "Connect anything"], [Webhook, "Webhooks on every event"], [Database, "Your data stays yours"]] as [LucideIcon, string][]).map(([Icon, t]) => (
             <div key={t} className={`${card} p-4`}><Icon className="mb-2 h-5 w-5 text-[var(--b)]" /><div className="text-sm font-semibold">{t}</div></div>
           ))}
         </div>
@@ -293,8 +296,8 @@ export const Doors = () => (
       <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
         <div className={`${card} flex flex-col gap-4 p-7`}>
           <h3 className="text-xl font-semibold">For players</h3>
-          <p className="flex-1 text-[var(--muted)]">Pick a court, pick a time, pay, done. Open the live booking page for Kings Court.</p>
-          <a href={SANDBOX_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Open booking page <ArrowRight className="ml-2 h-4 w-4" /></a>
+          <p className="flex-1 text-[var(--muted)]">Pick a venue, pick a court and time, pay, done.</p>
+          <a href="/venues" className={btnSecondary}>Find a venue <ArrowRight className="ml-2 h-4 w-4" /></a>
         </div>
         <div className={`${card} flex flex-col gap-4 p-7`}>
           <h3 className="text-xl font-semibold">For facility owners</h3>
