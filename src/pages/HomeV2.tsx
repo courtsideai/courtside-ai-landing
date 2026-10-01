@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import Footer from "@/components/Footer";
 import { themeStyle, HomeTheme } from "@/components/home/theme";
 import { VenuesSection } from "@/components/home/Venues";
-import { Nav, Hero, ProofStrip, AlwaysOpen, OperatorStrip, Problem, Platform, Maya, OpenApi, Compare, HowItWorks, Sports, Doors, Faqs, EarlyAccess, FinalCta } from "@/components/home/Sections";
+import { Nav, Hero, ProofStrip, AlwaysOpen, OperatorStrip, Problem, Platform, Maya, OpenApi, Compare, HowItWorks, Sports, Faqs, EarlyAccess, FinalCta } from "@/components/home/Sections";
 
 // Preview of the rebuilt home page. /new → dark, /new/blue → light blue.
 const HomeV2 = () => {
@@ -20,11 +20,10 @@ const HomeV2 = () => {
         <AlwaysOpen />
         <Maya />
         <OpenApi />
-        <Compare />
-        <HowItWorks />
         <Sports />
-        <Doors />
+        <Compare />
         <VenuesSection />
+        <HowItWorks />
         <Faqs />
         <EarlyAccess />
         <FinalCta />

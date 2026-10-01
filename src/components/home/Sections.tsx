@@ -351,49 +351,27 @@ export const HowItWorks = () => (
   </section>
 );
 
-// One consolidated "any facility" section: featured sports as cards, other sports and space types as chips.
+// One consolidated "any facility" section: a single row of pills (sports link to their pages).
 const OTHER_SPACES = ["Golf simulators", "Futsal", "Gyms", "Studios"];
 
 export const Sports = ({ current }: { current?: string }) => (
-  <section id="sports" className="py-24">
+  <section id="sports" className="py-20">
     <Wrap>
-      <SectionHead eyebrow="Sports and spaces" title={<>Built for any facility <span className={gradText}>with spaces to book.</span></>} sub="Courts, fields, golf simulators, gyms and studios. Segmented spaces, bookings, memberships and more, whatever your business model." />
-      <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
-        {FEATURED_SPORTS.filter((s) => s.slug !== current).map((s) => (
-          <a key={s.slug} href={`/sports/${s.slug}`} className={`${card} group flex items-center justify-between p-5 font-semibold transition hover:border-[var(--a)]`}>
-            {s.name}
-            <ArrowRight className="h-4 w-4 text-[var(--muted)] transition-transform group-hover:translate-x-1" />
-          </a>
-        ))}
+      <div className="mx-auto max-w-3xl space-y-3 text-center">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Built for any facility <span className={gradText}>with spaces to book.</span></h2>
+        <p className="text-[var(--muted)]">Segmented spaces, bookings, memberships and more, whatever your business model.</p>
       </div>
-      <div className="mx-auto mt-6 flex max-w-4xl flex-wrap justify-center gap-2">
+      <div className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2.5">
+        {FEATURED_SPORTS.filter((s) => s.slug !== current).map((s) => (
+          <a key={s.slug} href={`/sports/${s.slug}`} className="rounded-full border border-[var(--line)] bg-[var(--card)] px-5 py-2 font-medium transition hover:border-[var(--a)]">{s.name}</a>
+        ))}
         {SPORTS.filter((s) => !s.featured && s.slug !== current).map((s) => (
-          <a key={s.slug} href={`/sports/${s.slug}`} className="rounded-full border border-[var(--line)] bg-[var(--card)] px-4 py-1.5 text-sm hover:border-[var(--a)]">{s.name}</a>
+          <a key={s.slug} href={`/sports/${s.slug}`} className="rounded-full border border-[var(--line)] bg-[var(--card)] px-5 py-2 text-[var(--muted)] transition hover:border-[var(--a)] hover:text-[var(--fg)]">{s.name}</a>
         ))}
         {OTHER_SPACES.map((t) => (
-          <span key={t} className="rounded-full border border-dashed border-[var(--line)] px-4 py-1.5 text-sm text-[var(--muted)]">{t}</span>
+          <span key={t} className="rounded-full border border-dashed border-[var(--line)] px-5 py-2 text-[var(--muted)]">{t}</span>
         ))}
-        <span className="rounded-full border border-dashed border-[var(--line)] px-4 py-1.5 text-sm text-[var(--muted)]">and more</span>
-      </div>
-    </Wrap>
-  </section>
-);
-
-export const Doors = () => (
-  <section className="bg-[var(--bg2)] py-24">
-    <Wrap>
-      <SectionHead eyebrow="See it" title={<>Two sides, <span className={gradText}>one system.</span></>} sub="What your players see, and what you run the facility from." />
-      <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
-        <div className={`${card} flex flex-col gap-4 p-7`}>
-          <h3 className="text-xl font-semibold">For players</h3>
-          <p className="flex-1 text-[var(--muted)]">Pick a venue, pick a court and time, pay, done.</p>
-          <a href="/venues" className={btnSecondary}>Find a venue <ArrowRight className="ml-2 h-4 w-4" /></a>
-        </div>
-        <div className={`${card} flex flex-col gap-4 p-7`}>
-          <h3 className="text-xl font-semibold">For facility owners</h3>
-          <p className="flex-1 text-[var(--muted)]">Schedule, members, payments and reports in one dashboard. See it walked through live.</p>
-          <a href={DEMO_URL} className={btnPrimary}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
-        </div>
+        <span className="rounded-full border border-dashed border-[var(--line)] px-5 py-2 text-[var(--muted)]">and more</span>
       </div>
     </Wrap>
   </section>

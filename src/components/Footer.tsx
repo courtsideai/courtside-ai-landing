@@ -11,7 +11,7 @@ const Footer = () => {
               <img alt="Courtside AI" className="h-12" src="/lovable-uploads/aef6f963-0b6d-481b-bc94-2a5efd80b3c2.png" />
             </div>
             <p className="text-sm text-gray-400">
-              Facility management software for court sports, with an AI receptionist that answers every call.
+              Facility management software for sports facilities, with an AI receptionist that answers every call.
             </p>
           </div>
 
@@ -41,7 +41,6 @@ const Footer = () => {
               <li><a href="/#contact" className="hover:text-white transition-smooth">Contact</a></li>
               <li><a href="/support" className="hover:text-white transition-smooth">Support</a></li>
               <li><a href="/#faqs" className="hover:text-white transition-smooth">FAQ</a></li>
-              <li><a href="/venues" className="hover:text-white transition-smooth">Book a court</a></li>
             </ul>
           </div>
 
