@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
 import kcLogo from "@/assets/logos/kc-markham-logo.png";
-import { FEATURED_SPORTS } from "@/data/sports";
+import { FEATURED_SPORTS, SPORTS } from "@/data/sports";
 import { PROOF } from "@/data/proof";
 import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
 import { CallMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
@@ -351,19 +351,30 @@ export const HowItWorks = () => (
   </section>
 );
 
-export const Sports = () => (
+// One consolidated "any facility" section: featured sports as cards, other sports and space types as chips.
+const OTHER_SPACES = ["Golf simulators", "Futsal", "Gyms", "Studios"];
+
+export const Sports = ({ current }: { current?: string }) => (
   <section id="sports" className="py-24">
     <Wrap>
-      <SectionHead eyebrow="Sports" title={<>Built for <span className={gradText}>every court sport.</span></>} sub="One facility, any mix of sports, any number of courts and spaces." />
+      <SectionHead eyebrow="Sports and spaces" title={<>Built for any facility <span className={gradText}>with spaces to book.</span></>} sub="Courts, fields, golf simulators, gyms and studios. Segmented spaces, bookings, memberships and more, whatever your business model." />
       <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
-        {FEATURED_SPORTS.map((s) => (
+        {FEATURED_SPORTS.filter((s) => s.slug !== current).map((s) => (
           <a key={s.slug} href={`/sports/${s.slug}`} className={`${card} group flex items-center justify-between p-5 font-semibold transition hover:border-[var(--a)]`}>
             {s.name}
             <ArrowRight className="h-4 w-4 text-[var(--muted)] transition-transform group-hover:translate-x-1" />
           </a>
         ))}
       </div>
-      <p className="mx-auto mt-8 max-w-2xl text-center text-[var(--muted)]">Squash, badminton, golf simulators, gyms and studios too. If it has spaces to book, Courtside can run it.</p>
+      <div className="mx-auto mt-6 flex max-w-4xl flex-wrap justify-center gap-2">
+        {SPORTS.filter((s) => !s.featured && s.slug !== current).map((s) => (
+          <a key={s.slug} href={`/sports/${s.slug}`} className="rounded-full border border-[var(--line)] bg-[var(--card)] px-4 py-1.5 text-sm hover:border-[var(--a)]">{s.name}</a>
+        ))}
+        {OTHER_SPACES.map((t) => (
+          <span key={t} className="rounded-full border border-dashed border-[var(--line)] px-4 py-1.5 text-sm text-[var(--muted)]">{t}</span>
+        ))}
+        <span className="rounded-full border border-dashed border-[var(--line)] px-4 py-1.5 text-sm text-[var(--muted)]">and more</span>
+      </div>
     </Wrap>
   </section>
 );

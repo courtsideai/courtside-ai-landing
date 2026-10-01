@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import Footer from "@/components/Footer";
-import { Nav } from "@/components/home/Sections";
+import { Nav, Sports } from "@/components/home/Sections";
 import { themeStyle, gradText } from "@/components/home/theme";
 import { GetListedCard, VenueCard } from "@/components/home/Venues";
 import { VENUES } from "@/data/venues";
@@ -32,6 +32,7 @@ const Venues = () => {
         </div>
         {list.length === 0 && <p className="mt-6 text-[var(--muted)]">No venues match “{q}”.</p>}
       </main>
+      <Sports />
       <Footer />
     </div>
   );

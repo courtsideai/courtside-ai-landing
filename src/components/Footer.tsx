@@ -21,6 +21,7 @@ const Footer = () => {
               <li><a href="/#platform" className="hover:text-white transition-smooth">Platform</a></li>
               <li><a href="/#maya" className="hover:text-white transition-smooth">Maya AI</a></li>
               <li><a href="/#api" className="hover:text-white transition-smooth">Open API</a></li>
+              <li><a href="/#compare" className="hover:text-white transition-smooth">Compare</a></li>
             </ul>
           </div>
 
@@ -39,6 +40,7 @@ const Footer = () => {
               <li><a href="/about" className="hover:text-white transition-smooth">About</a></li>
               <li><a href="/#contact" className="hover:text-white transition-smooth">Contact</a></li>
               <li><a href="/support" className="hover:text-white transition-smooth">Support</a></li>
+              <li><a href="/#faqs" className="hover:text-white transition-smooth">FAQ</a></li>
               <li><a href="/venues" className="hover:text-white transition-smooth">Book a court</a></li>
             </ul>
           </div>
@@ -53,16 +55,6 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mb-8 rounded-xl border border-white/10 bg-white/[0.03] px-5 py-5">
-          <p className="text-sm font-semibold text-white">Built for any facility with spaces to book.</p>
-          <p className="mt-1 text-sm text-gray-400">Courts, fields, golf simulators, gyms and studios. Segmented spaces, bookings, memberships and more, whatever your business model.</p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {["Pickleball", "Basketball", "Tennis", "Volleyball", "Squash", "Badminton", "Golf simulators", "Futsal", "Gyms", "Studios"].map((t) => (
-              <span key={t} className="rounded-full border border-white/10 px-3 py-1 text-xs text-gray-300">{t}</span>
-            ))}
-          </div>
-        </div>
-
         <div className="border-t border-white/10 pt-8 pb-0">
           <div className="flex justify-between items-center">
             <p className="text-sm text-gray-300">
@@ -71,7 +63,7 @@ const Footer = () => {
             
             <div className="flex gap-4">
               <a 
-                href="https://instagram.com/courtsideai" 
+                href="https://www.instagram.com/courtside_ai/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-smooth"

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Clock, MapPin } from "lucide-react";
 import Footer from "@/components/Footer";
-import { Nav } from "@/components/home/Sections";
+import { Nav, Sports } from "@/components/home/Sections";
 import { btnPrimary, btnSecondary, card, gradText, themeStyle } from "@/components/home/theme";
 import { getVenue } from "@/data/venues";
 import NotFound from "@/pages/NotFound";
@@ -59,6 +59,7 @@ const VenuePage = () => {
           </div>
         </div>
       </main>
+      <Sports />
       <Footer />
     </div>
   );
