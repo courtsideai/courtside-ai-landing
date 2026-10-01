@@ -8,6 +8,7 @@ import About from "./pages/About";
 import LegalDoc from "./pages/LegalDoc";
 import NotFound from "./pages/NotFound";
 import HomeV2 from "./pages/HomeV2";
+import SportPage from "./pages/SportPage";
 import Venues from "./pages/Venues";
 import Support from "./pages/Support";
 import DeleteAccount from "./pages/DeleteAccount";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/legal/:doc" element={<LegalDoc />} />
           <Route path="/new" element={<HomeV2 />} />
           <Route path="/new/:theme" element={<HomeV2 />} />
+          <Route path="/sports/:sport" element={<SportPage />} />
           <Route path="/venues" element={<Venues />} />
           <Route path="/support" element={<Support />} />
           <Route path="/delete-account" element={<DeleteAccount />} />

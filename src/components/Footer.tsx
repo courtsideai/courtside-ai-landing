@@ -21,6 +21,9 @@ const Footer = () => {
               <li><a href="/#maya" className="hover:text-white transition-smooth">Maya AI</a></li>
               <li><a href="/#api" className="hover:text-white transition-smooth">Open API</a></li>
               <li><a href="/venues" className="hover:text-white transition-smooth">Book a court</a></li>
+              <li><a href="/sports/pickleball" className="hover:text-white transition-smooth">Pickleball</a></li>
+              <li><a href="/sports/basketball" className="hover:text-white transition-smooth">Basketball</a></li>
+              <li><a href="/sports/tennis" className="hover:text-white transition-smooth">Tennis</a></li>
             </ul>
           </div>
 

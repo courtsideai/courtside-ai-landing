@@ -33,7 +33,8 @@ const TOKENS: Record<HomeTheme, Record<string, string>> = {
 export const themeStyle = (t: HomeTheme): CSSProperties => TOKENS[t] as CSSProperties;
 
 export const SANDBOX_URL = "https://book.court-side.ai/kings-court-markham-2";
-export const DEMO_MAILTO = "mailto:contact@court-side.ai?subject=Courtside%20demo";
+// Demo booking link. Swap for the Cal.com/Calendly URL when it exists; the email link is the fallback.
+export const DEMO_URL = "mailto:contact@court-side.ai?subject=Courtside%20demo";
 
 export const btnPrimary =
   "inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold text-[var(--on-primary)] bg-gradient-to-r from-[var(--a)] to-[var(--b)] hover:opacity-90 transition";

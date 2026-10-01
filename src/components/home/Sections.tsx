@@ -5,7 +5,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
 import kcLogo from "@/assets/logos/kc-markham-logo.png";
-import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_MAILTO, HomeTheme } from "./theme";
+import { SPORTS } from "@/data/sports";
+import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
 import { CallMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
 
 const Wrap = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
@@ -42,7 +43,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
           <a href="/venues" className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a court</a>
-          <a href={DEMO_MAILTO} className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a demo</a>
+          <a href={DEMO_URL} className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a demo</a>
           <a href={`${prefix}#early-access`} className={`${btnPrimary} !py-2 text-sm`}>Get started</a>
         </div>
         <button className="lg:hidden" aria-label="Menu" onClick={() => setOpen(!open)}><Menu /></button>
@@ -73,7 +74,7 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
         </p>
         <div className="flex flex-wrap gap-3">
           <a href="#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
-          <a href={DEMO_MAILTO} className={btnSecondary}>Book a demo</a>
+          <a href={DEMO_URL} className={btnSecondary}>Book a demo</a>
         </div>
         <a href="/venues" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]">
           Looking to play? Book a court <ArrowRight className="h-3.5 w-3.5" />
@@ -289,6 +290,46 @@ export const Compare = () => {
   );
 };
 
+export const HowItWorks = () => (
+  <section id="how-it-works" className="bg-[var(--bg2)] py-24">
+    <Wrap>
+      <SectionHead eyebrow="Getting started" title={<>Live in <span className={gradText}>three steps.</span></>} sub="No long projects. We set it up with you, on your courts and your rules." />
+      <div className="grid gap-5 md:grid-cols-3">
+        {[
+          ["1", "Demo", "A short walkthrough on your own courts, pricing and rules. You see exactly how it would run your facility."],
+          ["2", "Go live", "We set up your courts, pricing, waivers and booking page. Coming from AllBooked, CourtReserve or a spreadsheet? We'll move your members and bookings over with you."],
+          ["3", "Grow", "Players book online, Maya covers the phone, and reports show what's filling and what isn't."],
+        ].map(([n, t, d]) => (
+          <div key={t} className={`${card} p-6`}>
+            <span className="mb-4 grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-[var(--a)] to-[var(--b)] font-bold text-[var(--on-primary)]">{n}</span>
+            <h3 className="mb-2 text-xl font-semibold">{t}</h3>
+            <p className="text-[var(--muted)]">{d}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-10 text-center">
+        <a href={DEMO_URL} className={btnPrimary}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
+      </div>
+    </Wrap>
+  </section>
+);
+
+export const Sports = () => (
+  <section id="sports" className="py-24">
+    <Wrap>
+      <SectionHead eyebrow="Sports" title={<>Built for <span className={gradText}>every court sport.</span></>} />
+      <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3">
+        {SPORTS.map((s) => (
+          <a key={s.slug} href={`/sports/${s.slug}`} className={`${card} group flex items-center justify-between p-5 font-semibold transition hover:border-[var(--a)]`}>
+            {s.name}
+            <ArrowRight className="h-4 w-4 text-[var(--muted)] transition-transform group-hover:translate-x-1" />
+          </a>
+        ))}
+      </div>
+    </Wrap>
+  </section>
+);
+
 export const Doors = () => (
   <section className="bg-[var(--bg2)] py-24">
     <Wrap>
@@ -302,7 +343,7 @@ export const Doors = () => (
         <div className={`${card} flex flex-col gap-4 p-7`}>
           <h3 className="text-xl font-semibold">For facility owners</h3>
           <p className="flex-1 text-[var(--muted)]">Schedule, members, payments and reports in one dashboard. See it walked through live.</p>
-          <a href={DEMO_MAILTO} className={btnPrimary}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
+          <a href={DEMO_URL} className={btnPrimary}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
         </div>
       </div>
     </Wrap>
@@ -373,7 +414,7 @@ export const FinalCta = () => (
     <Wrap className="text-center">
       <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">Rather talk it through? <span className={gradText}>We run courts too.</span></h2>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <a href={DEMO_MAILTO} className={btnPrimary}>Book a demo</a>
+        <a href={DEMO_URL} className={btnPrimary}>Book a demo</a>
         <a href="mailto:support@court-side.ai" className={btnSecondary}>support@court-side.ai</a>
       </div>
     </Wrap>
