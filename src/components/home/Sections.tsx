@@ -1,0 +1,378 @@
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { supabase } from "@/integrations/supabase/client";
+import logo from "@/assets/courtside-logo-horizontal-light.svg";
+import kcLogo from "@/assets/logos/kc-markham-logo.png";
+import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_MAILTO, HomeTheme } from "./theme";
+import { CallMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
+
+const Wrap = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
+  <div className={`container mx-auto px-4 sm:px-6 ${className}`}>{children}</div>
+);
+
+const Eyebrow = ({ children }: { children: React.ReactNode }) => (
+  <span className="inline-flex items-center rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1 text-xs font-medium text-[var(--muted)]">{children}</span>
+);
+
+const SectionHead = ({ eyebrow, title, sub }: { eyebrow: string; title: React.ReactNode; sub?: string }) => (
+  <div className="mx-auto mb-14 max-w-3xl space-y-4 text-center">
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">{title}</h2>
+    {sub && <p className="text-lg text-[var(--muted)]">{sub}</p>}
+  </div>
+);
+
+export const Nav = ({ theme }: { theme: HomeTheme }) => {
+  const [open, setOpen] = useState(false);
+  const links = [
+    ["Platform", "#platform"],
+    ["Maya AI", "#maya"],
+    ["Open API", "#api"],
+    ["Compare", "#compare"],
+    ["FAQ", "#faqs"],
+  ];
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-[var(--bg)]/80 backdrop-blur-lg">
+      <Wrap className="flex h-16 items-center justify-between">
+        <a href="#top"><img src={logo} alt="Courtside AI" className={`h-9 ${theme === "dark" ? "brightness-0 invert" : ""}`} /></a>
+        <nav className="hidden gap-8 text-sm text-[var(--muted)] lg:flex">
+          {links.map(([l, h]) => <a key={h} href={h} className="hover:text-[var(--fg)] transition">{l}</a>)}
+        </nav>
+        <div className="hidden items-center gap-3 lg:flex">
+          <a href={DEMO_MAILTO} className="px-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--fg)]">Book a demo</a>
+          <a href="#early-access" className={`${btnPrimary} !py-2 text-sm`}>Get started</a>
+        </div>
+        <button className="lg:hidden" aria-label="Menu" onClick={() => setOpen(!open)}><Menu /></button>
+      </Wrap>
+      {open && (
+        <div className="space-y-3 border-t border-[var(--line)] bg-[var(--bg)] px-4 py-4 lg:hidden">
+          {links.map(([l, h]) => <a key={h} href={h} onClick={() => setOpen(false)} className="block text-[var(--muted)]">{l}</a>)}
+          <a href="#early-access" onClick={() => setOpen(false)} className={`${btnPrimary} w-full`}>Get started</a>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export const Hero = ({ theme }: { theme: HomeTheme }) => (
+  <section id="top" className="relative overflow-hidden pt-28 sm:pt-36">
+    <div className="pointer-events-none absolute inset-0 opacity-70" style={{ backgroundImage: "radial-gradient(60% 50% at 70% 10%, var(--glow), transparent), radial-gradient(40% 40% at 10% 90%, var(--glow), transparent)" }} />
+    {theme === "dark" && <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(var(--fg) 1px, transparent 1px), linear-gradient(90deg, var(--fg) 1px, transparent 1px)", backgroundSize: "64px 64px", maskImage: "radial-gradient(70% 60% at 50% 0%, #000, transparent)" }} />}
+    <Wrap className="relative grid items-center gap-16 pb-32 lg:grid-cols-[1.05fr_1fr]">
+      <div className="space-y-7">
+        <Eyebrow>Built by the people who run courts</Eyebrow>
+        <h1 className="text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl xl:text-7xl">
+          Run your whole facility <span className={gradText}>from one place.</span>
+        </h1>
+        <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)]">
+          Courts, bookings, members and payments in one platform, with an AI receptionist that answers every call. We run a facility ourselves, so it's built for how courts actually work.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a href="#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
+          <a href={DEMO_MAILTO} className={btnSecondary}>Book a demo</a>
+        </div>
+        <a href={SANDBOX_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]">
+          See a live booking page <ArrowRight className="h-3.5 w-3.5" />
+        </a>
+      </div>
+      <ScheduleMock />
+    </Wrap>
+  </section>
+);
+
+export const OperatorStrip = () => (
+  <section className="border-y border-[var(--line)] bg-[var(--bg2)] py-12">
+    <Wrap className="flex flex-col items-center gap-6 text-center lg:flex-row lg:justify-between lg:text-left">
+      <div className="max-w-2xl">
+        <p className="text-xl font-semibold sm:text-2xl">We run a court facility. Every feature exists because we needed it at our own front desk.</p>
+        <p className="mt-2 text-[var(--muted)]">Not another tool built by people who've never unlocked a gym at 6 a.m.</p>
+      </div>
+      <a href={SANDBOX_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 rounded-xl border border-[var(--line)] bg-white px-5 py-3">
+        <img src={kcLogo} alt="Kings Court Markham" className="h-10 w-auto" />
+        <span className="text-left text-sm font-semibold text-slate-800">Live at Kings Court<br /><span className="font-normal text-slate-500">Open the booking page →</span></span>
+      </a>
+    </Wrap>
+  </section>
+);
+
+export const Problem = () => (
+  <section className="py-24">
+    <Wrap>
+      <SectionHead eyebrow="The problem" title={<>Your front desk shouldn't run on a <span className={gradText}>spreadsheet and a ringing phone.</span></>} />
+      <div className="grid gap-5 md:grid-cols-3">
+        {[
+          [PhoneMissed, "Missed calls are missed bookings", "Nobody answers at 9 p.m. or mid-game. The caller books somewhere else."],
+          [CalendarX, "Double bookings and no-shows", "Texts, DMs and sticky notes don't agree. Courts sit empty while people get turned away."],
+          [Layers, "Five tools that don't talk", "Scheduling here, payments there, waivers somewhere else. You become the integration."],
+        ].map(([Icon, t, d]: any) => (
+          <div key={t} className={`${card} p-6`}>
+            <Icon className="mb-4 h-7 w-7 text-[var(--b)]" />
+            <h3 className="mb-2 text-lg font-semibold">{t}</h3>
+            <p className="text-[var(--muted)]">{d}</p>
+          </div>
+        ))}
+      </div>
+    </Wrap>
+  </section>
+);
+
+export const Platform = () => (
+  <section id="platform" className="bg-[var(--bg2)] py-24">
+    <Wrap>
+      <SectionHead eyebrow="The platform" title={<>Everything a facility runs on, <span className={gradText}>in one system.</span></>} sub="Booking, members, payments and reporting built together, so nothing gets re-typed." />
+      <div className="grid gap-6 md:grid-cols-2">
+        {[
+          ["Courts and bookings", "A live schedule for every court and sport. Players book online, staff book at the desk, Maya books by phone. All in the same calendar.", <ScheduleMock key="s" floating={false} />],
+          ["Members, waivers and passes", "Profiles, memberships, passes and signed waivers in one place. No paper, no chasing.", <MembersMock key="m" />],
+          ["Payments", "Players pay at checkout. Receipts and door codes go out automatically.", <PaymentsMock key="p" />],
+          ["Reporting", "See revenue, court utilization and your busiest hours without exporting anything.", <ReportsMock key="r" />],
+        ].map(([t, d, mock]: any) => (
+          <div key={t} className={`${card} flex flex-col gap-5 p-6`}>
+            <div>
+              <h3 className="mb-2 text-xl font-semibold">{t}</h3>
+              <p className="text-[var(--muted)]">{d}</p>
+            </div>
+            <div className="mt-auto">{mock}</div>
+          </div>
+        ))}
+      </div>
+    </Wrap>
+  </section>
+);
+
+const formatPhone = (v: string) => {
+  const n = v.replace(/\D/g, "").slice(0, 10);
+  if (n.length <= 3) return n;
+  if (n.length <= 6) return `(${n.slice(0, 3)}) ${n.slice(3)}`;
+  return `(${n.slice(0, 3)}) ${n.slice(3, 6)}-${n.slice(6)}`;
+};
+
+const inputCls = "w-full rounded-lg border border-[var(--line)] bg-[var(--bg)] px-3 py-2.5 text-sm text-[var(--fg)] placeholder:text-[var(--muted)] focus:border-[var(--a)] focus:outline-none";
+
+const MayaForm = () => {
+  const N8N = "https://courtsideai.app.n8n.cloud/webhook/dba8ef39-8b35-4b6f-8374-957a39571cb8";
+  const KEY = "6LeWjhUsAAAAAHfvT9c2w1T80WX9PbejFrPqQFdG";
+  const [f, setF] = useState({ name: "", phone: "", email: "", facilityName: "" });
+  const [busy, setBusy] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const s = document.createElement("script");
+    s.src = `https://www.google.com/recaptcha/api.js?render=${KEY}`;
+    s.async = true;
+    s.onload = () => setReady(true);
+    document.head.appendChild(s);
+    return () => {
+      document.head.removeChild(s);
+    };
+  }, []);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!ready) return toast.error("Security check is loading. Try again in a moment.");
+    setBusy(true);
+    try {
+      const token = await (window as any).grecaptcha.execute(KEY, { action: "submit" });
+      const res = await fetch(N8N, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...f, phone: `+1${f.phone.replace(/\D/g, "")}`, recaptchaToken: token, timestamp: new Date().toISOString() }),
+      });
+      if (!res.ok) throw new Error("failed");
+      toast.success("Maya will call you shortly.");
+      setF({ name: "", phone: "", email: "", facilityName: "" });
+    } catch {
+      toast.error("Couldn't send that. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <form onSubmit={submit} className={`${card} space-y-3 p-5`}>
+      <h4 className="font-semibold">Get a call from Maya</h4>
+      <input required className={inputCls} placeholder="Your name" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} />
+      <input required inputMode="tel" className={inputCls} placeholder="Phone number" value={f.phone} onChange={(e) => setF({ ...f, phone: formatPhone(e.target.value) })} />
+      <input required type="email" className={inputCls} placeholder="Email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} />
+      <input required className={inputCls} placeholder="Facility name" value={f.facilityName} onChange={(e) => setF({ ...f, facilityName: e.target.value })} />
+      <button disabled={busy} className={`${btnPrimary} w-full disabled:opacity-60`}>{busy ? "Sending…" : "Call me"}</button>
+    </form>
+  );
+};
+
+export const Maya = () => (
+  <section id="maya" className="py-24">
+    <Wrap className="grid items-center gap-14 lg:grid-cols-2">
+      <div className="space-y-6">
+        <Eyebrow>AI receptionist · add-on</Eyebrow>
+        <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Meet Maya. She <span className={gradText}>never misses a call.</span></h2>
+        <p className="text-lg text-[var(--muted)]">Maya picks up every call to your facility, checks real court availability, books the court, takes payment and texts the door code. She works from your live schedule, so she never double-books.</p>
+        <ul className="space-y-2.5">
+          {["Answers 24/7, including when you're mid-game", "Books, changes and cancels from your real calendar", "Shares door codes and answers your FAQs", "Hands off to a person or takes a message when needed"].map((x) => (
+            <li key={x} className="flex items-start gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0 text-lime-400" />{x}</li>
+          ))}
+        </ul>
+        <p className="text-sm text-[var(--muted)]">Callers are told they're speaking with an AI assistant and that the call is recorded.</p>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-[1.2fr_1fr] lg:grid-cols-1 xl:grid-cols-[1.2fr_1fr]">
+        <CallMock />
+        <MayaForm />
+      </div>
+    </Wrap>
+  </section>
+);
+
+export const OpenApi = () => (
+  <section id="api" className="bg-[var(--bg2)] py-24">
+    <Wrap className="grid items-center gap-14 lg:grid-cols-2">
+      <div className="space-y-6">
+        <Eyebrow>Open API</Eyebrow>
+        <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Your data. <span className={gradText}>Your stack. No lock-in.</span></h2>
+        <p className="text-lg text-[var(--muted)]">Most facility software keeps your bookings behind a wall. Courtside is open, so you can connect door locks, accounting, CRM or anything else you already run.</p>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[[Plug, "Connect anything"], [Webhook, "Webhooks on every event"], [Database, "Your data stays yours"]].map(([Icon, t]: any) => (
+            <div key={t} className={`${card} p-4`}><Icon className="mb-2 h-5 w-5 text-[var(--b)]" /><div className="text-sm font-semibold">{t}</div></div>
+          ))}
+        </div>
+      </div>
+      <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[#0a0f1c] font-mono text-[13px] leading-relaxed text-slate-300 shadow-2xl">
+        <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
+          <span className="h-2.5 w-2.5 rounded-full bg-red-400" /><span className="h-2.5 w-2.5 rounded-full bg-yellow-400" /><span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+          <span className="ml-3 text-xs text-slate-500">illustrative example</span>
+        </div>
+        <pre className="overflow-x-auto p-5"><code>{`// A booking was made. Tell your own systems.
+POST https://your-app.com/hooks/courtside
+
+{
+  "event": "booking.created",
+  "court": "Court 3",
+  "starts_at": "2026-10-01T19:00:00-04:00",
+  "source": "maya",
+  "player": { "name": "Priya S." }
+}`}</code></pre>
+      </div>
+    </Wrap>
+  </section>
+);
+
+export const Compare = () => {
+  const rows: [string, boolean, boolean][] = [
+    ["Built by facility operators", true, false],
+    ["Booking, members, waivers and payments in one platform", true, false],
+    ["AI receptionist built into the platform", true, false],
+    ["Open API and webhooks", true, false],
+    ["Help moving over from your current system", true, false],
+  ];
+  return (
+    <section id="compare" className="py-24">
+      <Wrap>
+        <SectionHead eyebrow="Compare" title={<>Not another <span className={gradText}>booking tool.</span></>} />
+        <div className={`${card} mx-auto max-w-3xl overflow-hidden`}>
+          <div className="grid grid-cols-[1fr_90px_110px] border-b border-[var(--line)] bg-[var(--bg2)] px-5 py-3 text-sm font-semibold sm:grid-cols-[1fr_120px_160px]">
+            <span /><span className="text-center">Courtside</span><span className="text-center text-[var(--muted)]">Typical booking tools</span>
+          </div>
+          {rows.map(([t, a, b]) => (
+            <div key={t} className="grid grid-cols-[1fr_90px_110px] items-center border-b border-[var(--line)] px-5 py-4 last:border-0 sm:grid-cols-[1fr_120px_160px]">
+              <span>{t}</span>
+              <span className="grid place-items-center">{a ? <Check className="h-5 w-5 text-lime-400" /> : <X className="h-5 w-5 text-[var(--muted)]" />}</span>
+              <span className="grid place-items-center">{b ? <Check className="h-5 w-5 text-lime-400" /> : <X className="h-5 w-5 text-[var(--muted)]" />}</span>
+            </div>
+          ))}
+        </div>
+      </Wrap>
+    </section>
+  );
+};
+
+export const Doors = () => (
+  <section className="bg-[var(--bg2)] py-24">
+    <Wrap>
+      <SectionHead eyebrow="See it" title={<>Two sides, <span className={gradText}>one system.</span></>} sub="What your players see, and what you run the facility from." />
+      <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+        <div className={`${card} flex flex-col gap-4 p-7`}>
+          <h3 className="text-xl font-semibold">For players</h3>
+          <p className="flex-1 text-[var(--muted)]">Pick a court, pick a time, pay, done. Open the live booking page for Kings Court.</p>
+          <a href={SANDBOX_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Open booking page <ArrowRight className="ml-2 h-4 w-4" /></a>
+        </div>
+        <div className={`${card} flex flex-col gap-4 p-7`}>
+          <h3 className="text-xl font-semibold">For facility owners</h3>
+          <p className="flex-1 text-[var(--muted)]">Schedule, members, payments and reports in one dashboard. See it walked through live.</p>
+          <a href={DEMO_MAILTO} className={btnPrimary}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
+        </div>
+      </div>
+    </Wrap>
+  </section>
+);
+
+export const Faqs = () => {
+  const faqs: [string, React.ReactNode][] = [
+    ["Who is Courtside for?", "Court-sport facilities: pickleball, tennis, basketball, badminton, squash, volleyball and multi-sport venues."],
+    ["Do I need Maya to use the platform?", "No. Maya is an add-on. The booking, member, payment and reporting platform works on its own."],
+    ["How long does setting up Maya take?", "About 72 hours. We collect your pricing, rules and scripts, configure Maya, test her on real scenarios and take her live."],
+    ["Can it connect to the tools I already use?", "Yes. Courtside has an open API and webhooks, so it can connect to your door locks, accounting and other systems."],
+    ["Is the AI bilingual?", "English is standard. Most other languages are supported."],
+    ["What about privacy?", <>We follow Canadian privacy law (PIPEDA). Read the <a className="underline" href="/privacy">Privacy Policy</a> for what we collect and how long we keep it.</>],
+    ["How much does it cost?", "Pricing depends on your facility. Book a demo and we'll walk you through it."],
+  ];
+  return (
+    <section id="faqs" className="py-24">
+      <Wrap>
+        <SectionHead eyebrow="FAQ" title="Questions owners ask" />
+        <Accordion type="single" collapsible className="mx-auto max-w-3xl space-y-3">
+          {faqs.map(([q, a], i) => (
+            <AccordionItem key={q} value={`i${i}`} className="rounded-xl border border-[var(--line)] bg-[var(--card)] px-5">
+              <AccordionTrigger className="text-left font-semibold hover:no-underline">{q}</AccordionTrigger>
+              <AccordionContent className="text-[var(--muted)]">{a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </Wrap>
+    </section>
+  );
+};
+
+export const EarlyAccess = () => {
+  const [f, setF] = useState({ name: "", email: "", company: "", phone: "" });
+  const [busy, setBusy] = useState(false);
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    const { error } = await supabase.from("courtside_waitlist").insert({ name: f.name.trim(), email: f.email.trim(), company: f.company.trim() || null, phone: f.phone.trim() || null });
+    setBusy(false);
+    if (error) return toast.error("Couldn't submit. Please try again.");
+    toast.success("You're on the list. We'll be in touch soon.");
+    setF({ name: "", email: "", company: "", phone: "" });
+  };
+  return (
+    <section id="early-access" className="relative overflow-hidden bg-[var(--bg2)] py-24">
+      <div className="pointer-events-none absolute inset-0 opacity-60" style={{ backgroundImage: "radial-gradient(50% 60% at 50% 0%, var(--glow), transparent)" }} />
+      <Wrap className="relative">
+        <div className="mx-auto max-w-xl space-y-8 text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Get started with <span className={gradText}>Courtside.</span></h2>
+          <p className="text-lg text-[var(--muted)]">Tell us about your facility and we'll set you up with early access.</p>
+          <form onSubmit={submit} className={`${card} space-y-3 p-6 text-left`}>
+            <input required maxLength={100} className={inputCls} placeholder="Full name" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} />
+            <input required type="email" maxLength={255} className={inputCls} placeholder="Email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} />
+            <input maxLength={100} className={inputCls} placeholder="Facility name" value={f.company} onChange={(e) => setF({ ...f, company: e.target.value })} />
+            <input maxLength={20} className={inputCls} placeholder="Phone (optional)" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value })} />
+            <button disabled={busy} className={`${btnPrimary} w-full disabled:opacity-60`}>{busy ? "Sending…" : "Get started"}</button>
+          </form>
+        </div>
+      </Wrap>
+    </section>
+  );
+};
+
+export const FinalCta = () => (
+  <section id="contact" className="py-20">
+    <Wrap className="text-center">
+      <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">Rather talk it through? <span className={gradText}>We run courts too.</span></h2>
+      <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <a href={DEMO_MAILTO} className={btnPrimary}>Book a demo</a>
+        <a href="mailto:support@court-side.ai" className={btnSecondary}>support@court-side.ai</a>
+      </div>
+    </Wrap>
+  </section>
+);

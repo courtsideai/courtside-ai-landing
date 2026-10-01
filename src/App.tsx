@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
+import HomeV2 from "./pages/HomeV2";
 import Support from "./pages/Support";
 import DeleteAccount from "./pages/DeleteAccount";
 
@@ -20,10 +21,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<HomeV2 />} />
+          <Route path="/classic" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/new" element={<HomeV2 />} />
+          <Route path="/new/:theme" element={<HomeV2 />} />
           <Route path="/support" element={<Support />} />
           <Route path="/delete-account" element={<DeleteAccount />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

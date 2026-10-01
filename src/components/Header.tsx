@@ -8,9 +8,9 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { href: "/#how-it-works", label: "How It Works" },
-    { href: "/#features", label: "Features" },
-    { href: "/#comparison", label: "Comparison" },
+    { href: "/#platform", label: "Platform" },
+    { href: "/#maya", label: "Maya AI" },
+    { href: "/#compare", label: "Comparison" },
     { href: "/#faqs", label: "FAQs" },
     { href: "/about", label: "About" },
   ];
@@ -27,13 +27,13 @@ const Header = () => {
           
           {/* Navigation - Center (Desktop only) */}
           <nav className="hidden lg:flex items-center justify-center gap-8">
-            <a href="/#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth whitespace-nowrap">
-              How It Works
+            <a href="/#platform" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth whitespace-nowrap">
+              Platform
             </a>
-            <a href="/#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
-              Features
+            <a href="/#maya" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
+              Maya AI
             </a>
-            <a href="/#comparison" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
+            <a href="/#compare" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
               Comparison
             </a>
             <a href="/#faqs" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-smooth">
@@ -49,10 +49,10 @@ const Header = () => {
             {/* Desktop CTA buttons */}
             <div className="hidden lg:flex items-center gap-4">
               <Button variant="outline" size="sm" asChild>
-                <a href="#maya">Try Maya</a>
+                <a href="/#maya">Try Maya</a>
               </Button>
               <Button variant="hero" size="sm" asChild>
-                <a href="#waitlist">Get Started</a>
+                <a href="/#early-access">Get Started</a>
               </Button>
             </div>
 

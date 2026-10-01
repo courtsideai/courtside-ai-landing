@@ -1,0 +1,144 @@
+import { CalendarDays, Check, Phone, Users, CreditCard, TrendingUp } from "lucide-react";
+import { card } from "./theme";
+
+// Vibrant booking colours that pop on both dark and light backgrounds.
+type Kind = "member" | "league" | "ai" | "clinic";
+const KIND: Record<Kind, string> = {
+  member: "bg-orange-500 text-white shadow-[0_0_18px_-4px_rgba(249,115,22,0.8)]",
+  league: "bg-fuchsia-500 text-white shadow-[0_0_18px_-4px_rgba(217,70,239,0.8)]",
+  ai: "bg-lime-400 text-slate-900 shadow-[0_0_18px_-4px_rgba(163,230,53,0.8)]",
+  clinic: "bg-sky-500 text-white shadow-[0_0_18px_-4px_rgba(14,165,233,0.8)]",
+};
+const COURTS = ["Court 1", "Court 2", "Court 3", "Court 4"];
+const TIMES = ["5 PM", "6 PM", "7 PM", "8 PM", "9 PM"];
+const BOOKINGS: [number, number, number, string, Kind][] = [
+  [0, 0, 2, "Sam K. · Pickleball", "member"],
+  [0, 3, 2, "Open play", "clinic"],
+  [1, 1, 1, "Dre M.", "member"],
+  [1, 2, 3, "Tue League", "league"],
+  [2, 0, 1, "Priya S.", "member"],
+  [2, 2, 2, "Booked by Maya", "ai"],
+  [3, 1, 2, "Kids clinic", "clinic"],
+  [3, 4, 1, "Jo T.", "member"],
+];
+
+export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => (
+  <div className="relative">
+    <div className={`${card} p-4 sm:p-5`}>
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2 font-semibold">
+          <CalendarDays className="h-4 w-4" /> Today · Court schedule
+        </div>
+        <span className="rounded-full border border-[var(--line)] px-2.5 py-1 text-xs text-[var(--muted)]">14 bookings · 82% full</span>
+      </div>
+      <div className="grid grid-cols-[52px_repeat(5,1fr)] gap-1.5 text-[11px]">
+        <div />
+        {TIMES.map((x) => (
+          <div key={x} className="text-center text-[var(--muted)]">{x}</div>
+        ))}
+        {COURTS.map((c, r) => (
+          <div key={c} className="contents">
+            <div className="flex items-center text-[var(--muted)]">{c}</div>
+            {TIMES.map((_, col) => ({ col, taken: BOOKINGS.some((b) => b[0] === r && col >= b[1] && col < b[1] + b[2]) }))
+              .filter((x) => !x.taken)
+              .map(({ col }) => (
+                <div key={col} className="h-9 rounded-md border border-[var(--line)] bg-[var(--bg2)]/60" style={{ gridRow: r + 2, gridColumn: col + 2 }} />
+              ))}
+            {BOOKINGS.filter((b) => b[0] === r).map(([, s, span, label, kind]) => (
+              <div key={label + s} className={`flex h-9 items-center truncate rounded-md px-2 font-semibold ${KIND[kind]}`} style={{ gridRow: r + 2, gridColumn: `${s + 2} / span ${span}` }}>
+                {label}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+    {floating && (
+      <>
+        <div className={`${card} absolute -bottom-14 -left-2 w-60 p-3 text-xs sm:-left-8 bg-[var(--bg)]`}>
+          <div className="mb-1 flex items-center gap-2 font-semibold">
+            <span className="grid h-6 w-6 place-items-center rounded-full bg-lime-400 text-slate-900"><Phone className="h-3 w-3" /></span>
+            Maya · incoming call
+          </div>
+          <p className="text-[var(--muted)]">“Any courts open tonight at 7?”</p>
+          <p className="mt-1 flex items-center gap-1 font-medium"><Check className="h-3 w-3 text-lime-400" /> Court 3 booked, code sent</p>
+        </div>
+        <div className={`${card} absolute -right-2 -top-5 px-3 py-2 text-xs sm:-right-6 bg-[var(--bg)]`}>
+          <div className="text-[var(--muted)]">This week</div>
+          <div className="text-lg font-bold">$8,420</div>
+        </div>
+      </>
+    )}
+  </div>
+);
+
+export const MembersMock = () => (
+  <div className={`${card} space-y-2 p-4 text-sm`}>
+    {[
+      ["Sam K.", "Monthly member", "bg-orange-500"],
+      ["Priya S.", "10-game pass", "bg-sky-500"],
+      ["Tue League", "Team · 12 players", "bg-fuchsia-500"],
+    ].map(([n, t, c]) => (
+      <div key={n} className="flex items-center gap-3 rounded-lg border border-[var(--line)] bg-[var(--bg2)]/60 px-3 py-2">
+        <span className={`grid h-8 w-8 place-items-center rounded-full text-xs font-bold text-white ${c}`}>{n[0]}</span>
+        <div className="flex-1">
+          <div className="font-semibold">{n}</div>
+          <div className="text-xs text-[var(--muted)]">{t}</div>
+        </div>
+        <span className="flex items-center gap-1 rounded-full bg-lime-400/20 px-2 py-0.5 text-[11px] font-medium text-lime-500"><Check className="h-3 w-3" />Waiver signed</span>
+      </div>
+    ))}
+  </div>
+);
+
+export const PaymentsMock = () => (
+  <div className={`${card} space-y-3 p-4 text-sm`}>
+    <div className="flex items-center justify-between">
+      <span className="flex items-center gap-2 font-semibold"><CreditCard className="h-4 w-4" /> Court 2 · 7:00 PM</span>
+      <span className="rounded-full bg-lime-400 px-2.5 py-0.5 text-xs font-bold text-slate-900">Paid</span>
+    </div>
+    <div className="space-y-1 text-[var(--muted)]">
+      <div className="flex justify-between"><span>Court rental (1h)</span><span>$48.00</span></div>
+      <div className="flex justify-between"><span>Paddle rental</span><span>$6.00</span></div>
+      <div className="flex justify-between border-t border-[var(--line)] pt-1 font-semibold text-[var(--fg)]"><span>Total</span><span>$54.00</span></div>
+    </div>
+    <p className="text-xs text-[var(--muted)]">Card on file · receipt emailed · door code sent</p>
+  </div>
+);
+
+export const ReportsMock = () => (
+  <div className={`${card} p-4`}>
+    <div className="mb-3 flex items-center justify-between text-sm">
+      <span className="flex items-center gap-2 font-semibold"><TrendingUp className="h-4 w-4" /> Revenue · last 7 days</span>
+      <span className="text-xs font-semibold text-lime-500">+12%</span>
+    </div>
+    <div className="flex h-28 items-end gap-2">
+      {[40, 55, 35, 70, 62, 90, 78].map((h, i) => (
+        <div key={i} className="flex-1 rounded-t-md bg-gradient-to-t from-[var(--a)] to-[var(--b)]" style={{ height: `${h}%` }} />
+      ))}
+    </div>
+    <div className="mt-2 flex justify-between text-[11px] text-[var(--muted)]">
+      {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => <span key={i}>{d}</span>)}
+    </div>
+  </div>
+);
+
+export const CallMock = () => (
+  <div className={`${card} space-y-3 p-5 text-sm`}>
+    <div className="flex items-center justify-between">
+      <span className="flex items-center gap-2 font-semibold"><span className="grid h-7 w-7 place-items-center rounded-full bg-lime-400 text-slate-900"><Phone className="h-3.5 w-3.5" /></span> Maya · live call</span>
+      <span className="text-xs text-[var(--muted)]">0:42</span>
+    </div>
+    {[
+      ["Caller", "Hey, any pickleball courts open tonight?"],
+      ["Maya", "Court 3 is free at 7 and 8. Want me to book one?"],
+      ["Caller", "7 works."],
+      ["Maya", "Done. Court 3 at 7, and I just texted your door code."],
+    ].map(([who, line], i) => (
+      <div key={i} className={`max-w-[88%] rounded-xl px-3 py-2 ${who === "Maya" ? "ml-auto bg-gradient-to-r from-[var(--a)] to-[var(--b)] text-[var(--on-primary)]" : "border border-[var(--line)] bg-[var(--bg2)]/60"}`}>
+        {line}
+      </div>
+    ))}
+    <div className="flex items-center gap-2 pt-1 text-xs text-[var(--muted)]"><Users className="h-3.5 w-3.5" /> Booking added to your schedule automatically</div>
+  </div>
+);
