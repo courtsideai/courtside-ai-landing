@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
 import kcLogo from "@/assets/logos/kc-markham-logo.png";
-import { SPORTS } from "@/data/sports";
+import { FEATURED_SPORTS } from "@/data/sports";
 import { PROOF } from "@/data/proof";
 import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
 import { CallMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
@@ -355,14 +355,15 @@ export const Sports = () => (
   <section id="sports" className="py-24">
     <Wrap>
       <SectionHead eyebrow="Sports" title={<>Built for <span className={gradText}>every court sport.</span></>} sub="One facility, any mix of sports, any number of courts and spaces." />
-      <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3">
-        {SPORTS.map((s) => (
+      <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
+        {FEATURED_SPORTS.map((s) => (
           <a key={s.slug} href={`/sports/${s.slug}`} className={`${card} group flex items-center justify-between p-5 font-semibold transition hover:border-[var(--a)]`}>
             {s.name}
             <ArrowRight className="h-4 w-4 text-[var(--muted)] transition-transform group-hover:translate-x-1" />
           </a>
         ))}
       </div>
+      <p className="mx-auto mt-8 max-w-2xl text-center text-[var(--muted)]">Squash, badminton, golf simulators, gyms and studios too. If it has spaces to book, Courtside can run it.</p>
     </Wrap>
   </section>
 );

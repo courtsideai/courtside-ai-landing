@@ -1,6 +1,6 @@
 import { Instagram, Linkedin } from "lucide-react";
 import xIcon from "@/assets/x-icon.ico";
-import { SPORTS } from "@/data/sports";
+import { FEATURED_SPORTS } from "@/data/sports";
 
 const Footer = () => {
   return <footer className="border-t border-white/10 bg-black">
@@ -27,7 +27,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-white mb-4">Sports</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              {SPORTS.map((s) => (
+              {FEATURED_SPORTS.map((s) => (
                 <li key={s.slug}><a href={`/sports/${s.slug}`} className="hover:text-white transition-smooth">{s.name}</a></li>
               ))}
             </ul>
@@ -50,6 +50,16 @@ const Footer = () => {
               <li><a href="/terms" className="hover:text-white transition-smooth">Terms of Service</a></li>
               <li><a href="/delete-account" className="hover:text-white transition-smooth">Delete Account</a></li>
             </ul>
+          </div>
+        </div>
+
+        <div className="mb-8 rounded-xl border border-white/10 bg-white/[0.03] px-5 py-5">
+          <p className="text-sm font-semibold text-white">Built for any facility with spaces to book.</p>
+          <p className="mt-1 text-sm text-gray-400">Courts, fields, golf simulators, gyms and studios. Segmented spaces, bookings, memberships and more, whatever your business model.</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {["Pickleball", "Basketball", "Tennis", "Volleyball", "Squash", "Badminton", "Golf simulators", "Futsal", "Gyms", "Studios"].map((t) => (
+              <span key={t} className="rounded-full border border-white/10 px-3 py-1 text-xs text-gray-300">{t}</span>
+            ))}
           </div>
         </div>
 

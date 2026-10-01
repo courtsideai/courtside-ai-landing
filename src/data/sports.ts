@@ -6,11 +6,13 @@ export interface Sport {
   sub: string;
   pains: [string, string][];
   title: string;
+  featured: boolean; // shown in the footer and homepage sports strip; other pages stay live
 }
 
 export const SPORTS: Sport[] = [
   {
     slug: "pickleball",
+    featured: true,
     name: "Pickleball",
     title: "Pickleball facility management software",
     headline: "Fill every pickleball court, without the front-desk scramble.",
@@ -23,6 +25,7 @@ export const SPORTS: Sport[] = [
   },
   {
     slug: "basketball",
+    featured: true,
     name: "Basketball",
     title: "Basketball court booking and facility software",
     headline: "Run full courts, half courts and everything between.",
@@ -35,6 +38,7 @@ export const SPORTS: Sport[] = [
   },
   {
     slug: "tennis",
+    featured: true,
     name: "Tennis",
     title: "Tennis court booking and club management software",
     headline: "Tennis court bookings and memberships, handled.",
@@ -47,6 +51,7 @@ export const SPORTS: Sport[] = [
   },
   {
     slug: "volleyball",
+    featured: true,
     name: "Volleyball",
     title: "Volleyball facility booking software",
     headline: "Volleyball bookings that fit the way your gym actually runs.",
@@ -59,6 +64,7 @@ export const SPORTS: Sport[] = [
   },
   {
     slug: "badminton",
+    featured: false,
     name: "Badminton",
     title: "Badminton court booking and facility software",
     headline: "Badminton courts, booked and paid before players arrive.",
@@ -71,6 +77,7 @@ export const SPORTS: Sport[] = [
   },
   {
     slug: "squash",
+    featured: false,
     name: "Squash",
     title: "Squash court booking and club software",
     headline: "Squash court bookings without the admin.",
@@ -82,5 +89,7 @@ export const SPORTS: Sport[] = [
     ],
   },
 ];
+
+export const FEATURED_SPORTS = SPORTS.filter((s) => s.featured);
 
 export const getSport = (slug?: string) => SPORTS.find((s) => s.slug === slug);
