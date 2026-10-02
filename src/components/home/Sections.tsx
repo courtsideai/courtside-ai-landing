@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { type LucideIcon, MapPin, Moon, DoorOpen, Phone, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
+import { type LucideIcon, MapPin, Moon, Phone, Bot, CircleDollarSign, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
@@ -29,9 +29,9 @@ const SectionHead = ({ eyebrow, title, sub }: { eyebrow: string; title: React.Re
 export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string }) => {
   const [open, setOpen] = useState(false);
   const links = [
+    ["Automation", "#automation"],
     ["Platform", "#platform"],
     ["Maya AI", "#maya"],
-    ["Open API", "#api"],
     ["Compare", "#compare"],
     ["FAQ", "#faqs"],
   ];
@@ -65,12 +65,12 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
     {theme === "dark" && <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(var(--fg) 1px, transparent 1px), linear-gradient(90deg, var(--fg) 1px, transparent 1px)", backgroundSize: "64px 64px", maskImage: "radial-gradient(70% 60% at 50% 0%, #000, transparent)" }} />}
     <Wrap className="relative grid items-center gap-16 pb-32 lg:grid-cols-[1.05fr_1fr]">
       <div className="space-y-7">
-        <Eyebrow>Built by the people who run courts</Eyebrow>
+        <Eyebrow>AI-powered facility management · built by people who run courts</Eyebrow>
         <h1 className="text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl xl:text-7xl">
-          Run your whole facility <span className={gradText}>from one place.</span>
+          Your facility, <span className={gradText}>on autopilot.</span>
         </h1>
         <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)]">
-          Courts, bookings, members and payments in one platform, with an AI receptionist that answers every call. We run a facility ourselves, so it's built for how courts actually work.
+          Courtside automates the front desk. AI answers every call, books courts, takes payment and sends door codes around the clock, on top of one platform for bookings, members and payments. We run a facility ourselves, so it's built for how courts actually work.
         </p>
         <div className="flex flex-wrap gap-3">
           <a href="#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
@@ -116,18 +116,25 @@ export const ProofStrip = () =>
     </section>
   ) : null;
 
-export const AlwaysOpen = () => (
-  <section id="always-open" className="py-24">
+type Status = "Live" | "Coming soon";
+const AUTOMATIONS: [LucideIcon, string, string, Status][] = [
+  [Phone, "AI receptionist", "Maya answers every call, checks live availability, books the court, takes payment and texts the door code.", "Live"],
+  [Moon, "24/7 automation", "Online booking, payments, confirmations and door codes run around the clock, so you don't need staff at the desk.", "Live"],
+  [CircleDollarSign, "Revenue recovery", "Chases failed payments and no-shows, refills cancelled slots and wins back members who've gone quiet.", "Coming soon"],
+  [Bot, "Agentic operator", "An AI operator that handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Coming soon"],
+];
+
+export const Automation = () => (
+  <section id="automation" className="py-24">
     <Wrap>
-      <SectionHead eyebrow="Always open" title={<>Your facility never closes. <span className={gradText}>Your front desk doesn't have to be open.</span></>} sub="Run a 24/7 facility without staff at the desk." />
-      <div className="grid gap-5 md:grid-cols-3">
-        {([
-          [Moon, "Book and pay any hour", "Players book and pay online at 2 a.m. as easily as 2 p.m. The schedule updates the moment they do."],
-          [DoorOpen, "Door codes, automatically", "Access details go out with the booking confirmation, so players get in without anyone at the desk."],
-          [Phone, "Maya answers the phone", "Calls after hours get answered, booked and confirmed, not sent to voicemail."],
-        ] as [LucideIcon, string, string][]).map(([Icon, t, d]) => (
+      <SectionHead eyebrow="Automation" title={<>An AI that runs <span className={gradText}>your front desk.</span></>} sub="Booking software records what happened. Courtside does the work: it answers, books, collects and follows up, 24/7." />
+      <div className="grid gap-5 md:grid-cols-2">
+        {AUTOMATIONS.map(([Icon, t, d, status]) => (
           <div key={t} className={`${card} p-6`}>
-            <Icon className="mb-4 h-7 w-7 text-[var(--b)]" />
+            <div className="mb-4 flex items-center justify-between">
+              <Icon className="h-7 w-7 text-[var(--b)]" />
+              <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${status === "Live" ? "bg-lime-400/15 text-lime-400" : "border border-[var(--line)] text-[var(--muted)]"}`}>{status}</span>
+            </div>
             <h3 className="mb-2 text-lg font-semibold">{t}</h3>
             <p className="text-[var(--muted)]">{d}</p>
           </div>
@@ -161,7 +168,7 @@ export const Problem = () => (
 export const Platform = () => (
   <section id="platform" className="bg-[var(--bg2)] py-24">
     <Wrap>
-      <SectionHead eyebrow="The platform" title={<>Everything a facility runs on, <span className={gradText}>in one system.</span></>} sub="Booking, members, payments and reporting built together, so nothing gets re-typed." />
+      <SectionHead eyebrow="The platform" title={<>The system <span className={gradText}>the automation runs on.</span></>} sub="Booking, members, payments and reporting built together, so the AI always works from live data and nothing gets re-typed." />
       <div className="grid gap-6 md:grid-cols-2">
         {([
           ["Courts and bookings", "A live schedule for every court and sport. Players book online, staff book at the desk, Maya books by phone. All in the same calendar.", <ScheduleMock key="s" floating={false} />],
@@ -303,6 +310,7 @@ export const Compare = () => {
     ["Built by facility operators", true, false],
     ["Booking, members, waivers and payments in one platform", true, false],
     ["AI receptionist built into the platform", true, false],
+    ["24/7 automation: booking, payments and access with no one at the desk", true, false],
     ["Open API and webhooks", true, false],
     ["Help moving over from your current system", true, false],
   ];
@@ -379,6 +387,7 @@ export const Sports = ({ current }: { current?: string }) => (
 
 export const Faqs = () => {
   const faqs: [string, React.ReactNode][] = [
+    ["Which AI features are live today?", "Maya, the AI receptionist, and 24/7 booking, payment and access automation are live. Revenue recovery and the agentic operator are coming soon, and early access customers get them first."],
     ["Who is Courtside for?", "Court-sport facilities: pickleball, tennis, basketball, badminton, squash, volleyball and multi-sport venues."],
     ["Do I need Maya to use the platform?", "No. Maya is an add-on. The booking, member, payment and reporting platform works on its own."],
     ["How long does setting up Maya take?", "About 72 hours. We collect your pricing, rules and scripts, configure Maya, test her on real scenarios and take her live."],

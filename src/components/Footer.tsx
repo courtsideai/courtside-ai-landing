@@ -11,7 +11,7 @@ const Footer = () => {
               <img alt="Courtside AI" className="h-12" src="/lovable-uploads/aef6f963-0b6d-481b-bc94-2a5efd80b3c2.png" />
             </div>
             <p className="text-sm text-gray-400">
-              Facility management software for sports facilities, with an AI receptionist that answers every call.
+              AI-powered facility management for sports facilities. It answers calls, books courts and takes payment, 24/7.
             </p>
           </div>
 
