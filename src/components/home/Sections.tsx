@@ -67,7 +67,7 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
       <div className="space-y-7">
         <Eyebrow>AI-powered facility management · built by people who run courts</Eyebrow>
         <h1 className="text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl xl:text-7xl">
-          Your facility, <span className={gradText}>on autopilot.</span>
+          Your facility <span className={gradText}>on autopilot.</span>
         </h1>
         <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)]">
           Courtside automates the front desk. AI answers every call, books courts, takes payment and sends door codes around the clock, on top of one platform for bookings, members and payments. We run a facility ourselves, so it's built for how courts actually work.
@@ -416,13 +416,14 @@ export const Faqs = () => {
 export const EarlyAccess = () => {
   const [f, setF] = useState({ name: "", email: "", company: "", phone: "" });
   const [busy, setBusy] = useState(false);
+  const [done, setDone] = useState(false);
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
     const { error } = await supabase.from("courtside_waitlist").insert({ name: f.name.trim(), email: f.email.trim(), company: f.company.trim() || null, phone: f.phone.trim() || null });
     setBusy(false);
     if (error) return toast.error("Couldn't submit. Please try again.");
-    toast.success("You're on the list. We'll be in touch soon.");
+    setDone(true);
     setF({ name: "", email: "", company: "", phone: "" });
   };
   return (
@@ -431,10 +432,18 @@ export const EarlyAccess = () => {
       <div className="pointer-events-none absolute inset-0 opacity-60" style={{ backgroundImage: "radial-gradient(50% 60% at 50% 0%, var(--glow), transparent)" }} />
       <Wrap className="relative">
         <div className="mx-auto mb-12 max-w-2xl space-y-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Put your facility <span className={gradText}>on autopilot.</span></h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Your facility <span className={gradText}>on autopilot.</span></h2>
           <p className="text-lg text-[var(--muted)]">Get early access, or talk it through with us first. We run courts too.</p>
         </div>
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-[1.2fr_1fr]">
+          {done ? (
+            <div className={`${card} flex flex-col gap-4 p-6`}>
+              <Check className="h-7 w-7 text-lime-400" />
+              <h3 className="text-lg font-semibold">You're on the list.</h3>
+              <p className="flex-1 text-[var(--muted)]">Want to skip the wait? Pick a time and we'll walk you through Courtside on your own courts and rules.</p>
+              <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={`${btnPrimary} w-full`}>Book your demo <ArrowRight className="ml-2 h-4 w-4" /></a>
+            </div>
+          ) : (
           <form onSubmit={submit} className={`${card} space-y-3 p-6`}>
             <h3 className="text-lg font-semibold">Get started</h3>
             <p className="text-sm text-[var(--muted)]">Tell us about your facility and we'll set you up with early access.</p>
@@ -444,6 +453,7 @@ export const EarlyAccess = () => {
             <input maxLength={20} className={inputCls} placeholder="Phone (optional)" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value })} />
             <button disabled={busy} className={`${btnPrimary} w-full disabled:opacity-60`}>{busy ? "Sending…" : "Get started"}</button>
           </form>
+          )}
           <div className={`${card} flex flex-col gap-4 p-6`}>
             <CalendarDays className="h-7 w-7 text-[var(--b)]" />
             <h3 className="text-lg font-semibold">Rather talk it through?</h3>
