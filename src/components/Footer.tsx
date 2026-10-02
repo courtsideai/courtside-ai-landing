@@ -71,7 +71,7 @@ const Footer = () => {
                 <Instagram className="h-4 w-4" />
               </a>
               <a 
-                href="https://linkedin.com/company/courtsideai" 
+                href="https://www.linkedin.com/company/courtside-ai/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-smooth"
@@ -80,7 +80,7 @@ const Footer = () => {
                 <Linkedin className="h-4 w-4" />
               </a>
               <a 
-                href="https://twitter.com/courtsideai" 
+                href="https://x.com/courtside_ai" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-smooth"
