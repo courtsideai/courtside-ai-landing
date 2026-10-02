@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { type LucideIcon, CalendarDays, MapPin, Phone, Bot, CircleDollarSign, FileSignature, KeyRound, ClipboardList, BellRing, RotateCcw, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
+import { type LucideIcon, CalendarDays, MapPin, Phone, Bot, CircleDollarSign, FileSignature, KeyRound, ClipboardList, BellRing, RotateCcw, UserPlus, ListChecks, Lightbulb, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
@@ -122,13 +122,16 @@ type Status = "Live" | "Coming soon";
 const LIFECYCLE: [LucideIcon, string, string, Status][] = [
   [CalendarDays, "Booked and paid", "Players book online or Maya books by phone. Payment is taken at checkout, so courts are never held on a promise.", "Live"],
   [FileSignature, "Waiver signed", "Liability waivers are e-signed before the first visit and stored with the version they agreed to. No clipboards.", "Live"],
-  [KeyRound, "Access sent", "Door codes and booking details go out by email the moment the booking is made, to everyone on the booking.", "Live"],
-  [ClipboardList, "Court prepped", "Setup instructions go to staff before the booking starts: volleyball net up, half-court divider down, lights on.", "Coming soon"],
+  [KeyRound, "Access sent", "Door codes and booking details go out by email and text the moment the booking is made, to everyone on the booking.", "Live"],
+  [ClipboardList, "Court prepped", "Setup instructions go out before the booking starts, to staff or straight to players at self-serve facilities: volleyball net up, half-court divider down.", "Live"],
   [BellRing, "Reminded", "Players get a reminder before they play. Cancellations follow your refund and credit rules automatically.", "Live"],
   [RotateCcw, "Slot refilled", "Receipts go out, cancelled slots reopen instantly and the waitlist hears about it first.", "Live"],
 ];
 
-const AI_LAYER: [LucideIcon, string, string, Status][] = [
+const BEYOND: [LucideIcon, string, string, Status][] = [
+  [UserPlus, "Member onboarding", "New members get a welcome email, their login and your facility rules, without anyone sending them.", "Coming soon"],
+  [ListChecks, "Staff checklists", "Opening, closing and cleaning checklists go to the right staff member for each shift.", "Coming soon"],
+  [Lightbulb, "Lights and HVAC", "Court lights and HVAC switch on before a booking and off when the facility is empty.", "Coming soon"],
   [Phone, "AI receptionist", "Maya answers every call 24/7, books courts, takes payment and handles FAQs.", "Live"],
   [CircleDollarSign, "Revenue recovery", "Chases failed payments and no-shows and wins back members who've gone quiet.", "Coming soon"],
   [Bot, "Agentic operator", "Handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Coming soon"],
@@ -157,9 +160,9 @@ export const Automation = () => (
           </li>
         ))}
       </ol>
-      <h3 className="mb-5 mt-16 text-center text-2xl font-bold tracking-tight sm:text-3xl">And an AI layer <span className={gradText}>on top.</span></h3>
-      <div className="grid gap-5 md:grid-cols-3">
-        {AI_LAYER.map(([Icon, t, d, status]) => (
+      <h3 className="mb-5 mt-16 text-center text-2xl font-bold tracking-tight sm:text-3xl">Beyond the booking, <span className={gradText}>with AI on top.</span></h3>
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {BEYOND.map(([Icon, t, d, status]) => (
           <div key={t} className={`${card} p-6`}>
             <div className="mb-4 flex items-center justify-between">
               <Icon className="h-7 w-7 text-[var(--b)]" />
