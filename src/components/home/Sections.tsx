@@ -30,8 +30,8 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
   const [open, setOpen] = useState(false);
   const links = [
     ["Automation", "#automation"],
-    ["Platform", "#platform"],
     ["Maya AI", "#maya"],
+    ["Platform", "#platform"],
     ["Compare", "#compare"],
     ["FAQ", "#faqs"],
   ];

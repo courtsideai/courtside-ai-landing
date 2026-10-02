@@ -17,8 +17,8 @@ const HomeV2 = () => {
         <OperatorStrip />
         <Problem />
         <Automation />
-        <Platform />
         <Maya />
+        <Platform />
         <OpenApi />
         <Sports />
         <Compare />
