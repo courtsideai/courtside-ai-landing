@@ -74,7 +74,7 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
         </p>
         <div className="flex flex-wrap gap-3">
           <a href="#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
-          <a href={DEMO_URL} className={btnSecondary}>Book a demo</a>
+          <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Book a demo</a>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--muted)]">
           <a href="#maya" className="inline-flex items-center gap-1 hover:text-[var(--fg)]">Hear Maya answer a call <ArrowRight className="h-3.5 w-3.5" /></a>
@@ -345,7 +345,7 @@ export const HowItWorks = () => (
         ))}
       </div>
       <div className="mt-10 text-center">
-        <a href={DEMO_URL} className={btnPrimary}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
+        <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnPrimary}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
       </div>
     </Wrap>
   </section>
@@ -441,7 +441,7 @@ export const FinalCta = () => (
     <Wrap className="text-center">
       <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">Rather talk it through? <span className={gradText}>We run courts too.</span></h2>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <a href={DEMO_URL} className={btnPrimary}>Book a demo</a>
+        <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnPrimary}>Book a demo</a>
         <a href="mailto:support@court-side.ai" className={btnSecondary}>support@court-side.ai</a>
       </div>
     </Wrap>

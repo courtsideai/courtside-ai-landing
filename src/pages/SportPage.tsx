@@ -39,7 +39,7 @@ const SportPage = () => {
               <p className="max-w-xl text-lg text-[var(--muted)]">{sport.sub}</p>
               <div className="flex flex-wrap gap-3">
                 <a href="/#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
-                <a href={DEMO_URL} className={btnSecondary}>Book a demo</a>
+                <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Book a demo</a>
               </div>
             </div>
             <ScheduleMock />
