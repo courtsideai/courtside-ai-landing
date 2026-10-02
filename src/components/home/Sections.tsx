@@ -223,7 +223,7 @@ export const Pitch = () => (
 export const Platform = () => (
   <section id="platform" className="bg-[var(--bg2)] py-24">
     <Wrap>
-      <SectionHead eyebrow="The platform" title={<>One dashboard to <span className={gradText}>run it all.</span></>} sub="The automation runs on its own. This is where you set the rules, see every booking and member, and track the money." />
+      <SectionHead eyebrow="The platform" title={<>One platform to <span className={gradText}>run it all.</span></>} sub="The automation runs on its own. Owners, staff and players each get their own view: you set the rules, see every booking and member, and track the money." />
       <div className="grid gap-6 md:grid-cols-2">
         {([
           ["Courts and rules", "Set up every court and the sports it supports, split full courts into halves, and set booking rules and cancellation windows per court.", <CourtsMock key="c" />],
