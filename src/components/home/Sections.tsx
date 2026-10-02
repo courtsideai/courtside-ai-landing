@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { type LucideIcon, CalendarDays, MapPin, Moon, Phone, Bot, CircleDollarSign, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
+import { type LucideIcon, CalendarDays, MapPin, Phone, Bot, CircleDollarSign, FileSignature, KeyRound, ClipboardList, BellRing, RotateCcw, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
@@ -117,23 +117,53 @@ export const ProofStrip = () =>
   ) : null;
 
 type Status = "Live" | "Coming soon";
-const AUTOMATIONS: [LucideIcon, string, string, Status][] = [
-  [Phone, "AI receptionist", "Maya answers every call, checks live availability, books the court, takes payment and texts the door code.", "Live"],
-  [Moon, "24/7 automation", "Online booking, payments, confirmations and door codes run around the clock, so you don't need staff at the desk.", "Live"],
-  [CircleDollarSign, "Revenue recovery", "Chases failed payments and no-shows, refills cancelled slots and wins back members who've gone quiet.", "Coming soon"],
-  [Bot, "Agentic operator", "An AI operator that handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Coming soon"],
+
+// A booking's life, automated end to end. Keep statuses honest: flip to "Live" only when it ships.
+const LIFECYCLE: [LucideIcon, string, string, Status][] = [
+  [CalendarDays, "Booked and paid", "Players book online or Maya books by phone. Payment is taken at checkout, so courts are never held on a promise.", "Live"],
+  [FileSignature, "Waiver signed", "Liability waivers are e-signed before the first visit and stored with the version they agreed to. No clipboards.", "Live"],
+  [KeyRound, "Access sent", "Door codes and booking details go out by email the moment the booking is made, to everyone on the booking.", "Live"],
+  [ClipboardList, "Court prepped", "Setup instructions go to staff before the booking starts: volleyball net up, half-court divider down, lights on.", "Coming soon"],
+  [BellRing, "Reminded", "Players get a reminder before they play. Cancellations follow your refund and credit rules automatically.", "Live"],
+  [RotateCcw, "Slot refilled", "Receipts go out, cancelled slots reopen instantly and the waitlist hears about it first.", "Live"],
 ];
+
+const AI_LAYER: [LucideIcon, string, string, Status][] = [
+  [Phone, "AI receptionist", "Maya answers every call 24/7, books courts, takes payment and handles FAQs.", "Live"],
+  [CircleDollarSign, "Revenue recovery", "Chases failed payments and no-shows and wins back members who've gone quiet.", "Coming soon"],
+  [Bot, "Agentic operator", "Handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Coming soon"],
+];
+
+const StatusBadge = ({ status }: { status: Status }) => (
+  <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${status === "Live" ? "bg-lime-400/15 text-lime-400" : "border border-[var(--line)] text-[var(--muted)]"}`}>{status}</span>
+);
 
 export const Automation = () => (
   <section id="automation" className="py-24">
     <Wrap>
-      <SectionHead eyebrow="Automation" title={<>An AI that runs <span className={gradText}>your front desk.</span></>} sub="Booking software records what happened. Courtside does the work: it answers, books, collects and follows up, 24/7." />
-      <div className="grid gap-5 md:grid-cols-2">
-        {AUTOMATIONS.map(([Icon, t, d, status]) => (
+      <SectionHead eyebrow="Automation" title={<>Every booking, <span className={gradText}>handled end to end.</span></>} sub="Booking software records what happened. Courtside does the work, from the first call to the empty slot after a cancellation, 24/7 and with no one at the desk." />
+      <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {LIFECYCLE.map(([Icon, t, d, status], i) => (
+          <li key={t} className={`${card} p-6`}>
+            <div className="mb-4 flex items-center justify-between">
+              <span className="flex items-center gap-3">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-[var(--a)] to-[var(--b)] text-sm font-bold text-[var(--on-primary)]">{i + 1}</span>
+                <Icon className="h-6 w-6 text-[var(--b)]" />
+              </span>
+              <StatusBadge status={status} />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold">{t}</h3>
+            <p className="text-[var(--muted)]">{d}</p>
+          </li>
+        ))}
+      </ol>
+      <h3 className="mb-5 mt-16 text-center text-2xl font-bold tracking-tight sm:text-3xl">And an AI layer <span className={gradText}>on top.</span></h3>
+      <div className="grid gap-5 md:grid-cols-3">
+        {AI_LAYER.map(([Icon, t, d, status]) => (
           <div key={t} className={`${card} p-6`}>
             <div className="mb-4 flex items-center justify-between">
               <Icon className="h-7 w-7 text-[var(--b)]" />
-              <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${status === "Live" ? "bg-lime-400/15 text-lime-400" : "border border-[var(--line)] text-[var(--muted)]"}`}>{status}</span>
+              <StatusBadge status={status} />
             </div>
             <h3 className="mb-2 text-lg font-semibold">{t}</h3>
             <p className="text-[var(--muted)]">{d}</p>
