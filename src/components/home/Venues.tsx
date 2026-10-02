@@ -44,7 +44,7 @@ export const GetListedCard = ({ href = "/#early-access" }: { href?: string }) =>
 
 // Homepage section: venues already running on Courtside.
 export const VenuesSection = () => (
-  <section id="venues" className="py-24">
+  <section id="venues" className="bg-[var(--bg2)] py-24">
     <div className="container mx-auto px-4 sm:px-6">
       <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div className="max-w-2xl space-y-3">

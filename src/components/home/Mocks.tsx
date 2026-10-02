@@ -102,7 +102,7 @@ export const PaymentsMock = () => (
       <div className="flex justify-between"><span>Paddle rental</span><span>$6.00</span></div>
       <div className="flex justify-between border-t border-[var(--line)] pt-1 font-semibold text-[var(--fg)]"><span>Total</span><span>$54.00</span></div>
     </div>
-    <p className="text-xs text-[var(--muted)]">Card on file · receipt emailed · door code sent</p>
+    <p className="text-xs text-[var(--muted)]">Paid through Stripe to your account · refund from this screen</p>
   </div>
 );
 
@@ -140,5 +140,26 @@ export const CallMock = () => (
       </div>
     ))}
     <div className="flex items-center gap-2 pt-1 text-xs text-[var(--muted)]"><Users className="h-3.5 w-3.5" /> Booking added to your schedule automatically</div>
+  </div>
+);
+
+// Courts set up in the dashboard, each with the sports it supports (mirrors the real app's court headers).
+export const CourtsMock = () => (
+  <div className={`${card} space-y-2 p-4 text-sm`}>
+    {[
+      ["Main court", [["Basketball", "bg-orange-500/20 text-orange-300"], ["Volleyball", "bg-fuchsia-500/20 text-fuchsia-300"], ["Pickleball", "bg-lime-400/20 text-lime-300"]], "Full or 2 halves"],
+      ["Half court", [["Basketball", "bg-orange-500/20 text-orange-300"]], "1 hr min"],
+      ["Court 3", [["Pickleball", "bg-lime-400/20 text-lime-300"], ["Tennis", "bg-sky-500/20 text-sky-300"]], "Members book 14 days out"],
+    ].map(([name, sports, rule]) => (
+      <div key={name as string} className="flex items-center justify-between gap-3 rounded-lg border border-[var(--line)] bg-[var(--bg2)]/60 px-3 py-2">
+        <div>
+          <div className="font-semibold">{name as string}</div>
+          <div className="mt-1 flex flex-wrap gap-1">
+            {(sports as string[][]).map(([sp, c]) => <span key={sp} className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${c}`}>{sp}</span>)}
+          </div>
+        </div>
+        <span className="text-right text-xs text-[var(--muted)]">{rule as string}</span>
+      </div>
+    ))}
   </div>
 );

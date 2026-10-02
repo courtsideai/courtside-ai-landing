@@ -8,7 +8,7 @@ import kcLogo from "@/assets/logos/kc-markham-logo.png";
 import { FEATURED_SPORTS, SPORTS } from "@/data/sports";
 import { PROOF } from "@/data/proof";
 import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
-import { CallMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
+import { CallMock, CourtsMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
 
 const Wrap = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <div className={`container mx-auto px-4 sm:px-6 ${className}`}>{children}</div>
@@ -132,7 +132,7 @@ const BEYOND: [LucideIcon, string, string, Status][] = [
   [UserPlus, "Member onboarding", "New members get a welcome email, their login and your facility rules, without anyone sending them.", "Coming soon"],
   [ListChecks, "Staff checklists", "Opening, closing and cleaning checklists go to the right staff member for each shift.", "Coming soon"],
   [Lightbulb, "Lights and HVAC", "Court lights and HVAC switch on before a booking and off when the facility is empty.", "Coming soon"],
-  [Phone, "AI receptionist", "Maya answers every call 24/7, books courts, takes payment and handles FAQs.", "Live"],
+  [Phone, "AI receptionist", "Maya answers every call 24/7 and books from your live schedule. Hear her in action just below.", "Live"],
   [CircleDollarSign, "Revenue recovery", "Chases failed payments and no-shows and wins back members who've gone quiet.", "Coming soon"],
   [Bot, "Agentic operator", "Handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Coming soon"],
 ];
@@ -142,7 +142,7 @@ const StatusBadge = ({ status }: { status: Status }) => (
 );
 
 export const Automation = () => (
-  <section id="automation" className="py-24">
+  <section id="automation" className="bg-[var(--bg2)] py-24">
     <Wrap>
       <SectionHead eyebrow="Automation" title={<>Every booking, <span className={gradText}>handled end to end.</span></>} sub="Booking software records what happened. Courtside does the work, from the first call to the empty slot after a cancellation, 24/7 and with no one at the desk." />
       <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -201,12 +201,12 @@ export const Problem = () => (
 export const Platform = () => (
   <section id="platform" className="bg-[var(--bg2)] py-24">
     <Wrap>
-      <SectionHead eyebrow="The platform" title={<>The system <span className={gradText}>the automation runs on.</span></>} sub="Booking, members, payments and reporting built together, so the AI always works from live data and nothing gets re-typed." />
+      <SectionHead eyebrow="The platform" title={<>One dashboard to <span className={gradText}>run it all.</span></>} sub="The automation runs on its own. This is where you set the rules, see every booking and member, and track the money." />
       <div className="grid gap-6 md:grid-cols-2">
         {([
-          ["Courts and bookings", "A live schedule for every court and sport. Players book online, staff book at the desk, Maya books by phone. All in the same calendar.", <ScheduleMock key="s" floating={false} />],
-          ["Members, waivers and passes", "Profiles, memberships, passes and signed waivers in one place. No paper, no chasing.", <MembersMock key="m" />],
-          ["Payments", "Players pay at checkout. Receipts and door codes go out automatically.", <PaymentsMock key="p" />],
+          ["Courts and rules", "Set up every court and the sports it supports, split full courts into halves, and set booking rules and cancellation windows per court.", <CourtsMock key="c" />],
+          ["Members", "Profiles, memberships, passes and gift cards, with every signed waiver one click away.", <MembersMock key="m" />],
+          ["Payments", "Bookings, memberships, passes and add-ons, all paid through Stripe straight to your account, with refunds handled from the same place.", <PaymentsMock key="p" />],
           ["Reporting", "See revenue, court utilization and your busiest hours without exporting anything.", <ReportsMock key="r" />],
         ] as [string, string, React.ReactNode][]).map(([t, d, mock]) => (
           <div key={t} className={`${card} flex flex-col gap-5 p-6`}>
@@ -306,7 +306,7 @@ export const Maya = () => (
 );
 
 export const OpenApi = () => (
-  <section id="api" className="bg-[var(--bg2)] py-24">
+  <section id="api" className="py-24">
     <Wrap className="grid items-center gap-14 lg:grid-cols-2">
       <div className="space-y-6">
         <Eyebrow>Open API</Eyebrow>
@@ -369,7 +369,7 @@ export const Compare = () => {
 };
 
 export const HowItWorks = () => (
-  <section id="how-it-works" className="bg-[var(--bg2)] py-24">
+  <section id="how-it-works" className="py-24">
     <Wrap>
       <SectionHead eyebrow="Getting started" title={<>Live in <span className={gradText}>three steps.</span></>} sub="No long projects. We set it up with you, on your courts and your rules." />
       <div className="grid gap-5 md:grid-cols-3">
@@ -396,7 +396,7 @@ export const HowItWorks = () => (
 const OTHER_SPACES = ["Golf simulators", "Futsal", "Gyms", "Studios"];
 
 export const Sports = ({ current }: { current?: string }) => (
-  <section id="sports" className="py-20">
+  <section id="sports" className="bg-[var(--bg2)] py-20">
     <Wrap>
       <div className="mx-auto max-w-3xl space-y-3 text-center">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Built for any facility <span className={gradText}>with spaces to book.</span></h2>
@@ -430,7 +430,7 @@ export const Faqs = () => {
     ["How much does it cost?", "Pricing depends on your facility. Book a demo and we'll walk you through it."],
   ];
   return (
-    <section id="faqs" className="py-24">
+    <section id="faqs" className="bg-[var(--bg2)] py-24">
       <Wrap>
         <SectionHead eyebrow="FAQ" title="Questions owners ask" />
         <Accordion type="single" collapsible className="mx-auto max-w-3xl space-y-3">
@@ -460,7 +460,7 @@ export const EarlyAccess = () => {
     setF({ name: "", email: "", company: "", phone: "" });
   };
   return (
-    <section id="early-access" className="relative overflow-hidden bg-[var(--bg2)] py-24">
+    <section id="early-access" className="relative overflow-hidden py-24">
       <span id="contact" className="absolute -top-20" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 opacity-60" style={{ backgroundImage: "radial-gradient(50% 60% at 50% 0%, var(--glow), transparent)" }} />
       <Wrap className="relative">
