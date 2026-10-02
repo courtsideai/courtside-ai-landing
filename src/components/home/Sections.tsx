@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { type LucideIcon, MapPin, Moon, Phone, Bot, CircleDollarSign, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
+import { type LucideIcon, CalendarDays, MapPin, Moon, Phone, Bot, CircleDollarSign, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
@@ -427,32 +427,32 @@ export const EarlyAccess = () => {
   };
   return (
     <section id="early-access" className="relative overflow-hidden bg-[var(--bg2)] py-24">
+      <span id="contact" className="absolute -top-20" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 opacity-60" style={{ backgroundImage: "radial-gradient(50% 60% at 50% 0%, var(--glow), transparent)" }} />
       <Wrap className="relative">
-        <div className="mx-auto max-w-xl space-y-8 text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Get started with <span className={gradText}>Courtside.</span></h2>
-          <p className="text-lg text-[var(--muted)]">Tell us about your facility and we'll set you up with early access.</p>
-          <form onSubmit={submit} className={`${card} space-y-3 p-6 text-left`}>
+        <div className="mx-auto mb-12 max-w-2xl space-y-4 text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Put your facility <span className={gradText}>on autopilot.</span></h2>
+          <p className="text-lg text-[var(--muted)]">Get early access, or talk it through with us first. We run courts too.</p>
+        </div>
+        <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-[1.2fr_1fr]">
+          <form onSubmit={submit} className={`${card} space-y-3 p-6`}>
+            <h3 className="text-lg font-semibold">Get started</h3>
+            <p className="text-sm text-[var(--muted)]">Tell us about your facility and we'll set you up with early access.</p>
             <input required maxLength={100} className={inputCls} placeholder="Full name" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} />
             <input required type="email" maxLength={255} className={inputCls} placeholder="Email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} />
             <input maxLength={100} className={inputCls} placeholder="Facility name" value={f.company} onChange={(e) => setF({ ...f, company: e.target.value })} />
             <input maxLength={20} className={inputCls} placeholder="Phone (optional)" value={f.phone} onChange={(e) => setF({ ...f, phone: e.target.value })} />
             <button disabled={busy} className={`${btnPrimary} w-full disabled:opacity-60`}>{busy ? "Sending…" : "Get started"}</button>
           </form>
+          <div className={`${card} flex flex-col gap-4 p-6`}>
+            <CalendarDays className="h-7 w-7 text-[var(--b)]" />
+            <h3 className="text-lg font-semibold">Rather talk it through?</h3>
+            <p className="flex-1 text-[var(--muted)]">Book a walkthrough on your own courts, pricing and rules. See exactly how Courtside would run your facility.</p>
+            <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={`${btnSecondary} w-full`}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
+            <p className="text-sm text-[var(--muted)]">Questions? <a className="underline hover:text-[var(--fg)]" href="mailto:support@court-side.ai">support@court-side.ai</a></p>
+          </div>
         </div>
       </Wrap>
     </section>
   );
 };
-
-export const FinalCta = () => (
-  <section id="contact" className="py-20">
-    <Wrap className="text-center">
-      <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">Rather talk it through? <span className={gradText}>We run courts too.</span></h2>
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnPrimary}>Book a demo</a>
-        <a href="mailto:support@court-side.ai" className={btnSecondary}>support@court-side.ai</a>
-      </div>
-    </Wrap>
-  </section>
-);
