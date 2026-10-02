@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { type LucideIcon, CalendarDays, MapPin, Phone, Bot, CircleDollarSign, FileSignature, KeyRound, ClipboardList, BellRing, RotateCcw, UserPlus, ListChecks, Lightbulb, ArrowRight, Check, X, PhoneMissed, CalendarX, Layers, Plug, Webhook, Database, Menu } from "lucide-react";
+import { type LucideIcon, CalendarDays, MapPin, Phone, Bot, CircleDollarSign, FileSignature, KeyRound, ClipboardList, BellRing, RotateCcw, UserPlus, ListChecks, Lightbulb, ArrowRight, Check, X, Plug, Webhook, Database, Menu } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
@@ -65,12 +65,12 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
     {theme === "dark" && <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(var(--fg) 1px, transparent 1px), linear-gradient(90deg, var(--fg) 1px, transparent 1px)", backgroundSize: "64px 64px", maskImage: "radial-gradient(70% 60% at 50% 0%, #000, transparent)" }} />}
     <Wrap className="relative grid items-center gap-16 pb-32 lg:grid-cols-[1.05fr_1fr]">
       <div className="space-y-7">
-        <Eyebrow>AI-powered facility management · built by people who run courts</Eyebrow>
+        <Eyebrow>The first facility management software built to automate</Eyebrow>
         <h1 className="text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl xl:text-7xl">
           Your facility <span className={gradText}>on autopilot.</span>
         </h1>
         <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)]">
-          Courtside automates the front desk. AI answers every call, books courts, takes payment and sends door codes around the clock, on top of one platform for bookings, members and payments. We run a facility ourselves, so it's built for how courts actually work.
+          Everything you're used to from facility software, plus AI that does the work: it answers every call, books courts, takes payment and sends door codes, 24/7.
         </p>
         <div className="flex flex-wrap gap-3">
           <a href="#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
@@ -87,7 +87,7 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
 );
 
 export const OperatorStrip = () => (
-  <section className="border-y border-[var(--line)] bg-[var(--bg2)] py-12">
+  <section className="border-y border-[var(--line)] py-12">
     <Wrap className="flex flex-col items-center gap-6 text-center lg:flex-row lg:justify-between lg:text-left">
       <div className="max-w-2xl">
         <p className="text-xl font-semibold sm:text-2xl">We run a court facility. Every feature exists because we needed it at our own front desk.</p>
@@ -177,23 +177,45 @@ export const Automation = () => (
   </section>
 );
 
-export const Problem = () => (
-  <section className="py-24">
+// Elevator pitch right under the hero: FMS + AI = autopilot.
+const FMS_ITEMS = ["Online booking and a live court schedule", "Memberships, passes and gift cards", "E-signed liability waivers", "Payments through Stripe", "Revenue and utilization reports"];
+const AI_ITEMS: [string, boolean][] = [
+  ["Answers every call and books courts", true],
+  ["Takes payment and sends access codes, 24/7", true],
+  ["Preps courts and reminds players", true],
+  ["Recovers missed revenue", false],
+  ["Runs the front desk as your AI operator", false],
+];
+
+export const Pitch = () => (
+  <section id="pitch" className="bg-[var(--bg2)] py-24">
     <Wrap>
-      <SectionHead eyebrow="The problem" title={<>Your front desk shouldn't run on a <span className={gradText}>spreadsheet and a ringing phone.</span></>} />
-      <div className="grid gap-5 md:grid-cols-3">
-        {([
-          [PhoneMissed, "Missed calls are missed bookings", "Nobody answers at 9 p.m. or mid-game. The caller books somewhere else."],
-          [CalendarX, "Double bookings and no-shows", "Texts, DMs and sticky notes don't agree. Courts sit empty while people get turned away."],
-          [Layers, "Five tools that don't talk", "Scheduling here, payments there, waivers somewhere else. You become the integration."],
-        ] as [LucideIcon, string, string][]).map(([Icon, t, d]) => (
-          <div key={t} className={`${card} p-6`}>
-            <Icon className="mb-4 h-7 w-7 text-[var(--b)]" />
-            <h3 className="mb-2 text-lg font-semibold">{t}</h3>
-            <p className="text-[var(--muted)]">{d}</p>
+      <SectionHead eyebrow="Facility management software + AI" title={<>Everything you're used to. <span className={gradText}>And more.</span></>} sub="Replace the booking app, the payment tool, the waiver forms and the ringing phone with one system that runs itself." />
+      <div className="mx-auto grid max-w-5xl items-stretch gap-5 md:grid-cols-[1fr_auto_1fr]">
+        <div className={`${card} p-6`}>
+          <p className="mb-1 text-sm font-medium text-[var(--muted)]">Everything you're used to</p>
+          <h3 className="mb-4 text-xl font-semibold">Facility management software</h3>
+          <ul className="space-y-2.5">
+            {FMS_ITEMS.map((x) => <li key={x} className="flex items-start gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0 text-[var(--muted)]" />{x}</li>)}
+          </ul>
+        </div>
+        <div className="grid place-items-center text-4xl font-bold text-[var(--muted)]">+</div>
+        <div className="rounded-2xl bg-gradient-to-br from-[var(--a)] to-[var(--b)] p-px">
+          <div className="h-full rounded-2xl bg-[var(--bg)] p-6">
+            <p className="mb-1 text-sm font-medium text-[var(--b)]">And more</p>
+            <h3 className="mb-4 text-xl font-semibold">AI that does the work</h3>
+            <ul className="space-y-2.5">
+              {AI_ITEMS.map(([x, live]) => (
+                <li key={x} className="flex items-start gap-2">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-lime-400" />
+                  <span>{x}{!live && <span className="ml-2 rounded-full border border-[var(--line)] px-2 py-0.5 text-[11px] text-[var(--muted)]">Coming soon</span>}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        ))}
+        </div>
       </div>
+      <p className="mt-10 text-center text-2xl font-bold tracking-tight sm:text-3xl">= Your facility <span className={gradText}>on autopilot.</span></p>
     </Wrap>
   </section>
 );
