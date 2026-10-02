@@ -14,8 +14,9 @@ const faqs: [string, string][] = [
 const Support = () => (
   <LegalPage title="Support">
     <p>
-      Need help with Courtside? Most answers are below. If not, email <MailLink subject="Courtside support" /> and we'll
-      reply within one business day.
+      Help for players booking courts and for facility staff. Most answers are below. If yours isn't, email{" "}
+      <MailLink subject="Courtside support" /> and we'll reply within one business day. Evaluating Courtside for your
+      facility? See the <a className="text-primary underline" href="/#faqs">FAQ</a>.
     </p>
 
     <LegalSection title="Quick help">

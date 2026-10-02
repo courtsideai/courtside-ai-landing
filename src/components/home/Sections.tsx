@@ -494,7 +494,7 @@ export const Faqs = () => {
   return (
     <section id="faqs" className="bg-[var(--bg2)] py-24">
       <Wrap>
-        <SectionHead eyebrow="FAQ" title="Questions owners ask" />
+        <SectionHead eyebrow="FAQ" title="Questions owners ask" sub="Thinking about Courtside for your facility? Start here." />
         <Accordion type="single" collapsible className="mx-auto max-w-3xl space-y-3">
           {faqs.map(([q, a], i) => (
             <AccordionItem key={q} value={`i${i}`} className="rounded-xl border border-[var(--line)] bg-[var(--card)] px-5">
@@ -503,6 +503,7 @@ export const Faqs = () => {
             </AccordionItem>
           ))}
         </Accordion>
+        <p className="mt-8 text-center text-sm text-[var(--muted)]">Booking a court or need help with your account? Visit <a className="underline hover:text-[var(--fg)]" href="/support">Support</a>.</p>
       </Wrap>
     </section>
   );
