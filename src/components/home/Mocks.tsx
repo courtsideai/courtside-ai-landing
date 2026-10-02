@@ -63,7 +63,7 @@ export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => (
           <p className="text-[var(--muted)]">“Any courts open tonight at 7?”</p>
           <p className="mt-1 flex items-center gap-1 font-medium"><Check className="h-3 w-3 text-lime-400" /> Court 3 booked, code sent</p>
         </div>
-        <div className={`${card} absolute -right-2 -top-5 px-3 py-2 text-xs sm:-right-6 bg-[var(--bg)]`}>
+        <div className={`${card} absolute -right-2 -top-5 hidden px-3 py-2 text-xs sm:-right-6 sm:block bg-[var(--bg)]`}>
           <div className="text-[var(--muted)]">This week</div>
           <div className="text-lg font-bold">$8,420</div>
         </div>
