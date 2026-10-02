@@ -11,15 +11,16 @@ const Footer = () => {
               <img alt="Courtside AI" className="h-12" src="/lovable-uploads/aef6f963-0b6d-481b-bc94-2a5efd80b3c2.png" />
             </div>
             <p className="text-sm text-gray-400">
-              AI-powered facility management for sports facilities. It answers calls, books courts and takes payment, 24/7.
+              The first facility management software built to automate. It answers calls, books courts and takes payment, 24/7.
             </p>
           </div>
 
           <div>
             <h3 className="font-semibold text-white mb-4">Product</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="/#platform" className="hover:text-white transition-smooth">Platform</a></li>
+              <li><a href="/#automation" className="hover:text-white transition-smooth">Automation</a></li>
               <li><a href="/#maya" className="hover:text-white transition-smooth">Maya AI</a></li>
+              <li><a href="/#platform" className="hover:text-white transition-smooth">Platform</a></li>
               <li><a href="/#api" className="hover:text-white transition-smooth">Open API</a></li>
               <li><a href="/#compare" className="hover:text-white transition-smooth">Compare</a></li>
             </ul>

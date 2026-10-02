@@ -28,6 +28,8 @@ const SectionHead = ({ eyebrow, title, sub }: { eyebrow: string; title: React.Re
 
 export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string }) => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("");
   const links = [
     ["Automation", "#automation"],
     ["Maya AI", "#maya"],
@@ -35,24 +37,62 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
     ["Compare", "#compare"],
     ["FAQ", "#faqs"],
   ];
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Highlight the nav item for the section in view (homepage only).
+  useEffect(() => {
+    if (prefix) return;
+    const ids = ["automation", "maya", "platform", "compare", "faqs"];
+    const onScroll = () => {
+      const line = window.innerHeight * 0.4;
+      let current = "";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = `#${id}`;
+      }
+      setActive(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [prefix]);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-[var(--bg)]/80 backdrop-blur-lg">
+    <header className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-lg transition-colors ${scrolled ? "border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]" : "border-transparent bg-[color-mix(in_srgb,var(--bg)_60%,transparent)]"}`}>
       <Wrap className="flex h-16 items-center justify-between">
         <a href={`${prefix || "#"}${prefix ? "" : "top"}`}><img src={theme === "dark" ? "/lovable-uploads/aef6f963-0b6d-481b-bc94-2a5efd80b3c2.png" : logo} alt="Courtside AI" className={theme === "dark" ? "h-11" : "h-9"} /></a>
-        <nav className="hidden gap-8 text-sm text-[var(--muted)] lg:flex">
-          {links.map(([l, h]) => <a key={h} href={prefix + h} className="hover:text-[var(--fg)] transition">{l}</a>)}
+        <nav className="hidden items-center gap-1 lg:flex">
+          {links.map(([l, h]) => (
+            <a
+              key={h}
+              href={prefix + h}
+              aria-current={active === h ? "true" : undefined}
+              className={`relative rounded-md px-3.5 py-2 text-[15px] font-medium transition hover:bg-[color-mix(in_srgb,var(--fg)_6%,transparent)] hover:text-[var(--fg)] ${active === h ? "text-[var(--fg)]" : "text-[color-mix(in_srgb,var(--fg)_72%,transparent)]"}`}
+            >
+              {l}
+              <span className={`absolute inset-x-3.5 -bottom-[13px] h-0.5 rounded-full bg-gradient-to-r from-[var(--a)] to-[var(--b)] transition-opacity ${active === h ? "opacity-100" : "opacity-0"}`} />
+            </a>
+          ))}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
-          <a href="/venues" className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--fg)]/35 px-4 py-2 text-sm font-medium text-[var(--fg)] transition hover:border-[var(--fg)]/70 hover:bg-[var(--fg)]/5"><MapPin className="h-4 w-4" />Book a court</a>
+          <a href="/venues" className="inline-flex items-center gap-1.5 rounded-lg border border-[color-mix(in_srgb,var(--fg)_35%,transparent)] px-4 py-2 text-sm font-medium text-[var(--fg)] transition hover:border-[color-mix(in_srgb,var(--fg)_70%,transparent)] hover:bg-[color-mix(in_srgb,var(--fg)_6%,transparent)]"><MapPin className="h-4 w-4" />Book a court</a>
           <a href={`${prefix}#early-access`} className={`${btnPrimary} !py-2 text-sm`}>Get started</a>
         </div>
         <button className="lg:hidden" aria-label="Menu" onClick={() => setOpen(!open)}><Menu /></button>
       </Wrap>
       {open && (
-        <div className="space-y-3 border-t border-[var(--line)] bg-[var(--bg)] px-4 py-4 lg:hidden">
-          {links.map(([l, h]) => <a key={h} href={prefix + h} onClick={() => setOpen(false)} className="block text-[var(--muted)]">{l}</a>)}
-          <a href="/venues" className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-[var(--fg)]/35 px-4 py-2.5 font-medium text-[var(--fg)]"><MapPin className="h-4 w-4" />Book a court</a>
-          <a href={`${prefix}#early-access`} onClick={() => setOpen(false)} className={`${btnPrimary} w-full`}>Get started</a>
+        <div className="space-y-1 border-t border-[var(--line)] bg-[var(--bg)] px-4 py-4 lg:hidden">
+          {links.map(([l, h]) => <a key={h} href={prefix + h} onClick={() => setOpen(false)} className="block rounded-md px-2 py-2.5 text-base font-medium text-[var(--fg)]">{l}</a>)}
+          <div className="space-y-3 pt-3">
+            <a href="/venues" className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-[color-mix(in_srgb,var(--fg)_35%,transparent)] px-4 py-2.5 font-medium text-[var(--fg)]"><MapPin className="h-4 w-4" />Book a court</a>
+            <a href={`${prefix}#early-access`} onClick={() => setOpen(false)} className={`${btnPrimary} w-full`}>Get started</a>
+          </div>
         </div>
       )}
     </header>
