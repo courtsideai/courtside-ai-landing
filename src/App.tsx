@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import HomeV2 from "./pages/HomeV2";
 import VenuePage from "./pages/VenuePage";
 import SportPage from "./pages/SportPage";
+import Compare from "./pages/Compare";
 import Venues from "./pages/Venues";
 import Support from "./pages/Support";
 import DeleteAccount from "./pages/DeleteAccount";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/new" element={<HomeV2 />} />
           <Route path="/new/:theme" element={<HomeV2 />} />
           <Route path="/sports/:sport" element={<SportPage />} />
+          <Route path="/compare" element={<Compare />} />
           <Route path="/venues" element={<Venues />} />
           <Route path="/venues/:slug" element={<VenuePage />} />
           <Route path="/support" element={<Support />} />

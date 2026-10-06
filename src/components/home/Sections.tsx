@@ -8,6 +8,7 @@ import kcLogo from "@/assets/logos/kc-markham-logo.png";
 import { FEATURED_SPORTS, SPORTS } from "@/data/sports";
 import { PROOF } from "@/data/proof";
 import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
+import { CompareMatrix, OfferStrip } from "./CompareMatrix";
 import { CallMock, CourtsMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
 
 const Wrap = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
@@ -105,7 +106,7 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
     {theme === "dark" && <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "linear-gradient(var(--fg) 1px, transparent 1px), linear-gradient(90deg, var(--fg) 1px, transparent 1px)", backgroundSize: "64px 64px", maskImage: "radial-gradient(70% 60% at 50% 0%, #000, transparent)" }} />}
     <Wrap className="relative grid items-center gap-16 pb-32 lg:grid-cols-[1.05fr_1fr]">
       <div className="space-y-7">
-        <Eyebrow>The first facility management software built to automate</Eyebrow>
+        <Eyebrow>The first facility management software with a live AI receptionist</Eyebrow>
         <h1 className="text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl xl:text-7xl">
           Your facility <span className={gradText}>on autopilot.</span>
         </h1>
@@ -116,6 +117,7 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
           <a href="#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
           <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Book a demo</a>
         </div>
+        <OfferStrip />
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--muted)]">
           <a href="#maya" className="inline-flex items-center gap-1 hover:text-[var(--fg)]">Hear Maya answer a call <ArrowRight className="h-3.5 w-3.5" /></a>
           <a href="/venues" className="inline-flex items-center gap-1 hover:text-[var(--fg)]">Looking to play? Book a court <ArrowRight className="h-3.5 w-3.5" /></a>
@@ -400,35 +402,17 @@ POST https://your-app.com/hooks/courtside
   </section>
 );
 
-export const Compare = () => {
-  const rows: [string, boolean, boolean][] = [
-    ["Built by facility operators", true, false],
-    ["Booking, members, waivers and payments in one platform", true, false],
-    ["AI receptionist built into the platform", true, false],
-    ["24/7 automation: booking, payments and access with no one at the desk", true, false],
-    ["Open API and webhooks", true, false],
-    ["Help moving over from your current system", true, false],
-  ];
-  return (
-    <section id="compare" className="py-24">
-      <Wrap>
-        <SectionHead eyebrow="Compare" title={<>Not another <span className={gradText}>booking tool.</span></>} />
-        <div className={`${card} mx-auto max-w-3xl overflow-hidden`}>
-          <div className="grid grid-cols-[1fr_90px_110px] border-b border-[var(--line)] bg-[var(--bg2)] px-5 py-3 text-sm font-semibold sm:grid-cols-[1fr_120px_160px]">
-            <span /><span className="text-center">Courtside</span><span className="text-center text-[var(--muted)]">Typical booking tools</span>
-          </div>
-          {rows.map(([t, a, b]) => (
-            <div key={t} className="grid grid-cols-[1fr_90px_110px] items-center border-b border-[var(--line)] px-5 py-4 last:border-0 sm:grid-cols-[1fr_120px_160px]">
-              <span>{t}</span>
-              <span className="grid place-items-center">{a ? <Check className="h-5 w-5 text-lime-400" /> : <X className="h-5 w-5 text-[var(--muted)]" />}</span>
-              <span className="grid place-items-center">{b ? <Check className="h-5 w-5 text-lime-400" /> : <X className="h-5 w-5 text-[var(--muted)]" />}</span>
-            </div>
-          ))}
-        </div>
-      </Wrap>
-    </section>
-  );
-};
+export const Compare = () => (
+  <section id="compare" className="py-24">
+    <Wrap>
+      <SectionHead eyebrow="Compare" title={<>Not another <span className={gradText}>booking tool.</span></>} sub="Every booking tool takes reservations. Only Courtside answers your phone." />
+      <CompareMatrix />
+      <div className="mt-8 text-center">
+        <a href="/compare" className={btnSecondary}>See the full comparison <ArrowRight className="ml-2 h-4 w-4" /></a>
+      </div>
+    </Wrap>
+  </section>
+);
 
 export const HowItWorks = () => (
   <section id="how-it-works" className="py-24">
@@ -437,7 +421,7 @@ export const HowItWorks = () => (
       <div className="grid gap-5 md:grid-cols-3">
         {[
           ["1", "Demo", "A short walkthrough on your own courts, pricing and rules. You see exactly how it would run your facility."],
-          ["2", "Go live", "We set up your courts, pricing, waivers and booking page. Coming from AllBooked, CourtReserve or a spreadsheet? We'll move your members and bookings over with you."],
+          ["2", "Go live", "We set up your courts, pricing, waivers and booking page. Coming from AllBooked, CourtReserve or a spreadsheet? We migrate your members and bookings for free."],
           ["3", "Grow", "Players book online, Maya covers the phone, and reports show what's filling and what isn't."],
         ].map(([n, t, d]) => (
           <div key={t} className={`${card} p-6`}>
@@ -489,7 +473,7 @@ export const Faqs = () => {
     ["Can it connect to the tools I already use?", "Yes. Courtside has an open API and webhooks, so it can connect to your door locks, accounting and other systems."],
     ["Is the AI bilingual?", "English is standard. Most other languages are supported."],
     ["What about privacy?", <>We follow Canadian privacy law (PIPEDA). Read the <a className="underline" href="/privacy">Privacy Policy</a> for what we collect and how long we keep it.</>],
-    ["How much does it cost?", "Pricing depends on your facility. Book a demo and we'll walk you through it."],
+    ["How much does it cost?", "Start with a 3-month free trial. There are no setup fees, it's month to month, and we migrate your data for free. Pricing after the trial depends on your facility, so book a demo and we'll walk you through it."],
   ];
   return (
     <section id="faqs" className="bg-[var(--bg2)] py-24">
@@ -530,6 +514,7 @@ export const EarlyAccess = () => {
         <div className="mx-auto mb-12 max-w-2xl space-y-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Your facility <span className={gradText}>on autopilot.</span></h2>
           <p className="text-lg text-[var(--muted)]">Get early access, or talk it through with us first. We run courts too.</p>
+          <OfferStrip className="justify-center" />
         </div>
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-[1.2fr_1fr]">
           {done ? (
