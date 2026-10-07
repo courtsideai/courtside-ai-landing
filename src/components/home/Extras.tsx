@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Lock, ShieldCheck, CreditCard } from "lucide-react";
 import { btnPrimary, btnSecondary, card, DEMO_URL, gradText } from "./theme";
 
@@ -14,12 +14,35 @@ const Slider = ({ label, value, min, max, step, suffix = "", prefix = "", onChan
   </label>
 );
 
+// Smoothly animate a number toward its target.
+const useTween = (target: number, ms = 450) => {
+  const [v, setV] = useState(target);
+  const from = useRef(target);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return setV(target);
+    const start = from.current;
+    const t0 = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - t0) / ms);
+      const next = Math.round(start + (target - start) * (1 - Math.pow(1 - p, 3)));
+      from.current = next;
+      setV(next);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, ms]);
+  return v;
+};
+
 // Missed-call revenue calculator (the on-page version of a missed revenue audit). Inputs are the visitor's own.
 export const MissedCallCalculator = () => {
   const [calls, setCalls] = useState(15);
   const [share, setShare] = useState(40);
   const [value, setValue] = useState(50);
   const monthly = Math.round(calls * 4.33 * (share / 100) * value);
+  const shownMonthly = useTween(monthly);
 
   return (
     <section id="calculator" className="py-24">
@@ -36,7 +59,7 @@ export const MissedCallCalculator = () => {
           <Slider label="Average booking value" value={value} min={10} max={300} step={5} prefix="$" onChange={setValue} />
           <div className="rounded-xl border border-[var(--line)] bg-[var(--bg2)] p-5 text-center">
             <p className="text-sm text-[var(--muted)]">Revenue you could be missing</p>
-            <p className={`text-5xl font-bold tabular-nums ${gradText}`}>{money(monthly)}</p>
+            <p className={`text-5xl font-bold tabular-nums ${gradText}`}>{money(shownMonthly)}</p>
             <p className="mt-1 text-sm text-[var(--muted)]">per month · {money(monthly * 12)} a year</p>
           </div>
           <p className="text-xs text-[var(--muted)]">An estimate from your inputs, not a guarantee.</p>

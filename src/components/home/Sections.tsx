@@ -157,7 +157,7 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
       <div className="space-y-7">
         <Eyebrow>The first facility management software with a live AI receptionist</Eyebrow>
         <h1 className="text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl xl:text-7xl">
-          Your facility <span className={gradText}>on autopilot.</span>
+          Your facility <span className="bg-[linear-gradient(90deg,var(--a),var(--b),var(--a))] bg-clip-text text-transparent text-shimmer">on autopilot.</span>
         </h1>
         <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)]">
           Everything you're used to from facility software, plus AI that does the work: it answers every call, books courts, takes payment and sends door codes, 24/7.
@@ -167,7 +167,6 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
           <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Book a demo</a>
         </div>
         <OfferStrip />
-        <a href="#maya" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]">Hear Maya answer a call <ArrowRight className="h-3.5 w-3.5" /></a>
       </div>
       <ScheduleMock />
     </Wrap>
@@ -220,20 +219,24 @@ const BEYOND: [LucideIcon, string, string, Status][] = [
   [UserPlus, "Member onboarding", "New members get a welcome email, their login and your facility rules, without anyone sending them.", "Coming soon"],
   [ListChecks, "Staff checklists", "Opening, closing and cleaning checklists go to the right staff member for each shift.", "Coming soon"],
   [Lightbulb, "Lights and HVAC", "Court lights and HVAC switch on before a booking and off when the facility is empty.", "Coming soon"],
-  [Phone, "AI receptionist", "Maya answers every call 24/7 and books from your live schedule. Hear her in action just below.", "Live"],
   [CircleDollarSign, "Revenue recovery", "Chases failed payments and no-shows and wins back members who've gone quiet.", "Coming soon"],
   [Bot, "Agentic operator", "Handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Coming soon"],
 ];
 
 const StatusBadge = ({ status }: { status: Status }) => (
-  <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${status === "Live" ? "bg-lime-400/15 text-lime-400" : "border border-[var(--line)] text-[var(--muted)]"}`}>{status}</span>
+  <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${status === "Live" ? "bg-lime-400/15 text-lime-400" : "border border-[var(--line)] text-[var(--muted)]"}`}>
+    {status === "Live" && (
+      <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime-400 opacity-70 motion-reduce:hidden" /><span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime-400" /></span>
+    )}
+    {status}
+  </span>
 );
 
 export const Automation = () => (
   <section id="automation" className="py-24">
     <Wrap>
       <SectionHead eyebrow="Automation" title={<>Every booking, <span className={gradText}>handled end to end.</span></>} sub="Booking software records what happened. Courtside does the work, from the first call to the empty slot after a cancellation, 24/7 and with no one at the desk." />
-      <ol className="mx-auto grid max-w-5xl gap-x-12 md:grid-cols-2">
+      <ol className="stagger mx-auto grid max-w-5xl gap-x-12 md:grid-cols-2">
         {LIFECYCLE.map(([Icon, t, d, status, eg], i) => (
           <li key={t} className="relative flex gap-4 pb-8 md:[&:nth-child(3)]:pb-0 md:[&:nth-child(6)]:pb-0 last:pb-0">
             <span className="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[var(--a)] to-[var(--b)] text-sm font-bold text-[var(--on-primary)]">{i + 1}</span>
@@ -251,13 +254,15 @@ export const Automation = () => (
           </li>
         ))}
       </ol>
-      <h3 className="mb-6 mt-16 text-center text-2xl font-bold tracking-tight sm:text-3xl">Beyond the booking, <span className={gradText}>with AI on top.</span></h3>
-      <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {BEYOND.map(([Icon, t, d, status]) => (
-          <div key={t} className={`${card} p-5`}>
-            <div className="mb-3 flex items-center justify-between">
+      <div className="mb-6 mt-16 text-center">
+        <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">Next, <span className={gradText}>beyond the booking.</span></h3>
+        <p className="mt-2 text-sm text-[var(--muted)]">Coming soon. Early access customers get them first.</p>
+      </div>
+      <div className="stagger mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {BEYOND.map(([Icon, t, d]) => (
+          <div key={t} className={`${card} transition duration-300 hover:-translate-y-1 hover:border-[color-mix(in_srgb,var(--a)_55%,var(--line))] p-5`}>
+            <div className="mb-3">
               <Icon className="h-6 w-6 text-[var(--b)]" />
-              <StatusBadge status={status} />
             </div>
             <h4 className="mb-1 font-semibold">{t}</h4>
             <p className="text-sm leading-relaxed text-[var(--muted)]">{d}</p>
@@ -280,9 +285,9 @@ export const Problems = () => (
   <section id="problems" className="py-20">
     <Wrap>
       <h2 className="mx-auto mb-10 max-w-3xl text-center text-3xl font-bold tracking-tight sm:text-4xl">Sound familiar? <span className={gradText}>Every facility has these three.</span></h2>
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="stagger grid gap-5 md:grid-cols-3">
         {PROBLEMS.map(([Icon, t, d]) => (
-          <div key={t} className={`${card} p-6`}>
+          <div key={t} className={`${card} transition duration-300 hover:-translate-y-1 hover:border-[color-mix(in_srgb,var(--a)_55%,var(--line))] p-6`}>
             <span className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-rose-500/15"><Icon className="h-5 w-5 text-rose-400" /></span>
             <h3 className="mb-2 text-lg font-semibold">{t}</h3>
             <p className="text-[var(--muted)]">{d}</p>
@@ -306,7 +311,7 @@ const AI_ITEMS: [string, boolean][] = [
 export const Pitch = () => (
   <section id="pitch" className="py-24">
     <Wrap>
-      <SectionHead eyebrow="Facility management software + AI" title={<>Everything you're used to. <span className={gradText}>And more.</span></>} sub="Replace the booking app, the payment tool, the waiver forms and the ringing phone with one system that runs itself." />
+      <SectionHead eyebrow="Facility management software + AI" title={<>Everything you're used to. <span className={gradText}>And more.</span></>} sub="One platform replaces the booking app, the payment tool and the waiver forms, and AI takes the phone." />
       <div className="mx-auto grid max-w-5xl items-stretch gap-5 md:grid-cols-[1fr_auto_1fr]">
         <div className={`${card} p-6`}>
           <p className="mb-1 text-sm font-medium text-[var(--muted)]">Everything you're used to</p>
@@ -340,14 +345,14 @@ export const Platform = () => (
   <section id="platform" className="py-24">
     <Wrap>
       <SectionHead eyebrow="The platform" title={<>One platform to <span className={gradText}>run it all.</span></>} sub="The automation runs on its own. Owners, staff and players each get their own view: you set the rules, see every booking and member, and track the money." />
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="stagger grid gap-6 md:grid-cols-2">
         {([
           ["Courts and rules", "Set up every court and the sports it supports, split full courts into halves, and set booking rules and cancellation windows per court.", <CourtsMock key="c" />],
           ["Members", "Profiles, memberships, passes and gift cards, with every signed waiver one click away.", <div key="m" className="hidden sm:block"><MembersMock /></div>],
           ["Payments", "Bookings, memberships, passes and add-ons, all paid through Stripe straight to your account, with refunds handled from the same place.", <div key="p" className="hidden sm:block"><PaymentsMock /></div>],
           ["Reporting", "See revenue, court utilization and your busiest hours without exporting anything.", <ReportsMock key="r" />],
         ] as [string, string, React.ReactNode][]).map(([t, d, mock]) => (
-          <div key={t} className={`${card} flex flex-col gap-5 p-6`}>
+          <div key={t} className={`${card} transition duration-300 hover:-translate-y-1 hover:border-[color-mix(in_srgb,var(--a)_55%,var(--line))] flex flex-col gap-5 p-6`}>
             <div>
               <h3 className="mb-2 text-xl font-semibold">{t}</h3>
               <p className="text-[var(--muted)]">{d}</p>
@@ -490,7 +495,7 @@ export const HowItWorks = () => (
   <section id="how-it-works" className="py-24">
     <Wrap>
       <SectionHead eyebrow="Getting started" title={<>Live in <span className={gradText}>three steps.</span></>} sub="No long projects. We set it up with you, on your courts and your rules." />
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="stagger grid gap-5 md:grid-cols-3">
         {[
           ["1", "Demo", "A short walkthrough on your own courts, pricing and rules. You see exactly how it would run your facility."],
           ["2", "Go live", "We set up your courts, pricing, waivers and booking page. Coming from AllBooked, CourtReserve or a spreadsheet? We migrate your members and bookings for free."],
@@ -502,9 +507,6 @@ export const HowItWorks = () => (
             <p className="text-[var(--muted)]">{d}</p>
           </div>
         ))}
-      </div>
-      <div className="mt-10 text-center">
-        <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnPrimary}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
       </div>
     </Wrap>
   </section>
@@ -520,17 +522,19 @@ export const Sports = ({ current }: { current?: string }) => (
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Built for any facility <span className={gradText}>with spaces to book.</span></h2>
         <p className="text-[var(--muted)]">Segmented spaces, bookings, memberships and more, whatever your business model.</p>
       </div>
-      <div className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2.5">
-        {FEATURED_SPORTS.filter((s) => s.slug !== current).map((s) => (
-          <a key={s.slug} href={`/sports/${s.slug}`} className="rounded-full border border-[var(--line)] bg-[var(--card)] px-5 py-2 font-medium transition hover:border-[var(--a)]">{s.name}</a>
-        ))}
-        {SPORTS.filter((s) => !s.featured && s.slug !== current).map((s) => (
-          <a key={s.slug} href={`/sports/${s.slug}`} className="rounded-full border border-[var(--line)] bg-[var(--card)] px-5 py-2 text-[var(--muted)] transition hover:border-[var(--a)] hover:text-[var(--fg)]">{s.name}</a>
-        ))}
-        {OTHER_SPACES.map((t) => (
-          <span key={t} className="rounded-full border border-dashed border-[var(--line)] px-5 py-2 text-[var(--muted)]">{t}</span>
-        ))}
-        <span className="rounded-full border border-dashed border-[var(--line)] px-5 py-2 text-[var(--muted)]">and more</span>
+      <div className="marquee-wrap relative mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+        <div className="marquee flex w-max gap-3">
+          {[0, 1].map((copy) =>
+            [
+              ...SPORTS.filter((sp) => sp.slug !== current).map((sp) => (
+                <a key={`${copy}-${sp.slug}`} href={`/sports/${sp.slug}`} aria-hidden={copy === 1} tabIndex={copy === 1 ? -1 : undefined} className={`whitespace-nowrap rounded-full border border-[var(--line)] bg-[var(--card)] px-5 py-2 transition hover:border-[var(--a)] ${sp.featured ? "font-medium" : "text-[var(--muted)] hover:text-[var(--fg)]"}`}>{sp.name}</a>
+              )),
+              ...[...OTHER_SPACES, "and more"].map((t) => (
+                <span key={`${copy}-${t}`} aria-hidden={copy === 1} className="whitespace-nowrap rounded-full border border-dashed border-[var(--line)] px-5 py-2 text-[var(--muted)]">{t}</span>
+              )),
+            ],
+          )}
+        </div>
       </div>
     </Wrap>
   </section>
@@ -539,7 +543,6 @@ export const Sports = ({ current }: { current?: string }) => (
 export const Faqs = () => {
   const faqs: [string, React.ReactNode][] = [
     ["Which AI features are live today?", "Maya, the AI receptionist, and 24/7 booking, payment and access automation are live. Revenue recovery and the agentic operator are coming soon, and early access customers get them first."],
-    ["Who is Courtside for?", "Court-sport facilities: pickleball, tennis, basketball, badminton, squash, volleyball and multi-sport venues."],
     ["Do I need Maya to use the platform?", "No. Maya is an add-on. The booking, member, payment and reporting platform works on its own."],
     ["How long does setting up Maya take?", "About 72 hours. We collect your pricing, rules and scripts, configure Maya, test her on real scenarios and take her live."],
     ["Can it connect to the tools I already use?", "Yes. Courtside has an open API and webhooks, so it can connect to your door locks, accounting and other systems."],
