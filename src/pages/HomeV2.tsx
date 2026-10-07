@@ -2,14 +2,15 @@ import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Footer from "@/components/Footer";
 import { themeStyle, HomeTheme } from "@/components/home/theme";
-import { VenuesSection } from "@/components/home/Venues";
-import { Nav, Hero, ProofStrip, Automation, OperatorStrip, Pitch, Platform, Maya, OpenApi, Compare, HowItWorks, Sports, Faqs, EarlyAccess } from "@/components/home/Sections";
+import { MissedCallCalculator, MobileCta, useReveal } from "@/components/home/Extras";
+import { Nav, Hero, ProofStrip, Automation, OperatorStrip, Pitch, Platform, Maya, Compare, HowItWorks, Sports, Faqs, EarlyAccess } from "@/components/home/Sections";
 
 // Preview of the rebuilt home page. /new → dark, /new/blue → light blue.
 const HomeV2 = () => {
   const { theme: t } = useParams();
   const theme: HomeTheme = t === "blue" ? "blue" : "dark";
   const { hash } = useLocation();
+  useReveal();
 
   // Links from other pages (e.g. /#early-access) land here before the sections exist,
   // so the browser can't jump to the anchor itself. Scroll once the page has rendered.
@@ -21,6 +22,7 @@ const HomeV2 = () => {
       const el = document.getElementById(id);
       if (el || ++tries > 20) {
         clearInterval(timer);
+        document.querySelectorAll("main > section").forEach((sec) => sec.classList.add("reveal-in"));
         el?.scrollIntoView({ block: "start" });
       }
     }, 50);
@@ -36,16 +38,16 @@ const HomeV2 = () => {
         <OperatorStrip />
         <Automation />
         <Maya />
+        <MissedCallCalculator />
         <Platform />
-        <OpenApi />
         <Sports />
         <Compare />
-        <VenuesSection />
         <HowItWorks />
         <Faqs />
         <EarlyAccess />
       </main>
       <Footer />
+      <MobileCta />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import { FEATURED_SPORTS, SPORTS } from "@/data/sports";
 import { PROOF } from "@/data/proof";
 import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
 import { CompareMatrix, OfferStrip } from "./CompareMatrix";
+import { TrustStrip } from "./Extras";
 import { CallMock, CourtsMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
 
 const Wrap = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
@@ -118,10 +119,7 @@ export const Hero = ({ theme }: { theme: HomeTheme }) => (
           <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Book a demo</a>
         </div>
         <OfferStrip />
-        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--muted)]">
-          <a href="#maya" className="inline-flex items-center gap-1 hover:text-[var(--fg)]">Hear Maya answer a call <ArrowRight className="h-3.5 w-3.5" /></a>
-          <a href="/venues" className="inline-flex items-center gap-1 hover:text-[var(--fg)]">Looking to play? Book a court <ArrowRight className="h-3.5 w-3.5" /></a>
-        </div>
+        <a href="#maya" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]">Hear Maya answer a call <ArrowRight className="h-3.5 w-3.5" /></a>
       </div>
       <ScheduleMock />
     </Wrap>
@@ -187,31 +185,33 @@ export const Automation = () => (
   <section id="automation" className="bg-[var(--bg2)] py-24">
     <Wrap>
       <SectionHead eyebrow="Automation" title={<>Every booking, <span className={gradText}>handled end to end.</span></>} sub="Booking software records what happened. Courtside does the work, from the first call to the empty slot after a cancellation, 24/7 and with no one at the desk." />
-      <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <ol className="mx-auto grid max-w-5xl gap-x-12 md:grid-cols-2">
         {LIFECYCLE.map(([Icon, t, d, status], i) => (
-          <li key={t} className={`${card} p-6`}>
-            <div className="mb-4 flex items-center justify-between">
-              <span className="flex items-center gap-3">
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-[var(--a)] to-[var(--b)] text-sm font-bold text-[var(--on-primary)]">{i + 1}</span>
-                <Icon className="h-6 w-6 text-[var(--b)]" />
-              </span>
-              <StatusBadge status={status} />
+          <li key={t} className="relative flex gap-4 pb-8 md:[&:nth-child(3)]:pb-0 md:[&:nth-child(6)]:pb-0 last:pb-0">
+            <span className="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[var(--a)] to-[var(--b)] text-sm font-bold text-[var(--on-primary)]">{i + 1}</span>
+            {i !== 2 && i !== 5 && <span className="absolute left-5 top-10 hidden h-[calc(100%-2.5rem)] w-px bg-[var(--line)] md:block" aria-hidden="true" />}
+            {i !== LIFECYCLE.length - 1 && <span className="absolute left-5 top-10 h-[calc(100%-2.5rem)] w-px bg-[var(--line)] md:hidden" aria-hidden="true" />}
+            <div className="pt-1.5">
+              <div className="mb-1 flex flex-wrap items-center gap-2">
+                <Icon className="h-4 w-4 text-[var(--b)]" />
+                <h3 className="font-semibold">{t}</h3>
+                <StatusBadge status={status} />
+              </div>
+              <p className="text-sm leading-relaxed text-[var(--muted)]">{d}</p>
             </div>
-            <h3 className="mb-2 text-lg font-semibold">{t}</h3>
-            <p className="text-[var(--muted)]">{d}</p>
           </li>
         ))}
       </ol>
-      <h3 className="mb-5 mt-16 text-center text-2xl font-bold tracking-tight sm:text-3xl">Beyond the booking, <span className={gradText}>with AI on top.</span></h3>
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <h3 className="mb-6 mt-16 text-center text-2xl font-bold tracking-tight sm:text-3xl">Beyond the booking, <span className={gradText}>with AI on top.</span></h3>
+      <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {BEYOND.map(([Icon, t, d, status]) => (
-          <div key={t} className={`${card} p-6`}>
-            <div className="mb-4 flex items-center justify-between">
-              <Icon className="h-7 w-7 text-[var(--b)]" />
+          <div key={t} className={`${card} p-5`}>
+            <div className="mb-3 flex items-center justify-between">
+              <Icon className="h-6 w-6 text-[var(--b)]" />
               <StatusBadge status={status} />
             </div>
-            <h3 className="mb-2 text-lg font-semibold">{t}</h3>
-            <p className="text-[var(--muted)]">{d}</p>
+            <h4 className="mb-1 font-semibold">{t}</h4>
+            <p className="text-sm leading-relaxed text-[var(--muted)]">{d}</p>
           </div>
         ))}
       </div>
@@ -263,7 +263,7 @@ export const Pitch = () => (
 );
 
 export const Platform = () => (
-  <section id="platform" className="bg-[var(--bg2)] py-24">
+  <section id="platform" className="py-24">
     <Wrap>
       <SectionHead eyebrow="The platform" title={<>One platform to <span className={gradText}>run it all.</span></>} sub="The automation runs on its own. Owners, staff and players each get their own view: you set the rules, see every booking and member, and track the money." />
       <div className="grid gap-6 md:grid-cols-2">
@@ -282,6 +282,7 @@ export const Platform = () => (
           </div>
         ))}
       </div>
+      <OpenApi />
     </Wrap>
   </section>
 );
@@ -370,36 +371,32 @@ export const Maya = () => (
 );
 
 export const OpenApi = () => (
-  <section id="api" className="py-24">
-    <Wrap className="grid items-center gap-14 lg:grid-cols-2">
-      <div className="space-y-6">
-        <Eyebrow>Open API</Eyebrow>
-        <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Your data. <span className={gradText}>Your stack. No lock-in.</span></h2>
-        <p className="text-lg text-[var(--muted)]">Most facility software keeps your bookings behind a wall. Courtside is open, so you can connect door locks, accounting, CRM or anything else you already run.</p>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {([[Plug, "Connect anything"], [Webhook, "Webhooks on every event"], [Database, "Your data stays yours"]] as [LucideIcon, string][]).map(([Icon, t]) => (
-            <div key={t} className={`${card} p-4`}><Icon className="mb-2 h-5 w-5 text-[var(--b)]" /><div className="text-sm font-semibold">{t}</div></div>
-          ))}
-        </div>
+  <div id="api" className={`${card} mt-6 grid items-center gap-8 p-6 lg:grid-cols-2 lg:p-8`}>
+    <div className="space-y-4">
+      <Eyebrow>Open API</Eyebrow>
+      <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">Your data. <span className={gradText}>Your stack. No lock-in.</span></h3>
+      <p className="text-[var(--muted)]">Most facility software keeps your bookings behind a wall. Courtside is open, so you can connect door locks, accounting, CRM or anything else you already run.</p>
+      <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+        {([[Plug, "Connect anything"], [Webhook, "Webhooks on every event"], [Database, "Your data stays yours"]] as [LucideIcon, string][]).map(([Icon, t]) => (
+          <span key={t} className="flex items-center gap-1.5 font-medium"><Icon className="h-4 w-4 text-[var(--b)]" />{t}</span>
+        ))}
       </div>
-      <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[#0a0f1c] font-mono text-[13px] leading-relaxed text-slate-300 shadow-2xl">
-        <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400" /><span className="h-2.5 w-2.5 rounded-full bg-yellow-400" /><span className="h-2.5 w-2.5 rounded-full bg-green-400" />
-          <span className="ml-3 text-xs text-slate-500">illustrative example</span>
-        </div>
-        <pre className="overflow-x-auto p-5"><code>{`// A booking was made. Tell your own systems.
+    </div>
+    <div className="overflow-hidden rounded-xl border border-[var(--line)] bg-[#0a0f1c] font-mono text-[12.5px] leading-relaxed text-slate-300">
+      <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-2.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-red-400" /><span className="h-2.5 w-2.5 rounded-full bg-yellow-400" /><span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+        <span className="ml-3 text-xs text-slate-500">illustrative example</span>
+      </div>
+      <pre className="overflow-x-auto p-4"><code>{`// A booking was made. Tell your own systems.
 POST https://your-app.com/hooks/courtside
 
 {
   "event": "booking.created",
   "court": "Court 3",
-  "starts_at": "2026-10-01T19:00:00-04:00",
-  "source": "maya",
-  "player": { "name": "Priya S." }
+  "source": "maya"
 }`}</code></pre>
-      </div>
-    </Wrap>
-  </section>
+    </div>
+  </div>
 );
 
 export const Compare = () => (
@@ -415,7 +412,7 @@ export const Compare = () => (
 );
 
 export const HowItWorks = () => (
-  <section id="how-it-works" className="py-24">
+  <section id="how-it-works" className="bg-[var(--bg2)] py-24">
     <Wrap>
       <SectionHead eyebrow="Getting started" title={<>Live in <span className={gradText}>three steps.</span></>} sub="No long projects. We set it up with you, on your courts and your rules." />
       <div className="grid gap-5 md:grid-cols-3">
@@ -476,7 +473,7 @@ export const Faqs = () => {
     ["How much does it cost?", "Start with a 3-month free trial. There are no setup fees, it's month to month, and we migrate your data for free. Pricing after the trial depends on your facility, so book a demo and we'll walk you through it."],
   ];
   return (
-    <section id="faqs" className="bg-[var(--bg2)] py-24">
+    <section id="faqs" className="py-24">
       <Wrap>
         <SectionHead eyebrow="FAQ" title="Questions owners ask" sub="Thinking about Courtside for your facility? Start here." />
         <Accordion type="single" collapsible className="mx-auto max-w-3xl space-y-3">
@@ -507,7 +504,7 @@ export const EarlyAccess = () => {
     setF({ name: "", email: "", company: "", phone: "" });
   };
   return (
-    <section id="early-access" className="relative overflow-hidden py-24">
+    <section id="early-access" className="relative overflow-hidden bg-[var(--bg2)] py-24">
       <span id="contact" className="absolute -top-20" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 opacity-60" style={{ backgroundImage: "radial-gradient(50% 60% at 50% 0%, var(--glow), transparent)" }} />
       <Wrap className="relative">
@@ -543,6 +540,7 @@ export const EarlyAccess = () => {
             <p className="text-sm text-[var(--muted)]">Questions? <a className="underline hover:text-[var(--fg)]" href="mailto:support@court-side.ai">support@court-side.ai</a></p>
           </div>
         </div>
+        <TrustStrip />
       </Wrap>
     </section>
   );
