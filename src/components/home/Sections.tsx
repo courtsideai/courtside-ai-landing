@@ -9,7 +9,7 @@ import { FEATURED_SPORTS, SPORTS } from "@/data/sports";
 import { PROOF } from "@/data/proof";
 import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
 import { CompareMatrix, OfferStrip } from "./CompareMatrix";
-import { TrustStrip } from "./Extras";
+import { SectionCta, TrustStrip } from "./Extras";
 import { CallMock, CourtsMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
 
 const Wrap = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
@@ -66,7 +66,12 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
   }, [prefix]);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-lg transition-colors ${scrolled ? "border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]" : "border-transparent bg-[color-mix(in_srgb,var(--bg)_60%,transparent)]"}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-lg transition-[background-color,border-color,box-shadow] ${scrolled ? "border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]" : "border-transparent bg-[color-mix(in_srgb,var(--bg)_60%,transparent)]"}`}>
+      {!scrolled && (
+        <a href={`${prefix}#maya`} className="block bg-gradient-to-r from-[var(--a)] to-[var(--b)] px-4 py-1.5 text-center text-xs font-semibold text-[var(--on-primary)] sm:text-sm">
+          New: Maya, our AI receptionist, is live. Hear her answer a call <span aria-hidden="true">→</span>
+        </a>
+      )}
       <Wrap className="flex h-16 items-center justify-between">
         <a href={`${prefix || "#"}${prefix ? "" : "top"}`}><img src={theme === "dark" ? "/lovable-uploads/aef6f963-0b6d-481b-bc94-2a5efd80b3c2.png" : logo} alt="Courtside AI" className={theme === "dark" ? "h-11" : "h-9"} /></a>
         <nav className="hidden items-center gap-1 lg:flex">
@@ -215,6 +220,7 @@ export const Automation = () => (
           </div>
         ))}
       </div>
+      <SectionCta />
     </Wrap>
   </section>
 );
@@ -283,6 +289,7 @@ export const Platform = () => (
         ))}
       </div>
       <OpenApi />
+      <SectionCta />
     </Wrap>
   </section>
 );

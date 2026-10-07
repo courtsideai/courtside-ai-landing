@@ -109,3 +109,11 @@ export const useReveal = () => {
     };
   }, []);
 };
+
+// Inline CTA row repeated after key sections (pattern from AllBooked).
+export const SectionCta = ({ className = "" }: { className?: string }) => (
+  <div className={`mt-12 flex flex-wrap justify-center gap-3 ${className}`}>
+    <a href="#early-access" className={btnPrimary}>Get started <ArrowRight className="ml-2 h-4 w-4" /></a>
+    <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Book a demo</a>
+  </div>
+);
