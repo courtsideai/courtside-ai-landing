@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import Footer from "@/components/Footer";
 import { themeStyle, HomeTheme } from "@/components/home/theme";
 import { MissedCallCalculator, MobileCta, useReveal } from "@/components/home/Extras";
-import { Nav, Hero, ProofStrip, Automation, OperatorStrip, Pitch, Platform, Maya, Compare, HowItWorks, Sports, Faqs, EarlyAccess } from "@/components/home/Sections";
+import { Nav, Hero, Problems, ProofStrip, Automation, OperatorStrip, Pitch, Platform, Maya, Compare, HowItWorks, Sports, Faqs, EarlyAccess } from "@/components/home/Sections";
 
 // Preview of the rebuilt home page. /new → dark, /new/blue → light blue.
 const HomeV2 = () => {
@@ -31,9 +31,10 @@ const HomeV2 = () => {
   return (
     <div style={themeStyle(theme)} className="min-h-screen scroll-smooth bg-[var(--bg)] text-[var(--fg)]">
       <Nav theme={theme} />
-      <main>
+      <main className="home-main">
         <Hero theme={theme} />
         <ProofStrip />
+        <Problems />
         <Pitch />
         <OperatorStrip />
         <Automation />

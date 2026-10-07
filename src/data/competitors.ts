@@ -88,3 +88,28 @@ export const SWITCH_CARDS: { from: string; headline: string; points: string[] }[
 ];
 
 export const OFFER = ["3-month free trial", "Free migration", "No setup fees", "Month to month"];
+
+// Individual comparison pages (/compare/:slug). `col` is the competitor's column in MATRIX.
+export const COMPARE_PAGES: { slug: string; name: string; col: number; title: string; intro: string }[] = [
+  {
+    slug: "allbooked",
+    name: "AllBooked",
+    col: 1,
+    title: "Courtside vs AllBooked: an AllBooked alternative for sports facilities",
+    intro: "AllBooked by Skedda is booking software for every kind of space, from meeting rooms to courts. Courtside is built only for sports facilities, with an AI receptionist that answers your phone. We're moving our own facility off AllBooked.",
+  },
+  {
+    slug: "courtreserve",
+    name: "CourtReserve",
+    col: 2,
+    title: "Courtside vs CourtReserve: a CourtReserve alternative for court facilities",
+    intro: "CourtReserve is an established choice for tennis, pickleball and padel clubs. Courtside covers every court sport, includes access codes, and adds a live AI receptionist that books courts by phone.",
+  },
+  {
+    slug: "swift",
+    name: "Swift",
+    col: 3,
+    title: "Courtside vs Swift: a Swift alternative with a live AI receptionist",
+    intro: "Swift is facility software with its roots in baseball, and it has announced an AI front desk. Courtside's AI receptionist, Maya, is live today and built on courts.",
+  },
+];

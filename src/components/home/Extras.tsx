@@ -22,7 +22,7 @@ export const MissedCallCalculator = () => {
   const monthly = Math.round(calls * 4.33 * (share / 100) * value);
 
   return (
-    <section id="calculator" className="bg-[var(--bg2)] py-24">
+    <section id="calculator" className="py-24">
       <div className="container mx-auto grid items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
         <div className="space-y-5">
           <span className="inline-flex rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1 text-xs font-medium text-[var(--muted)]">Missed revenue</span>
