@@ -75,7 +75,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
   const [active, setActive] = useState("");
   const links = [
     ["Platform", "#platform"],
-    ["Add-ons", "#addons"],
+    ["Autopilot", "#autopilot"],
     ["Compare", "#compare"],
     ["FAQ", "#faqs"],
   ];
@@ -90,7 +90,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
   // Highlight the nav item for the section in view (homepage only).
   useEffect(() => {
     if (prefix) return;
-    const ids = ["platform", "addons", "compare", "faqs"];
+    const ids = ["platform", "autopilot", "compare", "faqs"];
     const onScroll = () => {
       const line = window.innerHeight * 0.4;
       let current = "";

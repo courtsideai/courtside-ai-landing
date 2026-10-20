@@ -123,11 +123,11 @@ const ADDONS: [typeof Phone, string, string, string][] = [
 ];
 
 const AddOnsIntro = () => (
-  <section id="addons" className="pt-24">
+  <section id="autopilot" className="pt-24">
     <div className="container mx-auto max-w-3xl space-y-4 px-4 text-center sm:px-6">
-      <Eyebrow>Add-ons</Eyebrow>
+      <Eyebrow>Upgrades</Eyebrow>
       <h2 className="text-3xl font-bold sm:text-5xl">Turn on <span className={accent}>autopilot</span> when you're ready.</h2>
-      <p className="text-lg text-[var(--muted)]">The platform runs your facility. Add-ons take the work off your plate, starting with an AI receptionist that answers every call.</p>
+      <p className="text-lg text-[var(--muted)]">The platform runs your facility. Autopilot takes the work off your plate, starting with an AI receptionist that answers every call.</p>
     </div>
   </section>
 );

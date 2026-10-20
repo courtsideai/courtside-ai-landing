@@ -20,7 +20,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="/#platform" className="hover:text-white transition-smooth">Platform</a></li>
               <li><a href="/#maya" className="hover:text-white transition-smooth">Maya AI receptionist</a></li>
-              <li><a href="/#addons" className="hover:text-white transition-smooth">Add-ons</a></li>
+              <li><a href="/#autopilot" className="hover:text-white transition-smooth">Autopilot</a></li>
               <li><a href="/compare" className="hover:text-white transition-smooth">Compare</a></li>
             </ul>
           </div>
