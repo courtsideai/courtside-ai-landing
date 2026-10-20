@@ -82,7 +82,7 @@ const CALLS: { q: string; a: string; pos: string; focus: string; revenue: number
     pos: "-top-16 left-0 sm:left-4",
     focus: "maya2",
     revenue: 40,
-    apply: (b) => [...b, { id: "maya2", court: 1, start: 0, span: 1, label: "½ court · Maya", kind: "ai" }],
+    apply: (b) => [...b, { id: "maya2", court: 1, start: 0, span: 1, label: "Half court · Maya", kind: "ai" }],
   },
   {
     q: "What's the door code again?",
