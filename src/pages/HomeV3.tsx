@@ -138,7 +138,7 @@ const AddOnsIntro = () => (
 const AddOns = () => (
   <section className="pb-24">
     <div className="container mx-auto px-4 sm:px-6">
-      <div className="stagger -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
+      <div className="stagger -mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
         {ADDONS.map(([Icon, t, d, tag]) => (
           <div key={t} className="w-[78%] shrink-0 snap-start rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6 sm:w-auto transition duration-300 hover:-translate-y-1 hover:border-[#1cabb0]">
             <div className="mb-4 flex items-center justify-between">

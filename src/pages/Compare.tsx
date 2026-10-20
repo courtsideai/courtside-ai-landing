@@ -12,7 +12,7 @@ const Compare = () => {
   }, []);
 
   return (
-    <div style={themeStyle("dark")} className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
+    <div style={themeStyle("dark")} className="v3 min-h-screen bg-[var(--bg)] text-[var(--fg)]">
       <Nav theme="dark" prefix="/" />
       <main>
         <section className="relative overflow-hidden px-4 pb-16 pt-36 sm:px-6">
@@ -36,9 +36,9 @@ const Compare = () => {
         <section className="bg-[var(--bg2)] px-4 py-20 sm:px-6">
           <div className="container mx-auto">
             <h2 className="mb-10 text-center text-3xl font-bold tracking-tight sm:text-4xl">Switching from…</h2>
-            <div className="grid gap-5 lg:grid-cols-3">
+            <div className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
               {SWITCH_CARDS.map((c) => (
-                <div key={c.from} className={`${card} flex flex-col p-6`}>
+                <div key={c.from} className={`${card} flex w-[85%] shrink-0 snap-start flex-col p-6 lg:w-auto`}>
                   <p className="mb-1 text-sm font-medium text-[var(--b)]">From {c.from}</p>
                   <h3 className="mb-4 text-xl font-semibold">{c.headline}</h3>
                   <ul className="mb-6 flex-1 space-y-2.5">

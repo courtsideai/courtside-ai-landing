@@ -13,7 +13,7 @@ const darkStyle = {
 } as CSSProperties;
 
 export const LegalPage = ({ title, updated, wide, children }: { title: string; updated?: string; wide?: boolean; children: ReactNode }) => (
-  <div style={darkStyle} className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
+  <div style={darkStyle} className="v3 min-h-screen bg-[var(--bg)] text-[var(--fg)]">
     <Nav theme="dark" prefix="/" />
     <main className={`container mx-auto px-4 py-28 sm:px-6 ${wide ? "max-w-4xl" : "max-w-3xl"}`}>
       {title && <h1 className="mb-4 text-4xl font-bold">{title}</h1>}

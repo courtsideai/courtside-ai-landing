@@ -189,4 +189,10 @@ body {
   .v3 main section.py-20 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
   .v3 main section.pt-24 { padding-top: 4rem; }
   .v3 main section.pb-24 { padding-bottom: 4rem; }
+  .v3 main section.pt-36 { padding-top: 7.5rem; }
+  /* One 16px gutter on phones: sections with px-4 wrap a .container that adds its own padding. */
+  .v3 main section.px-4:has(> .container) { padding-left: 0; padding-right: 0; }
+  .v3 .container { padding-left: 1rem; padding-right: 1rem; }
+  /* Centred button groups stack as equal full-width buttons on phones. */
+  .v3 main .flex-wrap.justify-center > a.rounded-lg { flex: 1 1 100%; }
 }

@@ -14,7 +14,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div style={themeStyle("dark")} className="flex min-h-screen flex-col bg-[var(--bg)] text-[var(--fg)]">
+    <div style={themeStyle("dark")} className="v3 flex min-h-screen flex-col bg-[var(--bg)] text-[var(--fg)]">
       <Nav theme="dark" prefix="/" />
       <main className="relative flex flex-1 items-center overflow-hidden px-4 pb-24 pt-36 sm:px-6">
         <div className="pointer-events-none absolute inset-0 opacity-70" style={{ backgroundImage: "radial-gradient(50% 50% at 50% 30%, var(--glow), transparent)" }} />

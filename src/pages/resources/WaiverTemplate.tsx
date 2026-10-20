@@ -82,7 +82,7 @@ const WaiverTemplate = () => {
   };
 
   return (
-    <div style={themeStyle("dark")} className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
+    <div style={themeStyle("dark")} className="v3 min-h-screen bg-[var(--bg)] text-[var(--fg)]">
       <Nav theme="dark" prefix="/" />
       <main>
         <section className="relative overflow-hidden px-4 pb-20 pt-36 sm:px-6">

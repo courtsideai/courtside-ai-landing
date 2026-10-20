@@ -15,7 +15,7 @@ const Venues = () => {
   const list = VENUES.filter((v) => !term || [v.name, v.city, ...v.sports].some((x) => x.toLowerCase().includes(term)));
 
   return (
-    <div style={themeStyle("dark")} className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
+    <div style={themeStyle("dark")} className="v3 min-h-screen bg-[var(--bg)] text-[var(--fg)]">
       <Nav theme="dark" prefix="/" />
       <main className="container mx-auto px-4 pb-24 pt-32 sm:px-6">
         <div className="mb-10 max-w-2xl space-y-4">

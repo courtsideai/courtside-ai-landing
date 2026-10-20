@@ -33,7 +33,7 @@ const VenuePage = () => {
   if (!v) return <NotFound />;
 
   return (
-    <div style={themeStyle("dark")} className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
+    <div style={themeStyle("dark")} className="v3 min-h-screen bg-[var(--bg)] text-[var(--fg)]">
       <Nav theme="dark" prefix="/" />
       <main className="container mx-auto px-4 pb-24 pt-32 sm:px-6">
         <a href="/venues" className="mb-8 inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]"><ArrowLeft className="h-4 w-4" /> All venues</a>
