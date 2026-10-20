@@ -41,7 +41,10 @@ export const MissedCallCalculator = () => {
   const [calls, setCalls] = useState(15);
   const [share, setShare] = useState(40);
   const [value, setValue] = useState(50);
-  const monthly = Math.round(calls * 4.33 * (share / 100) * value);
+  // Weekly is exact; a month is 52/12 = 4.33 weeks, so monthly and yearly come from the same weekly figure.
+  const weekly = calls * (share / 100) * value;
+  const yearly = Math.round(weekly * 52);
+  const monthly = Math.round(yearly / 12);
   const shownMonthly = useTween(monthly);
 
   return (
@@ -60,7 +63,8 @@ export const MissedCallCalculator = () => {
           <div className="rounded-xl border border-[var(--line)] bg-[var(--bg2)] p-5 text-center">
             <p className="text-sm text-[var(--muted)]">Revenue you could be missing</p>
             <p className={`text-5xl font-bold tabular-nums ${gradText}`}>{money(shownMonthly)}</p>
-            <p className="mt-1 text-sm text-[var(--muted)]">per month · {money(monthly * 12)} a year</p>
+            <p className="mt-1 text-sm text-[var(--muted)]">per month · {money(yearly)} a year</p>
+            <p className="mt-3 text-xs tabular-nums text-[var(--muted)]">{calls} calls × {share}% × {money(value)} = {money(weekly)} a week. A month averages 4.33 weeks.</p>
           </div>
           <p className="text-xs text-[var(--muted)]">An estimate from your inputs, not a guarantee.</p>
         </div>
