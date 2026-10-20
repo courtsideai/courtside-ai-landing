@@ -77,7 +77,7 @@ const ProofStrip = () => (
 );
 
 const FEATURES: [typeof Phone, string, string][] = [
-  [CalendarDays, "Live court scheduling", "Every court, sport and half-court on one calendar, with booking rules and cancellation windows per court. No double bookings."],
+  [CalendarDays, "Built for multi-sport courts", "Basketball, volleyball and pickleball on the same floor, full or split, kept in sync on one calendar. No double bookings, with rules per court."],
   [Users, "Members, memberships and passes", "Player profiles, recurring memberships, passes and gift cards, with booking history in one place."],
   [CreditCard, "Payments at checkout", "Everything paid through Stripe straight to your account, with refunds handled from the same screen."],
   [FileSignature, "E-signed waivers", "Players sign on their phone before their first visit, stored with the exact version they agreed to."],

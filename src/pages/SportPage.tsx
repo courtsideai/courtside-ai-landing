@@ -34,7 +34,7 @@ const SportPage = () => {
           <div className="pointer-events-none absolute inset-0 opacity-70" style={{ backgroundImage: "radial-gradient(60% 50% at 70% 10%, var(--glow), transparent)" }} />
           <div className="container relative mx-auto grid items-center gap-16 lg:grid-cols-[1.05fr_1fr]">
             <div className="space-y-6">
-              <span className="inline-flex rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1 text-xs font-medium text-[var(--muted)]">For {sport.name.toLowerCase()} facilities</span>
+              <span className="inline-flex rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1 text-xs font-medium text-[var(--muted)]">For {(sport.noun ?? sport.name.toLowerCase())} facilities</span>
               <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">{sport.headline}</h1>
               <p className="max-w-xl text-lg text-[var(--muted)]">{sport.sub}</p>
               <div className="flex flex-wrap gap-3">
@@ -60,7 +60,7 @@ const SportPage = () => {
         <section className="px-4 py-20 sm:px-6">
           <div className="container mx-auto grid items-start gap-10 lg:grid-cols-2">
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Everything your {sport.name.toLowerCase()} facility runs on, <span className={gradText}>in one system.</span></h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Everything your {(sport.noun ?? sport.name.toLowerCase())} facility runs on, <span className={gradText}>in one system.</span></h2>
               <p className="text-[var(--muted)]">Built by people who run a court facility, so it fits how courts actually work.</p>
             </div>
             <ul className={`${card} space-y-3 p-6`}>

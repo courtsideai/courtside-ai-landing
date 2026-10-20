@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
 import kcLogo from "@/assets/logos/kc-markham-logo.png";
-import { FEATURED_SPORTS, SPORTS } from "@/data/sports";
+import { FEATURED_SPORTS, MENU_SPORTS, SPORTS } from "@/data/sports";
 import { PROOF } from "@/data/proof";
 import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
 import { CompareMatrix, OfferStrip } from "./CompareMatrix";
@@ -34,7 +34,7 @@ const SPORT_BLURBS: Record<string, string> = {
   tennis: "Member bookings and prime-time courts",
   volleyball: "Share the floor with other sports",
   badminton: "Lots of courts on one schedule",
-  squash: "Court bookings without the admin",
+  "golf-simulators": "Bays booked and paid, 24/7",
 };
 
 // Swift-style industries dropdown: hover or keyboard focus opens it.
@@ -45,8 +45,15 @@ const SportsMenu = () => (
     </button>
     <div className="invisible absolute left-1/2 top-full z-50 w-[560px] -translate-x-1/2 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
       <div className="rounded-2xl border border-[var(--line)] bg-[var(--bg)] p-3 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)]">
+        <a href="/sports/multi-sport" className="mb-1 flex items-center justify-between rounded-xl border border-[color-mix(in_srgb,var(--b)_35%,transparent)] bg-[color-mix(in_srgb,var(--b)_10%,transparent)] px-3 py-3 transition hover:bg-[color-mix(in_srgb,var(--b)_16%,transparent)]">
+          <span>
+            <span className="block font-semibold text-[var(--fg)]">Multi-sport facilities</span>
+            <span className="block text-sm text-[var(--muted)]">Several sports sharing the same courts, kept in sync</span>
+          </span>
+          <ArrowRight className="h-4 w-4 text-[var(--b)]" />
+        </a>
         <div className="grid grid-cols-2 gap-1">
-          {SPORTS.map((sp) => (
+          {MENU_SPORTS.map((sp) => (
             <a key={sp.slug} href={`/sports/${sp.slug}`} className="rounded-xl px-3 py-2.5 transition hover:bg-[color-mix(in_srgb,var(--fg)_6%,transparent)]">
               <span className="block font-semibold text-[var(--fg)]">{sp.name}</span>
               <span className="block text-sm text-[var(--muted)]">{SPORT_BLURBS[sp.slug]}</span>
@@ -54,7 +61,7 @@ const SportsMenu = () => (
           ))}
         </div>
         <div className="mt-2 flex items-center justify-between border-t border-[var(--line)] px-3 pt-3 text-sm text-[var(--muted)]">
-          <span>Golf simulators, gyms, studios and more too.</span>
+          <span className="mr-4">Gyms, studios and more too.</span>
           <a href="/#early-access" className="font-semibold text-[var(--b)] hover:underline">Don't see your sport? Get in touch</a>
         </div>
       </div>
@@ -135,7 +142,8 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
           <div className="px-2 pt-2">
             <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">Sports</p>
             <div className="grid grid-cols-2 gap-x-4">
-              {SPORTS.map((sp) => <a key={sp.slug} href={`/sports/${sp.slug}`} className="py-1.5 text-[var(--fg)]">{sp.name}</a>)}
+              <a href="/sports/multi-sport" className="col-span-2 py-1.5 font-semibold text-[var(--b)]">Multi-sport facilities</a>
+              {MENU_SPORTS.map((sp) => <a key={sp.slug} href={`/sports/${sp.slug}`} className="py-1.5 text-[var(--fg)]">{sp.name}</a>)}
             </div>
           </div>
           <div className="space-y-3 pt-3">
@@ -512,20 +520,20 @@ export const HowItWorks = () => (
 );
 
 // One consolidated "any facility" section: a single row of pills (sports link to their pages).
-const OTHER_SPACES = ["Golf simulators", "Futsal", "Gyms", "Studios"];
+const OTHER_SPACES = ["Futsal", "Gyms", "Studios"];
 
 export const Sports = ({ current }: { current?: string }) => (
   <section id="sports" className="sports-band py-20">
     <Wrap>
       <div className="mx-auto max-w-3xl space-y-3 text-center">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Built for any facility <span className={gradText}>with spaces to book.</span></h2>
-        <p className="text-[var(--muted)]">Segmented spaces, bookings, memberships and more, whatever your business model.</p>
+        <p className="text-[var(--muted)]">The booking system for multi-sport facilities, where several sports share the same court space and stay in sync. <a href="/sports/multi-sport" className="font-semibold text-[var(--a)] hover:underline">See how it works</a></p>
       </div>
       <div className="marquee-wrap relative mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
         <div className="marquee flex w-max gap-3">
           {[0, 1].map((copy) =>
             [
-              ...SPORTS.filter((sp) => sp.slug !== current).map((sp) => (
+              ...[...SPORTS.filter((sp) => sp.slug === "multi-sport"), ...MENU_SPORTS].filter((sp) => sp.slug !== current).map((sp) => (
                 <a key={`${copy}-${sp.slug}`} href={`/sports/${sp.slug}`} aria-hidden={copy === 1} tabIndex={copy === 1 ? -1 : undefined} className={`whitespace-nowrap rounded-full border border-[var(--line)] bg-[var(--card)] px-5 py-2 transition hover:border-[var(--a)] ${sp.featured ? "font-medium" : "text-[var(--muted)] hover:text-[var(--fg)]"}`}>{sp.name}</a>
               )),
               ...[...OTHER_SPACES, "and more"].map((t) => (

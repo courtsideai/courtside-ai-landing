@@ -7,6 +7,8 @@ export interface Sport {
   pains: [string, string][];
   title: string;
   featured: boolean; // shown in the footer and homepage sports strip; other pages stay live
+  noun?: string; // used in "For {noun} facilities" when it differs from the lowercased name
+  inMenu?: boolean; // false = page stays live but is left out of the nav menu and sports band
 }
 
 export const SPORTS: Sport[] = [
@@ -78,6 +80,7 @@ export const SPORTS: Sport[] = [
   {
     slug: "squash",
     featured: false,
+    inMenu: false,
     name: "Squash",
     title: "Squash court booking and club software",
     headline: "Squash court bookings without the admin.",
@@ -88,8 +91,37 @@ export const SPORTS: Sport[] = [
       ["Phone calls", "Maya answers booking questions and books the court."],
     ],
   },
+  {
+    slug: "golf-simulators",
+    featured: false,
+    name: "Golf simulators",
+    noun: "golf simulator",
+    title: "Golf simulator booking software",
+    headline: "Book every bay, around the clock.",
+    sub: "Online bay booking, payments and waivers for golf simulator facilities, with door codes sent automatically and the phone covered by an AI receptionist.",
+    pains: [
+      ["Unstaffed hours", "Players book and pay online and get their door code by email and text, so you don't need someone at the desk."],
+      ["Bays by the hour", "Every bay on one live schedule, with booking rules per bay and no double bookings."],
+      ["Calls you can't take", "Maya answers, checks which bays are free and books one while you're busy."],
+    ],
+  },
+  {
+    slug: "multi-sport",
+    featured: false,
+    name: "Multi-sport facilities",
+    noun: "multi-sport",
+    title: "Multi-sport facility booking software for shared courts",
+    headline: "One court. Every sport. Always in sync.",
+    sub: "The booking system for facilities where basketball, volleyball, pickleball and more share the same court space. Every sport and every split of the floor stays synchronized on one live calendar.",
+    pains: [
+      ["Shared court space", "One floor can be a basketball court, two volleyball courts or four pickleball courts. Book any layout and the overlapping spaces block themselves automatically."],
+      ["Full or split courts", "Rent the full court or split it into halves and smaller courts from the same calendar. Availability updates instantly across every sport."],
+      ["Every kind of customer", "Members, leagues, drop-ins, private rentals and parties, across every sport, in one system."],
+    ],
+  },
 ];
 
 export const FEATURED_SPORTS = SPORTS.filter((s) => s.featured);
+export const MENU_SPORTS = SPORTS.filter((s) => s.inMenu !== false && s.slug !== "multi-sport");
 
 export const getSport = (slug?: string) => SPORTS.find((s) => s.slug === slug);
