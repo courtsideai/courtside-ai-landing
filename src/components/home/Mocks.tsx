@@ -181,30 +181,35 @@ export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => {
           </div>
           <span className="rounded-full border border-[var(--line)] px-2.5 py-1 text-xs tabular-nums text-[var(--muted)]">{count} bookings · {pct}% full</span>
         </div>
-        <div className="grid grid-cols-[52px_repeat(5,1fr)] gap-1.5 text-[11px]">
+        {/* Same layout as the booking app: courts across the top, time running down. */}
+        <div className="grid grid-cols-[40px_repeat(4,minmax(0,1fr))] gap-1.5 text-[11px]" style={{ gridTemplateRows: `auto repeat(${TIMES.length}, 2.6rem)` }}>
           <div />
-          {TIMES.map((x) => (
-            <div key={x} className="text-center text-[var(--muted)]">{x}</div>
+          {COURTS.map((c) => (
+            <div key={c} className="truncate pb-0.5 text-center font-medium text-[var(--muted)]">{c}</div>
           ))}
-          {COURTS.map((c, r) => (
-            <div key={c} className="contents">
-              <div className="flex items-center text-[var(--muted)]">{c}</div>
-              {TIMES.map((_, col) => ({ col, taken: bookings.some((b) => b.court === r && col >= b.start && col < b.start + b.span) }))
-                .filter((x) => !x.taken)
-                .map(({ col }) => (
-                  <div key={`e-${col}`} className="h-9 rounded-md border border-[var(--line)] bg-[var(--bg2)]/60" style={{ gridRow: r + 2, gridColumn: col + 2 }} />
-                ))}
-              {bookings.filter((b) => b.court === r).map((b) => (
-                <div
-                  key={`${b.id}-${b.start}`}
-                  className={`flex h-9 items-center truncate rounded-md px-2 font-semibold transition-[transform,box-shadow] duration-300 ${KIND[b.kind]} ${floating ? "anim-pop" : ""} ${focus === b.id ? "z-10 scale-[1.04] ring-2 ring-white/90" : ""}`}
-                  style={{ gridRow: r + 2, gridColumn: `${b.start + 2} / span ${b.span}`, ...(floating && intro ? { animationDelay: `${0.25 + BASE.findIndex((x) => x.id === b.id) * 0.13}s` } : {}) }}
-                >
-                  {b.label}
-                </div>
-              ))}
-            </div>
+          {TIMES.map((t, row) => (
+            <div key={t} className="flex items-start pt-1 text-[var(--muted)]" style={{ gridRow: row + 2, gridColumn: 1 }}>{t}</div>
           ))}
+          {COURTS.map((_, court) =>
+            TIMES.map((__, row) => ({ row, taken: bookings.some((b) => b.court === court && row >= b.start && row < b.start + b.span) }))
+              .filter((x) => !x.taken)
+              .map(({ row }) => (
+                <div key={`e-${court}-${row}`} className="rounded-md border border-[var(--line)] bg-[var(--bg2)]/60" style={{ gridRow: row + 2, gridColumn: court + 2 }} />
+              )),
+          )}
+          {bookings.map((b) => {
+            const [name, sport] = b.label.split(" · ");
+            return (
+              <div
+                key={`${b.id}-${b.start}`}
+                className={`flex min-w-0 flex-col justify-start overflow-hidden rounded-md px-2 py-1.5 leading-tight transition-[transform,box-shadow] duration-300 ${KIND[b.kind]} ${floating ? "anim-pop" : ""} ${focus === b.id ? "z-10 scale-[1.04] ring-2 ring-white/90" : ""}`}
+                style={{ gridColumn: b.court + 2, gridRow: `${b.start + 2} / span ${b.span}`, ...(floating && intro ? { animationDelay: `${0.25 + BASE.findIndex((x) => x.id === b.id) * 0.13}s` } : {}) }}
+              >
+                <span className="line-clamp-2 break-words font-semibold">{name}</span>
+                {sport && <span className="truncate opacity-85">{sport}</span>}
+              </div>
+            );
+          })}
         </div>
       </div>
       {floating && (
