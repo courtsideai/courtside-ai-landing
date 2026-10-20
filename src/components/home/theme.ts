@@ -5,16 +5,16 @@ export type HomeTheme = "dark" | "blue";
 // Colour tokens as CSS variables so every section can switch look without code changes.
 const TOKENS: Record<HomeTheme, Record<string, string>> = {
   dark: {
-    "--bg": "#070b14",
-    "--bg2": "#0b1322",
-    "--fg": "#ffffff",
-    "--muted": "#94a3b8",
+    "--bg": "#0a0f1c",
+    "--bg2": "#111a2b",
+    "--fg": "#f4f6f1",
+    "--muted": "#9aa4b8",
     "--card": "rgba(255,255,255,0.045)",
     "--line": "rgba(255,255,255,0.10)",
-    "--a": "#3b82f6",
-    "--b": "#22d3ee",
-    "--on-primary": "#04101f",
-    "--glow": "rgba(37,99,235,0.35)",
+    "--a": "#1cabb0",
+    "--b": "#3fd6d6",
+    "--on-primary": "#0a0f1c",
+    "--glow": "rgba(28,171,176,0.22)",
   },
   blue: {
     "--bg": "#ffffff",

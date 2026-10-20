@@ -40,7 +40,7 @@ type Kind = "member" | "league" | "ai" | "clinic";
 const KIND: Record<Kind, string> = {
   member: "bg-orange-500 text-white shadow-[0_0_18px_-4px_rgba(249,115,22,0.8)]",
   league: "bg-fuchsia-500 text-white shadow-[0_0_18px_-4px_rgba(217,70,239,0.8)]",
-  ai: "bg-lime-400 text-slate-900 shadow-[0_0_18px_-4px_rgba(163,230,53,0.8)]",
+  ai: "bg-[#1cabb0] text-[#04211f] shadow-[0_0_18px_-4px_rgba(28,171,176,0.9)]",
   clinic: "bg-sky-500 text-white shadow-[0_0_18px_-4px_rgba(14,165,233,0.8)]",
 };
 const COURTS = ["Court 1", "Court 2", "Court 3", "Court 4"];
@@ -97,11 +97,11 @@ export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => {
       <>
         <div className={`${card} anim-rise absolute -bottom-14 -left-2 w-60 p-3 text-xs sm:-left-8 bg-[var(--bg)]`} style={{ animationDelay: "1.5s" }}>
           <div className="mb-1 flex items-center gap-2 font-semibold">
-            <span className="relative grid h-6 w-6 place-items-center rounded-full bg-lime-400 text-slate-900"><span className="absolute inset-0 animate-ping rounded-full bg-lime-400/60 motion-reduce:hidden" /><Phone className="relative h-3 w-3" /></span>
+            <span className="relative grid h-6 w-6 place-items-center rounded-full bg-[var(--b)] text-[#0a0f1c]"><span className="absolute inset-0 animate-ping rounded-full bg-[var(--b)]/60 motion-reduce:hidden" /><Phone className="relative h-3 w-3" /></span>
             Maya · incoming call
           </div>
           <p className="text-[var(--muted)]">“Any courts open tonight at 7?”</p>
-          <p className="mt-1 flex items-center gap-1 font-medium"><Check className="h-3 w-3 text-lime-400" /> Court 3 booked, code sent</p>
+          <p className="mt-1 flex items-center gap-1 font-medium"><Check className="h-3 w-3 text-[var(--b)]" /> Court 3 booked, code sent</p>
         </div>
         <div className={`${card} anim-rise absolute -right-2 -top-5 hidden px-3 py-2 text-xs sm:-right-6 sm:block bg-[var(--bg)]`} style={{ animationDelay: "0.5s" }}>
           <div className="text-[var(--muted)]">This week</div>
@@ -126,7 +126,7 @@ export const MembersMock = () => (
           <div className="font-semibold">{n}</div>
           <div className="text-xs text-[var(--muted)]">{t}</div>
         </div>
-        <span className="flex items-center gap-1 rounded-full bg-lime-400/20 px-2 py-0.5 text-[11px] font-medium text-lime-500"><Check className="h-3 w-3" />Waiver signed</span>
+        <span className="flex items-center gap-1 rounded-full bg-[color-mix(in_srgb,var(--b)_18%,transparent)] px-2 py-0.5 text-[11px] font-medium text-[var(--b)]"><Check className="h-3 w-3" />Waiver signed</span>
       </div>
     ))}
   </div>
@@ -136,7 +136,7 @@ export const PaymentsMock = () => (
   <div className={`${card} space-y-3 p-4 text-sm`}>
     <div className="flex items-center justify-between">
       <span className="flex items-center gap-2 font-semibold"><CreditCard className="h-4 w-4" /> Court 2 · 7:00 PM</span>
-      <span className="rounded-full bg-lime-400 px-2.5 py-0.5 text-xs font-bold text-slate-900">Paid</span>
+      <span className="rounded-full bg-[var(--b)] px-2.5 py-0.5 text-xs font-bold text-[#0a0f1c]">Paid</span>
     </div>
     <div className="space-y-1 text-[var(--muted)]">
       <div className="flex justify-between"><span>Court rental (1h)</span><span>$48.00</span></div>
@@ -151,7 +151,7 @@ export const ReportsMock = () => (
   <div className={`${card} p-4`}>
     <div className="mb-3 flex items-center justify-between text-sm">
       <span className="flex items-center gap-2 font-semibold"><TrendingUp className="h-4 w-4" /> Revenue · last 7 days</span>
-      <span className="text-xs font-semibold text-lime-500">+12%</span>
+      <span className="text-xs font-semibold text-[var(--b)]">+12%</span>
     </div>
     <div className="flex h-28 items-end gap-2">
       {[40, 55, 35, 70, 62, 90, 78].map((h, i) => (
@@ -185,7 +185,7 @@ export const CallMock = () => {
     <div ref={ref} className={`${card} space-y-3 p-5 text-sm`}>
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-2 font-semibold">
-          <span className="relative grid h-7 w-7 place-items-center rounded-full bg-lime-400 text-slate-900"><span className="absolute inset-0 animate-ping rounded-full bg-lime-400/50 motion-reduce:hidden" /><Phone className="relative h-3.5 w-3.5" /></span>
+          <span className="relative grid h-7 w-7 place-items-center rounded-full bg-[var(--b)] text-[#0a0f1c]"><span className="absolute inset-0 animate-ping rounded-full bg-[var(--b)]/50 motion-reduce:hidden" /><Phone className="relative h-3.5 w-3.5" /></span>
           Maya · live call
         </span>
         <span className="text-xs tabular-nums text-[var(--muted)]">0:{String(secs).padStart(2, "0")}</span>

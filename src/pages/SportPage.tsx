@@ -65,7 +65,7 @@ const SportPage = () => {
             </div>
             <ul className={`${card} space-y-3 p-6`}>
               {INCLUDED.map((x) => (
-                <li key={x} className="flex items-start gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0 text-lime-400" />{x}</li>
+                <li key={x} className="flex items-start gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0 text-[var(--b)]" />{x}</li>
               ))}
             </ul>
           </div>

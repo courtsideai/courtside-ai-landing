@@ -6,8 +6,8 @@ const CellView = ({ c, ours }: { c: Cell; ours: boolean }) => {
   if (c.kind === "yes")
     return (
       <span className="flex flex-col items-center gap-1 text-center">
-        <Check className={`h-5 w-5 ${ours ? "text-lime-400" : "text-[var(--muted)]"}`} />
-        {c.note && <span className={`text-xs ${ours ? "font-medium text-lime-400" : "text-[var(--muted)]"}`}>{c.note}</span>}
+        <Check className={`h-5 w-5 ${ours ? "text-[var(--b)]" : "text-[var(--muted)]"}`} />
+        {c.note && <span className={`text-xs ${ours ? "font-medium text-[var(--b)]" : "text-[var(--muted)]"}`}>{c.note}</span>}
       </span>
     );
   if (c.kind === "no") return <X className="mx-auto h-5 w-5 text-[var(--muted)] opacity-60" />;
@@ -50,7 +50,7 @@ export const OfferStrip = ({ className = "" }: { className?: string }) => (
   <div className={`flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[var(--muted)] ${className}`}>
     {OFFER.map((o) => (
       <span key={o} className="flex items-center gap-1.5">
-        <Check className="h-4 w-4 text-lime-400" />
+        <Check className="h-4 w-4 text-[var(--b)]" />
         {o}
       </span>
     ))}

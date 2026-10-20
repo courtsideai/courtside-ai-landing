@@ -10,7 +10,7 @@ import NotFound from "@/pages/NotFound";
 
 const CellText = ({ c, ours }: { c: Cell; ours: boolean }) => {
   if (c.kind === "yes")
-    return <span className={`flex items-center gap-2 ${ours ? "font-medium text-lime-400" : "text-[var(--muted)]"}`}><Check className="h-5 w-5 shrink-0" />{c.note ?? "Yes"}</span>;
+    return <span className={`flex items-center gap-2 ${ours ? "font-medium text-[var(--b)]" : "text-[var(--muted)]"}`}><Check className="h-5 w-5 shrink-0" />{c.note ?? "Yes"}</span>;
   if (c.kind === "no") return <span className="flex items-center gap-2 text-[var(--muted)]"><X className="h-5 w-5 shrink-0 opacity-60" />No</span>;
   return <span className={ours ? "font-medium text-[var(--fg)]" : "text-[var(--muted)]"}>{c.note}</span>;
 };
@@ -67,7 +67,7 @@ const CompareOne = () => {
               <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">{sw.headline}</h2>
               <ul className="space-y-3">
                 {sw.points.map((p) => (
-                  <li key={p} className="flex items-start gap-3 text-lg text-[var(--muted)]"><Check className="mt-1 h-5 w-5 shrink-0 text-lime-400" />{p}</li>
+                  <li key={p} className="flex items-start gap-3 text-lg text-[var(--muted)]"><Check className="mt-1 h-5 w-5 shrink-0 text-[var(--b)]" />{p}</li>
                 ))}
               </ul>
             </div>

@@ -224,9 +224,9 @@ const BEYOND: [LucideIcon, string, string, Status][] = [
 ];
 
 const StatusBadge = ({ status }: { status: Status }) => (
-  <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${status === "Live" ? "bg-lime-400/15 text-lime-400" : "border border-[var(--line)] text-[var(--muted)]"}`}>
+  <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${status === "Live" ? "bg-[color-mix(in_srgb,var(--b)_15%,transparent)] text-[var(--b)]" : "border border-[var(--line)] text-[var(--muted)]"}`}>
     {status === "Live" && (
-      <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime-400 opacity-70 motion-reduce:hidden" /><span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime-400" /></span>
+      <span className="relative flex h-1.5 w-1.5"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--b)] opacity-70 motion-reduce:hidden" /><span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--b)]" /></span>
     )}
     {status}
   </span>
@@ -328,7 +328,7 @@ export const Pitch = () => (
             <ul className="space-y-2.5">
               {AI_ITEMS.map(([x, live]) => (
                 <li key={x} className="flex items-start gap-2">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-lime-400" />
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-[var(--b)]" />
                   <span>{x}{!live && <span className="ml-2 rounded-full border border-[var(--line)] px-2 py-0.5 text-[11px] text-[var(--muted)]">Coming soon</span>}</span>
                 </li>
               ))}
@@ -437,7 +437,7 @@ export const Maya = () => (
         <p className="text-lg text-[var(--muted)]">Maya picks up every call to your facility, checks real court availability, books the court, takes payment and texts the door code. She works from your live schedule, so she never double-books.</p>
         <ul className="space-y-2.5">
           {["Answers 24/7, including when you're mid-game", "Books, changes and cancels from your real calendar", "Shares door codes and answers your FAQs", "Hands off to a person or takes a message when needed"].map((x) => (
-            <li key={x} className="flex items-start gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0 text-lime-400" />{x}</li>
+            <li key={x} className="flex items-start gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0 text-[var(--b)]" />{x}</li>
           ))}
         </ul>
         <p className="text-sm text-[var(--muted)]">Callers are told they're speaking with an AI assistant and that the call is recorded.</p>
@@ -594,7 +594,7 @@ export const EarlyAccess = () => {
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-[1.2fr_1fr]">
           {done ? (
             <div className={`${card} flex flex-col gap-4 p-6`}>
-              <Check className="h-7 w-7 text-lime-400" />
+              <Check className="h-7 w-7 text-[var(--b)]" />
               <h3 className="text-lg font-semibold">You're on the list.</h3>
               <p className="flex-1 text-[var(--muted)]">Want to skip the wait? Pick a time and we'll walk you through Courtside on your own courts and rules.</p>
               <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={`${btnPrimary} w-full`}>Book your demo <ArrowRight className="ml-2 h-4 w-4" /></a>

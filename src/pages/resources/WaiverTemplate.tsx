@@ -94,7 +94,7 @@ const WaiverTemplate = () => {
               <p className="text-lg text-[var(--muted)]">A plain-language waiver for courts and multi-sport facilities, written by people who run one. Fill in the brackets, have your lawyer review it, and you're ready.</p>
               <ul className="space-y-2.5">
                 {["Assumption of risk for court sports", "Release, waiver and indemnity", "Minors and parent/guardian signature", "Medical treatment, property and photo consent", "Term and governing-law clauses to fill in"].map((x) => (
-                  <li key={x} className="flex items-start gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0 text-lime-400" />{x}</li>
+                  <li key={x} className="flex items-start gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0 text-[var(--b)]" />{x}</li>
                 ))}
               </ul>
               <p className="text-sm text-[var(--muted)]">This template is general information, not legal advice. Waiver rules differ by province and state, so have a lawyer review it before you use it.</p>
@@ -112,7 +112,7 @@ const WaiverTemplate = () => {
               </form>
             ) : (
               <div className={`${card} space-y-4 p-6`}>
-                <div className="flex items-center gap-2 font-semibold"><Check className="h-5 w-5 text-lime-400" />Here's your template</div>
+                <div className="flex items-center gap-2 font-semibold"><Check className="h-5 w-5 text-[var(--b)]" />Here's your template</div>
                 <div className="flex flex-wrap gap-2">
                   <button onClick={copy} className={`${btnSecondary} !py-2 text-sm`}><Copy className="mr-2 h-4 w-4" />Copy text</button>
                   <button onClick={() => window.print()} className={`${btnSecondary} !py-2 text-sm`}><Printer className="mr-2 h-4 w-4" />Print or save as PDF</button>

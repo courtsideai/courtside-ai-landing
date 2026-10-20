@@ -43,7 +43,7 @@ const Compare = () => {
                   <h3 className="mb-4 text-xl font-semibold">{c.headline}</h3>
                   <ul className="mb-6 flex-1 space-y-2.5">
                     {c.points.map((p) => (
-                      <li key={p} className="flex items-start gap-2 text-[var(--muted)]"><Check className="mt-0.5 h-5 w-5 shrink-0 text-lime-400" />{p}</li>
+                      <li key={p} className="flex items-start gap-2 text-[var(--muted)]"><Check className="mt-0.5 h-5 w-5 shrink-0 text-[var(--b)]" />{p}</li>
                     ))}
                   </ul>
                   <div className="flex flex-col gap-2">
