@@ -61,12 +61,12 @@ const BASE: Booking[] = [
 // Each call Maya handles changes the schedule, so the pop-up and the calendar always agree.
 const CALLS: { q: string; a: string; pos: string; focus: string; revenue: number; apply: (b: Booking[]) => Booking[] }[] = [
   {
-    q: "Any courts open tonight at 7?",
-    a: "Court 3 booked 7–9 PM, code sent",
+    q: "Any courts open tonight at 8, for two hours?",
+    a: "Court 3 booked 8–10 PM, code sent",
     pos: "-bottom-16 -left-2 sm:-left-8",
     focus: "maya1",
     revenue: 96,
-    apply: (b) => [...b, { id: "maya1", court: 2, start: 2, span: 2, label: "Booked by Maya", kind: "ai" }],
+    apply: (b) => [...b, { id: "maya1", court: 2, start: 3, span: 2, label: "Booked by Maya", kind: "ai" }],
   },
   {
     q: "Can I move my 8 PM to 9?",
@@ -77,12 +77,12 @@ const CALLS: { q: string; a: string; pos: string; focus: string; revenue: number
     apply: (b) => b.map((x) => (x.id === "jo" ? { ...x, start: 4 } : x)),
   },
   {
-    q: "Half court for basketball at 5?",
-    a: "Court 2 half court booked and paid",
-    pos: "-top-16 left-0 sm:left-4",
+    q: "Half court for basketball at 7?",
+    a: "Court 1 half court booked and paid",
+    pos: "-top-20 left-0 sm:left-1/4",
     focus: "maya2",
     revenue: 40,
-    apply: (b) => [...b, { id: "maya2", court: 1, start: 0, span: 1, label: "Half court · Maya", kind: "ai" }],
+    apply: (b) => [...b, { id: "maya2", court: 0, start: 2, span: 1, label: "Half court · Maya", kind: "ai" }],
   },
   {
     q: "What's the door code again?",
