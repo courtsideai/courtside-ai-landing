@@ -1,6 +1,6 @@
 import { CSSProperties, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { ArrowRight, BarChart3, Bot, CircleDollarSign, Code2, Users, Workflow, CalendarDays, Check, ClipboardList, CreditCard, FileSignature, KeyRound, Phone } from "lucide-react";
+import { ArrowRight, Plug, BarChart3, Bot, CircleDollarSign, Code2, Users, Workflow, CalendarDays, Check, ClipboardList, CreditCard, FileSignature, KeyRound, Phone } from "lucide-react";
 import Footer from "@/components/Footer";
 import { Nav, Maya, Compare, HowItWorks, Faqs, EarlyAccess, Sports, ProofStrip as StatsStrip } from "@/components/home/Sections";
 import { MissedCallCalculator, MobileCta, useReveal } from "@/components/home/Extras";
@@ -54,7 +54,7 @@ const Hero = () => (
           <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={ghostBtn}>Book a demo</a>
         </div>
         <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-[var(--muted)]">
-          {["3-month free trial", "Free migration", "No setup fees", "Month to month"].map((x) => (
+          {["3-month free trial", "Free migration", "No setup fees", "Month to month", "Open API"].map((x) => (
             <li key={x} className="flex items-center gap-1.5"><Check className={`h-4 w-4 ${accent}`} />{x}</li>
           ))}
         </ul>
@@ -107,7 +107,8 @@ const Platform = () => (
           </div>
         ))}
       </div>
-      <div className="mt-12 text-center">
+      <p className="mt-10 flex items-center justify-center gap-2 text-center text-sm text-[var(--muted)]"><Code2 className="h-4 w-4" />Open API and webhooks included, so your data is never locked in.</p>
+      <div className="mt-8 text-center">
         <a href="#early-access" className={tealBtn}>Start your 3-month free trial <ArrowRight className="ml-2 h-4 w-4" /></a>
       </div>
     </div>
@@ -115,7 +116,7 @@ const Platform = () => (
 );
 
 const ADDONS: [typeof Phone, string, string, string][] = [
-  [Code2, "Open API and integrations", "Connect door locks, accounting, CRM and the tools you already run. Webhooks on every booking, so your data is never locked in.", "Add-on"],
+  [Plug, "Integrations", "Connect door locks, accounting, CRM and the tools you already run, so bookings flow straight into them.", "Add-on"],
   [Workflow, "Custom automations", "Your own rules for follow-ups, setup notes and member messages, running on your live schedule.", "Add-on"],
   [CircleDollarSign, "Revenue recovery", "Chases failed payments and no-shows and wins back members who've gone quiet.", "Coming soon"],
   [Bot, "AI operator", "Handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Coming soon"],
