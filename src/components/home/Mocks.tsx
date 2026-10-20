@@ -56,6 +56,57 @@ const BOOKINGS: [number, number, number, string, Kind][] = [
   [3, 4, 1, "Jo T.", "member"],
 ];
 
+// Maya's calls pop up around the schedule one after another: question first, then the outcome.
+const LIVE_CALLS: { q: string; a: string; pos: string }[] = [
+  { q: "Any courts open tonight at 7?", a: "Court 3 booked, code sent", pos: "-bottom-14 -left-2 sm:-left-8" },
+  { q: "Can I move my 8 PM to 9?", a: "Moved to 9 PM, players notified", pos: "-bottom-14 right-2 sm:-right-6" },
+  { q: "Half court for basketball at 6?", a: "Court 2 half booked and paid", pos: "top-1/3 -left-2 sm:-left-10" },
+  { q: "What's the door code again?", a: "Code texted to Jo T.", pos: "-bottom-14 left-1/3" },
+  { q: "Spots left in Saturday's kids clinic?", a: "Spot booked, waiver sent", pos: "top-1/2 right-2 sm:-right-8" },
+];
+
+const LiveCalls = () => {
+  const reduce = reducedMotion();
+  const [i, setI] = useState(0);
+  const [stage, setStage] = useState<"ring" | "done" | "hide">(reduce ? "done" : "ring");
+  useEffect(() => {
+    if (reduce) return;
+    const t = setTimeout(
+      () => {
+        if (stage === "ring") setStage("done");
+        else if (stage === "done") setStage("hide");
+        else {
+          setI((n) => (n + 1) % LIVE_CALLS.length);
+          setStage("ring");
+        }
+      },
+      stage === "ring" ? 1600 : stage === "done" ? 2600 : 500,
+    );
+    return () => clearTimeout(t);
+  }, [stage, reduce]);
+  const c = LIVE_CALLS[i];
+  return (
+    <div
+      key={i}
+      className={`${card} anim-rise absolute z-10 w-64 p-3 text-xs shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)] transition-opacity duration-500 bg-[var(--bg)] ${c.pos} ${stage === "hide" ? "opacity-0" : "opacity-100"}`}
+      style={{ animationDelay: i === 0 && stage === "ring" ? "1.5s" : "0s" }}
+      aria-live="polite"
+    >
+      <div className="mb-1 flex items-center gap-2 font-semibold">
+        <span className="relative grid h-6 w-6 place-items-center rounded-full bg-[var(--b)] text-[#0a0f1c]">
+          {stage === "ring" && <span className="absolute inset-0 animate-ping rounded-full bg-[var(--b)]/60 motion-reduce:hidden" />}
+          <Phone className="relative h-3 w-3" />
+        </span>
+        Maya · {stage === "ring" ? "incoming call" : "call handled"}
+      </div>
+      <p className="text-[var(--muted)]">“{c.q}”</p>
+      <p className={`mt-1 flex items-center gap-1 font-medium transition-opacity duration-300 ${stage === "ring" ? "opacity-0" : "opacity-100"}`}>
+        <Check className="h-3 w-3 text-[var(--b)]" /> {c.a}
+      </p>
+    </div>
+  );
+};
+
 export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => {
   const revenue = useCountUp(8420, 1800, 600);
   return (
@@ -95,14 +146,7 @@ export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => {
     </div>
     {floating && (
       <>
-        <div className={`${card} anim-rise absolute -bottom-14 -left-2 w-60 p-3 text-xs sm:-left-8 bg-[var(--bg)]`} style={{ animationDelay: "1.5s" }}>
-          <div className="mb-1 flex items-center gap-2 font-semibold">
-            <span className="relative grid h-6 w-6 place-items-center rounded-full bg-[var(--b)] text-[#0a0f1c]"><span className="absolute inset-0 animate-ping rounded-full bg-[var(--b)]/60 motion-reduce:hidden" /><Phone className="relative h-3 w-3" /></span>
-            Maya · incoming call
-          </div>
-          <p className="text-[var(--muted)]">“Any courts open tonight at 7?”</p>
-          <p className="mt-1 flex items-center gap-1 font-medium"><Check className="h-3 w-3 text-[var(--b)]" /> Court 3 booked, code sent</p>
-        </div>
+        <LiveCalls />
         <div className={`${card} anim-rise absolute -right-2 -top-5 hidden px-3 py-2 text-xs sm:-right-6 sm:block bg-[var(--bg)]`} style={{ animationDelay: "0.5s" }}>
           <div className="text-[var(--muted)]">This week</div>
           <div className="text-lg font-bold tabular-nums">${revenue.toLocaleString("en-US")}</div>
