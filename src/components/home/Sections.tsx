@@ -31,7 +31,7 @@ const SectionHead = ({ eyebrow, title, sub }: { eyebrow: string; title: React.Re
 const SPORT_BLURBS: Record<string, string> = {
   pickleball: "Fill courts and take payment up front",
   basketball: "Full and half courts, 24/7 access",
-  tennis: "Member bookings and prime-time courts",
+  tennis: "Members and prime-time courts",
   volleyball: "Share the floor with other sports",
   badminton: "Lots of courts on one schedule",
   "golf-simulators": "Bays booked and paid, 24/7",
@@ -43,7 +43,7 @@ const SportsMenu = () => (
     <button type="button" className="flex items-center gap-1 rounded-md px-3.5 py-2 text-[15px] font-medium text-[color-mix(in_srgb,var(--fg)_72%,transparent)] transition hover:bg-[color-mix(in_srgb,var(--fg)_6%,transparent)] hover:text-[var(--fg)] group-focus-within:text-[var(--fg)]">
       Sports <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
     </button>
-    <div className="invisible absolute left-1/2 top-full z-50 w-[560px] -translate-x-1/2 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+    <div className="invisible absolute left-1/2 top-full z-50 w-[600px] -translate-x-1/2 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
       <div className="rounded-2xl border border-[var(--line)] bg-[var(--bg)] p-3 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)]">
         <a href="/sports/multi-sport" className="mb-1 flex items-center justify-between rounded-xl border border-[color-mix(in_srgb,var(--b)_35%,transparent)] bg-[color-mix(in_srgb,var(--b)_10%,transparent)] px-3 py-3 transition hover:bg-[color-mix(in_srgb,var(--b)_16%,transparent)]">
           <span>
@@ -52,7 +52,7 @@ const SportsMenu = () => (
           </span>
           <ArrowRight className="h-4 w-4 text-[var(--b)]" />
         </a>
-        <div className="grid grid-cols-2 gap-1">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-1">
           {MENU_SPORTS.map((sp) => (
             <a key={sp.slug} href={`/sports/${sp.slug}`} className="rounded-xl px-3 py-2.5 transition hover:bg-[color-mix(in_srgb,var(--fg)_6%,transparent)]">
               <span className="block font-semibold text-[var(--fg)]">{sp.name}</span>
