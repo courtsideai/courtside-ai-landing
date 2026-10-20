@@ -18,10 +18,10 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-white mb-4">Product</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="/#automation" className="hover:text-white transition-smooth">Automation</a></li>
-              <li><a href="/#maya" className="hover:text-white transition-smooth">Maya AI</a></li>
               <li><a href="/#platform" className="hover:text-white transition-smooth">Platform</a></li>
-              <li><a href="/#api" className="hover:text-white transition-smooth">Open API</a></li>
+              <li><a href="/#maya" className="hover:text-white transition-smooth">Maya AI receptionist</a></li>
+              <li><a href="/#addons" className="hover:text-white transition-smooth">Add-ons and open API</a></li>
+              <li><a href="/compare" className="hover:text-white transition-smooth">Compare</a></li>
             </ul>
           </div>
 

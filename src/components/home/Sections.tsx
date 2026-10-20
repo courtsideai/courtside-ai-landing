@@ -67,9 +67,8 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
   const links = [
-    ["Automation", "#automation"],
-    ["Maya AI", "#maya"],
     ["Platform", "#platform"],
+    ["Add-ons", "#addons"],
     ["Compare", "#compare"],
     ["FAQ", "#faqs"],
   ];
@@ -84,7 +83,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
   // Highlight the nav item for the section in view (homepage only).
   useEffect(() => {
     if (prefix) return;
-    const ids = ["automation", "maya", "platform", "compare", "faqs"];
+    const ids = ["platform", "addons", "compare", "faqs"];
     const onScroll = () => {
       const line = window.innerHeight * 0.4;
       let current = "";
