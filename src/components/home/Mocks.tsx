@@ -59,8 +59,9 @@ const BASE: Booking[] = [
 ];
 
 // Each call Maya handles changes the schedule, so the pop-up and the calendar always agree.
-const CALLS: { q: string; a: string; pos: string; focus: string; revenue: number; apply: (b: Booking[]) => Booking[] }[] = [
+const CALLS: { who: string; q: string; a: string; pos: string; focus: string; revenue: number; apply: (b: Booking[]) => Booking[] }[] = [
   {
+    who: "Alex R.",
     q: "Any courts open tonight at 8, for two hours?",
     a: "Court 3 booked 8–10 PM, code sent",
     pos: "-bottom-16 -left-2 sm:-left-8",
@@ -69,14 +70,16 @@ const CALLS: { q: string; a: string; pos: string; focus: string; revenue: number
     apply: (b) => [...b, { id: "maya1", court: 2, start: 3, span: 2, label: "Booked by Maya", kind: "ai" }],
   },
   {
+    who: "Jo T.",
     q: "Can I move my 8 PM to 9?",
-    a: "Jo T. moved to 9 PM, players notified",
+    a: "Moved to 9 PM, players notified",
     pos: "-bottom-16 right-0 sm:-right-6",
     focus: "jo",
     revenue: 0,
     apply: (b) => b.map((x) => (x.id === "jo" ? { ...x, start: 4 } : x)),
   },
   {
+    who: "Marcus D.",
     q: "Half court for basketball at 7?",
     a: "Court 1 half court booked and paid",
     pos: "-top-20 left-0 sm:left-1/4",
@@ -85,14 +88,16 @@ const CALLS: { q: string; a: string; pos: string; focus: string; revenue: number
     apply: (b) => [...b, { id: "maya2", court: 0, start: 2, span: 1, label: "Half court · Maya", kind: "ai" }],
   },
   {
+    who: "Priya S.",
     q: "What's the door code again?",
-    a: "Code texted to Jo T.",
-    pos: "-bottom-16 right-1/4",
-    focus: "jo",
+    a: "Code texted to Priya S.",
+    pos: "-top-20 right-1/4",
+    focus: "priya",
     revenue: 0,
     apply: (b) => b,
   },
   {
+    who: "Nina K.",
     q: "Any spots left in tonight's kids clinic?",
     a: "Last spot booked, waiver sent",
     pos: "-bottom-16 left-0 sm:left-16",
@@ -227,7 +232,7 @@ export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => {
                 </span>
                 Maya · {stage === "ring" ? "incoming call" : "call handled"}
               </div>
-              <p className="text-[var(--muted)]">“{call.q}”</p>
+              <p className="text-[var(--muted)]"><span className="font-semibold text-[var(--fg)]">{call.who}:</span> “{call.q}”</p>
               <p className={`mt-1 flex items-center gap-1 font-medium transition-opacity duration-300 ${stage === "ring" ? "opacity-0" : "opacity-100"}`}>
                 <Check className="h-3 w-3 text-[var(--b)]" /> {call.a}
               </p>
