@@ -1,4 +1,5 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode, useEffect, useState } from "react";
+import { ArrowUp } from "lucide-react";
 import Footer from "@/components/Footer";
 import { Nav } from "@/components/home/Sections";
 import { themeStyle } from "@/components/home/theme";
@@ -12,6 +13,27 @@ const darkStyle = {
   "--primary": "199 90% 62%",
 } as CSSProperties;
 
+// Floating "back to top" for long documents; appears after the first screen or so.
+const BackToTop = () => {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > 900);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <button
+      type="button"
+      onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}
+      aria-label="Back to top"
+      className={`fixed bottom-5 right-5 z-40 inline-flex items-center gap-1.5 rounded-full border border-[var(--line)] bg-[var(--bg2)] px-4 py-2.5 text-sm font-semibold text-[var(--fg)] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)] transition duration-300 hover:border-[var(--b)] ${show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
+    >
+      <ArrowUp className="h-4 w-4 text-[var(--b)]" /> Top
+    </button>
+  );
+};
+
 export const LegalPage = ({ title, updated, wide, children }: { title: string; updated?: string; wide?: boolean; children: ReactNode }) => (
   <div style={darkStyle} className="v3 min-h-screen bg-[var(--bg)] text-[var(--fg)]">
     <Nav theme="dark" prefix="/" />
@@ -21,6 +43,7 @@ export const LegalPage = ({ title, updated, wide, children }: { title: string; u
       <div className="space-y-8 leading-relaxed text-foreground/90">{children}</div>
     </main>
     <Footer />
+    <BackToTop />
   </div>
 );
 
