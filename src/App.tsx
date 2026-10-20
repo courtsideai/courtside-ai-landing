@@ -8,6 +8,7 @@ import About from "./pages/About";
 import LegalDoc from "./pages/LegalDoc";
 import NotFound from "./pages/NotFound";
 import HomeV2 from "./pages/HomeV2";
+import HomeV3 from "./pages/HomeV3";
 import VenuePage from "./pages/VenuePage";
 import SportPage from "./pages/SportPage";
 import Compare from "./pages/Compare";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/terms" element={<LegalDoc slug="terms" />} />
           <Route path="/privacy" element={<LegalDoc slug="privacy" />} />
           <Route path="/legal/:doc" element={<LegalDoc />} />
+          <Route path="/v3" element={<HomeV3 />} />
           <Route path="/new" element={<HomeV2 />} />
           <Route path="/new/:theme" element={<HomeV2 />} />
           <Route path="/sports/:sport" element={<SportPage />} />

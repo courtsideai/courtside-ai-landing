@@ -101,10 +101,10 @@ export const MobileCta = () => {
 };
 
 // Fade sections in as they scroll into view. Falls back to visible if anything goes wrong.
-export const useReveal = () => {
+export const useReveal = (selector = "main > section:not(#top)") => {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-    const els = [...document.querySelectorAll<HTMLElement>("main > section:not(#top)")];
+    const els = [...document.querySelectorAll<HTMLElement>(selector)];
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => {
         if (e.isIntersecting) {
@@ -130,7 +130,7 @@ export const useReveal = () => {
       clearTimeout(t);
       window.removeEventListener("hashchange", reveal);
     };
-  }, []);
+  }, [selector]);
 };
 
 // Inline CTA row repeated after key sections (pattern from AllBooked).

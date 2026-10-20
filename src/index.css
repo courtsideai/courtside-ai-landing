@@ -179,3 +179,6 @@ body {
   .anim-pop, .anim-rise, .anim-glow, .text-shimmer, .marquee, .typing-dot { animation: none !important; }
   .reveal, .reveal .stagger > * { opacity: 1 !important; transform: none !important; }
 }
+
+/* v3: display font for headings */
+.v3 h1, .v3 h2, .v3 h3 { font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; letter-spacing: -0.02em; }
