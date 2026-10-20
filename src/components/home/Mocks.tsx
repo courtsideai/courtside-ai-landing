@@ -45,115 +45,196 @@ const KIND: Record<Kind, string> = {
 };
 const COURTS = ["Court 1", "Court 2", "Court 3", "Court 4"];
 const TIMES = ["5 PM", "6 PM", "7 PM", "8 PM", "9 PM"];
-const BOOKINGS: [number, number, number, string, Kind][] = [
-  [0, 0, 2, "Sam K. · Pickleball", "member"],
-  [0, 3, 2, "Open play", "clinic"],
-  [1, 1, 1, "Dre M.", "member"],
-  [1, 2, 3, "Tue League", "league"],
-  [2, 0, 1, "Priya S.", "member"],
-  [2, 2, 2, "Booked by Maya", "ai"],
-  [3, 1, 2, "Kids clinic", "clinic"],
-  [3, 4, 1, "Jo T.", "member"],
+
+type Booking = { id: string; court: number; start: number; span: number; label: string; kind: Kind };
+
+const BASE: Booking[] = [
+  { id: "sam", court: 0, start: 0, span: 2, label: "Sam K. · Pickleball", kind: "member" },
+  { id: "open", court: 0, start: 3, span: 2, label: "Open play", kind: "clinic" },
+  { id: "dre", court: 1, start: 1, span: 1, label: "Dre M.", kind: "member" },
+  { id: "league", court: 1, start: 2, span: 3, label: "Tue League", kind: "league" },
+  { id: "priya", court: 2, start: 0, span: 1, label: "Priya S.", kind: "member" },
+  { id: "clinic", court: 3, start: 1, span: 2, label: "Kids clinic", kind: "clinic" },
+  { id: "jo", court: 3, start: 3, span: 1, label: "Jo T.", kind: "member" },
 ];
 
-// Maya's calls pop up around the schedule one after another: question first, then the outcome.
-const LIVE_CALLS: { q: string; a: string; pos: string }[] = [
-  { q: "Any courts open tonight at 7?", a: "Court 3 booked, code sent", pos: "-bottom-14 -left-2 sm:-left-8" },
-  { q: "Can I move my 8 PM to 9?", a: "Moved to 9 PM, players notified", pos: "-bottom-14 right-2 sm:-right-6" },
-  { q: "Half court for basketball at 6?", a: "Court 2 half booked and paid", pos: "top-1/3 -left-2 sm:-left-10" },
-  { q: "What's the door code again?", a: "Code texted to Jo T.", pos: "-bottom-14 left-1/3" },
-  { q: "Spots left in Saturday's kids clinic?", a: "Spot booked, waiver sent", pos: "top-1/2 right-2 sm:-right-8" },
+// Each call Maya handles changes the schedule, so the pop-up and the calendar always agree.
+const CALLS: { q: string; a: string; pos: string; focus: string; revenue: number; apply: (b: Booking[]) => Booking[] }[] = [
+  {
+    q: "Any courts open tonight at 7?",
+    a: "Court 3 booked 7–9 PM, code sent",
+    pos: "-bottom-16 -left-2 sm:-left-8",
+    focus: "maya1",
+    revenue: 96,
+    apply: (b) => [...b, { id: "maya1", court: 2, start: 2, span: 2, label: "Booked by Maya", kind: "ai" }],
+  },
+  {
+    q: "Can I move my 8 PM to 9?",
+    a: "Jo T. moved to 9 PM, players notified",
+    pos: "-bottom-16 right-0 sm:-right-6",
+    focus: "jo",
+    revenue: 0,
+    apply: (b) => b.map((x) => (x.id === "jo" ? { ...x, start: 4 } : x)),
+  },
+  {
+    q: "Half court for basketball at 5?",
+    a: "Court 2 half court booked and paid",
+    pos: "-top-16 left-0 sm:left-4",
+    focus: "maya2",
+    revenue: 40,
+    apply: (b) => [...b, { id: "maya2", court: 1, start: 0, span: 1, label: "½ court · Maya", kind: "ai" }],
+  },
+  {
+    q: "What's the door code again?",
+    a: "Code texted to Jo T.",
+    pos: "-bottom-16 right-1/4",
+    focus: "jo",
+    revenue: 0,
+    apply: (b) => b,
+  },
+  {
+    q: "Any spots left in tonight's kids clinic?",
+    a: "Last spot booked, waiver sent",
+    pos: "-bottom-16 left-0 sm:left-16",
+    focus: "clinic",
+    revenue: 25,
+    apply: (b) => b.map((x) => (x.id === "clinic" ? { ...x, label: "Kids clinic · full" } : x)),
+  },
 ];
 
-const LiveCalls = () => {
-  const reduce = reducedMotion();
-  const [i, setI] = useState(0);
-  const [stage, setStage] = useState<"ring" | "done" | "hide">(reduce ? "done" : "ring");
+const BASE_REVENUE = 8420;
+const BASE_BOOKINGS = 12;
+
+// Smoothly animate a number toward its target.
+const useTweened = (target: number, ms = 700, delay = 0) => {
+  const [v, setV] = useState(reducedMotion() ? target : 0);
+  const from = useRef(reducedMotion() ? target : 0);
   useEffect(() => {
-    if (reduce) return;
-    const t = setTimeout(
-      () => {
-        if (stage === "ring") setStage("done");
-        else if (stage === "done") setStage("hide");
-        else {
-          setI((n) => (n + 1) % LIVE_CALLS.length);
-          setStage("ring");
-        }
-      },
-      stage === "ring" ? 1600 : stage === "done" ? 2600 : 500,
-    );
-    return () => clearTimeout(t);
-  }, [stage, reduce]);
-  const c = LIVE_CALLS[i];
-  return (
-    <div
-      key={i}
-      className={`${card} anim-rise absolute z-10 w-64 p-3 text-xs shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)] transition-opacity duration-500 bg-[var(--bg)] ${c.pos} ${stage === "hide" ? "opacity-0" : "opacity-100"}`}
-      style={{ animationDelay: i === 0 && stage === "ring" ? "1.5s" : "0s" }}
-      aria-live="polite"
-    >
-      <div className="mb-1 flex items-center gap-2 font-semibold">
-        <span className="relative grid h-6 w-6 place-items-center rounded-full bg-[var(--b)] text-[#0a0f1c]">
-          {stage === "ring" && <span className="absolute inset-0 animate-ping rounded-full bg-[var(--b)]/60 motion-reduce:hidden" />}
-          <Phone className="relative h-3 w-3" />
-        </span>
-        Maya · {stage === "ring" ? "incoming call" : "call handled"}
-      </div>
-      <p className="text-[var(--muted)]">“{c.q}”</p>
-      <p className={`mt-1 flex items-center gap-1 font-medium transition-opacity duration-300 ${stage === "ring" ? "opacity-0" : "opacity-100"}`}>
-        <Check className="h-3 w-3 text-[var(--b)]" /> {c.a}
-      </p>
-    </div>
-  );
+    if (reducedMotion()) return setV(target);
+    const start = from.current;
+    let raf = 0;
+    const t0 = performance.now() + delay;
+    const tick = (now: number) => {
+      const p = Math.min(1, Math.max(0, (now - t0) / ms));
+      const next = Math.round(start + (target - start) * (1 - Math.pow(1 - p, 3)));
+      from.current = next;
+      setV(next);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, ms, delay]);
+  return v;
 };
 
 export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => {
-  const revenue = useCountUp(8420, 1800, 600);
+  const live = floating && !reducedMotion();
+  const [bookings, setBookings] = useState<Booking[]>(BASE);
+  const [step, setStep] = useState(0);
+  const [stage, setStage] = useState<"wait" | "ring" | "done" | "hide">(live ? "wait" : "done");
+  const [revenue, setRevenue] = useState(BASE_REVENUE);
+  const [intro, setIntro] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setIntro(false), 2500);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (!live) return;
+    const call = CALLS[step];
+    const delays = { wait: step === 0 ? 2200 : 700, ring: 1700, done: 3000, hide: 500 };
+    const t = setTimeout(() => {
+      if (stage === "wait") setStage("ring");
+      else if (stage === "ring") {
+        setBookings((b) => call.apply(b));
+        setRevenue((r) => r + call.revenue);
+        setStage("done");
+      } else if (stage === "done") setStage("hide");
+      else if (step === CALLS.length - 1) {
+        // End of the loop: back to the start of the evening.
+        setBookings(BASE);
+        setRevenue(BASE_REVENUE);
+        setStep(0);
+        setStage("wait");
+      } else {
+        setStep(step + 1);
+        setStage("wait");
+      }
+    }, delays[stage]);
+    return () => clearTimeout(t);
+  }, [stage, step, live]);
+
+  const shownRevenue = useTweened(revenue, 900, intro ? 600 : 0);
+  const count = BASE_BOOKINGS + bookings.length - BASE.length;
+  const filled = bookings.reduce((n, b) => n + b.span, 0);
+  const pct = Math.round((filled / (COURTS.length * TIMES.length)) * 100);
+  const call = CALLS[step];
+  const focus = live && stage === "done" ? call.focus : "";
+
   return (
-  <div className="relative">
-    <div className={`${card} p-4 sm:p-5`}>
-      <div className="mb-4 flex items-center justify-between">
-        <div className="flex items-center gap-2 font-semibold">
-          <CalendarDays className="h-4 w-4" /> Today · Court schedule
-        </div>
-        <span className="rounded-full border border-[var(--line)] px-2.5 py-1 text-xs text-[var(--muted)]">14 bookings · 82% full</span>
-      </div>
-      <div className="grid grid-cols-[52px_repeat(5,1fr)] gap-1.5 text-[11px]">
-        <div />
-        {TIMES.map((x) => (
-          <div key={x} className="text-center text-[var(--muted)]">{x}</div>
-        ))}
-        {COURTS.map((c, r) => (
-          <div key={c} className="contents">
-            <div className="flex items-center text-[var(--muted)]">{c}</div>
-            {TIMES.map((_, col) => ({ col, taken: BOOKINGS.some((b) => b[0] === r && col >= b[1] && col < b[1] + b[2]) }))
-              .filter((x) => !x.taken)
-              .map(({ col }) => (
-                <div key={col} className="h-9 rounded-md border border-[var(--line)] bg-[var(--bg2)]/60" style={{ gridRow: r + 2, gridColumn: col + 2 }} />
-              ))}
-            {BOOKINGS.filter((b) => b[0] === r).map(([, s, span, label, kind]) => (
-              <div
-                key={label + s}
-                className={`flex h-9 items-center truncate rounded-md px-2 font-semibold ${KIND[kind]} ${floating ? (kind === "ai" ? "anim-glow" : "anim-pop") : ""}`}
-                style={{ gridRow: r + 2, gridColumn: `${s + 2} / span ${span}`, ...(floating ? { animationDelay: `${0.25 + BOOKINGS.findIndex((b) => b[3] === label) * 0.13}s` } : {}) }}
-              >
-                {label}
-              </div>
-            ))}
+    <div className="relative">
+      <div className={`${card} p-4 sm:p-5`}>
+        <div className="mb-4 flex items-center justify-between">
+          <div className="flex items-center gap-2 font-semibold">
+            <CalendarDays className="h-4 w-4" /> Today · Court schedule
           </div>
-        ))}
-      </div>
-    </div>
-    {floating && (
-      <>
-        <LiveCalls />
-        <div className={`${card} anim-rise absolute -right-2 -top-5 hidden px-3 py-2 text-xs sm:-right-6 sm:block bg-[var(--bg)]`} style={{ animationDelay: "0.5s" }}>
-          <div className="text-[var(--muted)]">This week</div>
-          <div className="text-lg font-bold tabular-nums">${revenue.toLocaleString("en-US")}</div>
+          <span className="rounded-full border border-[var(--line)] px-2.5 py-1 text-xs tabular-nums text-[var(--muted)]">{count} bookings · {pct}% full</span>
         </div>
-      </>
-    )}
-  </div>
+        <div className="grid grid-cols-[52px_repeat(5,1fr)] gap-1.5 text-[11px]">
+          <div />
+          {TIMES.map((x) => (
+            <div key={x} className="text-center text-[var(--muted)]">{x}</div>
+          ))}
+          {COURTS.map((c, r) => (
+            <div key={c} className="contents">
+              <div className="flex items-center text-[var(--muted)]">{c}</div>
+              {TIMES.map((_, col) => ({ col, taken: bookings.some((b) => b.court === r && col >= b.start && col < b.start + b.span) }))
+                .filter((x) => !x.taken)
+                .map(({ col }) => (
+                  <div key={`e-${col}`} className="h-9 rounded-md border border-[var(--line)] bg-[var(--bg2)]/60" style={{ gridRow: r + 2, gridColumn: col + 2 }} />
+                ))}
+              {bookings.filter((b) => b.court === r).map((b) => (
+                <div
+                  key={`${b.id}-${b.start}`}
+                  className={`flex h-9 items-center truncate rounded-md px-2 font-semibold transition-[transform,box-shadow] duration-300 ${KIND[b.kind]} ${floating ? "anim-pop" : ""} ${focus === b.id ? "z-10 scale-[1.04] ring-2 ring-white/90" : ""}`}
+                  style={{ gridRow: r + 2, gridColumn: `${b.start + 2} / span ${b.span}`, ...(floating && intro ? { animationDelay: `${0.25 + BASE.findIndex((x) => x.id === b.id) * 0.13}s` } : {}) }}
+                >
+                  {b.label}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      {floating && (
+        <>
+          {(stage !== "wait" || !live) && (
+            <div
+              key={step}
+              className={`${card} anim-rise absolute z-20 w-64 p-3 text-xs shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)] transition-opacity duration-500 bg-[var(--bg)] ${call.pos} ${stage === "hide" ? "opacity-0" : "opacity-100"}`}
+              aria-live="polite"
+            >
+              <div className="mb-1 flex items-center gap-2 font-semibold">
+                <span className="relative grid h-6 w-6 place-items-center rounded-full bg-[var(--b)] text-[#0a0f1c]">
+                  {stage === "ring" && <span className="absolute inset-0 animate-ping rounded-full bg-[var(--b)]/60 motion-reduce:hidden" />}
+                  <Phone className="relative h-3 w-3" />
+                </span>
+                Maya · {stage === "ring" ? "incoming call" : "call handled"}
+              </div>
+              <p className="text-[var(--muted)]">“{call.q}”</p>
+              <p className={`mt-1 flex items-center gap-1 font-medium transition-opacity duration-300 ${stage === "ring" ? "opacity-0" : "opacity-100"}`}>
+                <Check className="h-3 w-3 text-[var(--b)]" /> {call.a}
+              </p>
+            </div>
+          )}
+          <div className={`${card} anim-rise absolute -top-16 right-0 hidden px-3 py-2 text-xs sm:-right-4 sm:block bg-[var(--bg)]`} style={{ animationDelay: "0.5s" }}>
+            <div className="text-[var(--muted)]">This week</div>
+            <div className="text-lg font-bold tabular-nums">${shownRevenue.toLocaleString("en-US")}</div>
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 
