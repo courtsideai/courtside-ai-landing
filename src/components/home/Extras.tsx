@@ -38,14 +38,14 @@ const useTween = (target: number, ms = 450) => {
 
 // Missed-call revenue calculator (the on-page version of a missed revenue audit). Inputs are the visitor's own.
 export const MissedCallCalculator = () => {
-  const [calls, setCalls] = useState(15);
-  const [share, setShare] = useState(40);
-  const [value, setValue] = useState(50);
+  const [calls, setCalls] = useState(25);
+  const [share, setShare] = useState(50);
+  const [value, setValue] = useState(100);
   // Weekly is exact; a month is 52/12 = 4.33 weeks, so monthly and yearly come from the same weekly figure.
   const weekly = calls * (share / 100) * value;
   const yearly = Math.round(weekly * 52);
   const monthly = Math.round(yearly / 12);
-  const shownMonthly = useTween(monthly);
+  const shownYearly = useTween(yearly);
 
   return (
     <section id="calculator" className="py-24">
@@ -62,9 +62,9 @@ export const MissedCallCalculator = () => {
           <Slider label="Average booking value" value={value} min={10} max={300} step={5} prefix="$" onChange={setValue} />
           <div className="rounded-xl border border-[var(--line)] bg-[var(--bg2)] p-5 text-center">
             <p className="text-sm text-[var(--muted)]">Revenue you could be missing</p>
-            <p className={`text-5xl font-bold tabular-nums ${gradText}`}>{money(shownMonthly)}</p>
-            <p className="mt-1 text-sm text-[var(--muted)]">per month · {money(yearly)} a year</p>
-            <p className="mt-3 text-xs tabular-nums text-[var(--muted)]">{calls} calls × {share}% × {money(value)} = {money(weekly)} a week. A month averages 4.33 weeks.</p>
+            <p className={`text-5xl font-bold tabular-nums ${gradText}`}>{money(shownYearly)}</p>
+            <p className="mt-1 text-sm text-[var(--muted)]">a year · about {money(Math.round(monthly / 100) * 100)} a month</p>
+            <p className="mt-3 text-xs tabular-nums text-[var(--muted)]">{calls} calls × {share}% × {money(value)} = {money(weekly)} a week × 52 weeks</p>
           </div>
           <p className="text-xs text-[var(--muted)]">An estimate from your inputs, not a guarantee.</p>
         </div>
