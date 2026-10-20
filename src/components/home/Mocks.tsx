@@ -67,7 +67,7 @@ const CALLS: { who: string; q: string; a: string; pos: string; focus: string; re
     pos: "-bottom-16 -left-2 sm:-left-8",
     focus: "maya1",
     revenue: 96,
-    apply: (b) => [...b, { id: "maya1", court: 2, start: 3, span: 2, label: "Booked by Maya", kind: "ai" }],
+    apply: (b) => [...b, { id: "maya1", court: 2, start: 3, span: 2, label: "Alex R. · Booked by Maya", kind: "ai" }],
   },
   {
     who: "Jo T.",
@@ -85,7 +85,7 @@ const CALLS: { who: string; q: string; a: string; pos: string; focus: string; re
     pos: "-top-20 left-0 sm:left-1/4",
     focus: "maya2",
     revenue: 40,
-    apply: (b) => [...b, { id: "maya2", court: 0, start: 2, span: 1, label: "Half court · Maya", kind: "ai" }],
+    apply: (b) => [...b, { id: "maya2", court: 0, start: 2, span: 1, label: "Marcus D. · Half court, by Maya", kind: "ai" }],
   },
   {
     who: "Priya S.",
@@ -203,7 +203,8 @@ export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => {
               )),
           )}
           {bookings.map((b) => {
-            const [name, sport] = b.label.split(" · ");
+            const [name, ...rest] = b.label.split(" · ");
+            const sport = rest.join(" · ");
             return (
               <div
                 key={`${b.id}-${b.start}`}
