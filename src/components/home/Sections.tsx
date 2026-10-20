@@ -109,7 +109,7 @@ export const Nav = ({ theme, prefix = "" }: { theme: HomeTheme; prefix?: string 
     <header className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-lg transition-[background-color,border-color,box-shadow] ${scrolled ? "border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]" : "border-transparent bg-[color-mix(in_srgb,var(--bg)_60%,transparent)]"}`}>
       {!scrolled && (
         <a href={`${prefix}#maya`} className="block bg-gradient-to-r from-[var(--a)] to-[var(--b)] px-4 py-1.5 text-center text-xs font-semibold text-[var(--on-primary)] sm:text-sm">
-          New: Maya, our AI receptionist, is live. Hear her answer a call <span aria-hidden="true">→</span>
+          <span className="sm:hidden">Maya, our AI receptionist, is live</span><span className="hidden sm:inline">New: Maya, our AI receptionist, is live. Hear her answer a call</span> <span aria-hidden="true">→</span>
         </a>
       )}
       <Wrap className="flex h-16 items-center justify-between gap-4">
@@ -508,9 +508,11 @@ export const HowItWorks = () => (
           ["2", "Go live", "We set up your courts, pricing, waivers and booking page. Coming from AllBooked, CourtReserve or a spreadsheet? We migrate your members and bookings for free."],
           ["3", "Grow", "Players book online, Maya covers the phone, and reports show what's filling and what isn't."],
         ].map(([n, t, d]) => (
-          <div key={t} className={`${card} p-6`}>
-            <span className="mb-4 grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-[var(--a)] to-[var(--b)] font-bold text-[var(--on-primary)]">{n}</span>
-            <h3 className="mb-2 text-xl font-semibold">{t}</h3>
+          <div key={t} className={`${card} p-5 sm:p-6`}>
+            <div className="mb-2 flex items-center gap-3 sm:mb-0 sm:block">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[var(--a)] to-[var(--b)] font-bold text-[var(--on-primary)] sm:mb-4 sm:h-10 sm:w-10">{n}</span>
+              <h3 className="text-lg font-semibold sm:mb-2 sm:text-xl">{t}</h3>
+            </div>
             <p className="text-[var(--muted)]">{d}</p>
           </div>
         ))}

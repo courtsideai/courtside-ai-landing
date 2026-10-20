@@ -182,9 +182,9 @@ export const ScheduleMock = ({ floating = true }: { floating?: boolean }) => {
       <div className={`${card} p-4 sm:p-5`}>
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2 font-semibold">
-            <CalendarDays className="h-4 w-4" /> Today · Court schedule
+            <CalendarDays className="h-4 w-4" /> <span className="hidden sm:inline">Today ·</span> Court schedule
           </div>
-          <span className="rounded-full border border-[var(--line)] px-2.5 py-1 text-xs tabular-nums text-[var(--muted)]">{count} bookings · {pct}% full</span>
+          <span className="whitespace-nowrap rounded-full border border-[var(--line)] px-2.5 py-1 text-xs tabular-nums text-[var(--muted)]"><span className="hidden sm:inline">{count} bookings · </span>{pct}% full</span>
         </div>
         {/* Same layout as the booking app: courts across the top, time running down. */}
         <div className="grid grid-cols-[40px_repeat(4,minmax(0,1fr))] gap-1.5 text-[11px]" style={{ gridTemplateRows: `auto repeat(${TIMES.length}, 2.6rem)` }}>

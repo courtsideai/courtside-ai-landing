@@ -51,7 +51,7 @@ export const MissedCallCalculator = () => {
           <span className="inline-flex rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1 text-xs font-medium text-[var(--muted)]">Missed revenue</span>
           <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Every missed call is <span className={gradText}>a court you didn't book.</span></h2>
           <p className="text-lg text-[var(--muted)]">Callers who reach voicemail book somewhere else. Plug in your own numbers to see what that costs you each month. Maya answers every one of those calls.</p>
-          <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Get a free missed-revenue audit <ArrowRight className="ml-2 h-4 w-4" /></a>
+          <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={`${btnSecondary} hidden lg:inline-flex`}>Get a free missed-revenue audit <ArrowRight className="ml-2 h-4 w-4" /></a>
         </div>
         <div className={`${card} space-y-6 p-6 sm:p-8`}>
           <Slider label="Missed calls per week" value={calls} min={0} max={100} step={1} onChange={setCalls} />
@@ -64,6 +64,7 @@ export const MissedCallCalculator = () => {
           </div>
           <p className="text-xs text-[var(--muted)]">An estimate from your inputs, not a guarantee.</p>
         </div>
+        <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={`${btnSecondary} w-full lg:hidden`}>Get a free missed-revenue audit <ArrowRight className="ml-2 h-4 w-4" /></a>
       </div>
     </section>
   );

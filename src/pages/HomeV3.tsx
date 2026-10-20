@@ -41,7 +41,8 @@ const Hero = () => (
       <div className="space-y-7">
         <span className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium text-[var(--muted)]">
           <span className="h-2 w-2 rounded-full bg-[#3fd6d6]" />
-          The first facility management software with a live AI receptionist
+          <span className="sm:hidden">First FMS with a live AI receptionist</span>
+          <span className="hidden sm:inline">The first facility management software with a live AI receptionist</span>
         </span>
         <h1 className="text-5xl font-bold leading-[1.02] sm:text-6xl xl:text-7xl">
           Your facility<br />on <span className="bg-[linear-gradient(90deg,#1cabb0,#3fd6d6,#1cabb0)] bg-clip-text text-transparent text-shimmer">autopilot.</span>
@@ -91,7 +92,7 @@ const Platform = () => (
       <div className="mx-auto mb-14 max-w-3xl space-y-4 text-center">
         <Eyebrow dark={false}>The platform</Eyebrow>
         <h2 className="text-3xl font-bold sm:text-5xl">Everything your front desk does, without being chained to the desk.</h2>
-        <div className="flex flex-wrap justify-center gap-2 pb-2 text-sm">
+        <div className="flex flex-wrap justify-center gap-2 pb-2 text-xs sm:text-sm">
           {["No more ringing phone", "No more spreadsheet", "No more empty courts"].map((t) => (
             <span key={t} className="rounded-full border border-[var(--line)] bg-white px-3 py-1 font-medium text-[var(--muted)]"><span className="text-[#0e7c80]">✓</span> {t}</span>
           ))}
@@ -100,10 +101,12 @@ const Platform = () => (
       </div>
       <div className="stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {FEATURES.map(([Icon, t, d]) => (
-          <div key={t} className="rounded-2xl border border-[var(--line)] bg-white p-7 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(10,15,28,0.25)]">
-            <span className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-[#dff5f5]"><Icon className="h-5 w-5 text-[#0a0f1c]" /></span>
-            <h3 className="mb-2 text-lg font-semibold">{t}</h3>
-            <p className="leading-relaxed text-[var(--muted)]">{d}</p>
+          <div key={t} className="flex gap-4 rounded-2xl border border-[var(--line)] bg-white p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(10,15,28,0.25)] sm:block sm:p-7">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#dff5f5] sm:mb-5 sm:h-11 sm:w-11"><Icon className="h-5 w-5 text-[#0a0f1c]" /></span>
+            <div>
+              <h3 className="mb-1 text-base font-semibold sm:mb-2 sm:text-lg">{t}</h3>
+              <p className="text-sm leading-relaxed text-[var(--muted)] sm:text-base">{d}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -135,9 +138,9 @@ const AddOnsIntro = () => (
 const AddOns = () => (
   <section className="pb-24">
     <div className="container mx-auto px-4 sm:px-6">
-      <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="stagger -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
         {ADDONS.map(([Icon, t, d, tag]) => (
-          <div key={t} className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#1cabb0]">
+          <div key={t} className="w-[78%] shrink-0 snap-start rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6 sm:w-auto transition duration-300 hover:-translate-y-1 hover:border-[#1cabb0]">
             <div className="mb-4 flex items-center justify-between">
               <Icon className="h-6 w-6 text-[#3fd6d6]" />
               <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${tag === "Add-on" ? "bg-[#1cabb0]/15 text-[#3fd6d6]" : "border border-[var(--line)] text-[var(--muted)]"}`}>{tag}</span>

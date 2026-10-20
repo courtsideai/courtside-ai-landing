@@ -182,3 +182,11 @@ body {
 
 /* v3: display font for headings */
 .v3 h1, .v3 h2, .v3 h3 { font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; letter-spacing: -0.02em; }
+
+/* v3 mobile: tighter vertical rhythm */
+@media (max-width: 639px) {
+  .v3 main section.py-24 { padding-top: 4rem; padding-bottom: 4rem; }
+  .v3 main section.py-20 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .v3 main section.pt-24 { padding-top: 4rem; }
+  .v3 main section.pb-24 { padding-bottom: 4rem; }
+}
