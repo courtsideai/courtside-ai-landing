@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { type LucideIcon, ChevronDown, PhoneOff, Sheet, CalendarX2, CalendarDays, MapPin, Phone, Bot, CircleDollarSign, FileSignature, KeyRound, ClipboardList, BellRing, RotateCcw, UserPlus, ListChecks, Lightbulb, ArrowRight, Check, X, Plug, Webhook, Database, Menu } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
+import { emailLead } from "@/lib/notify";
 import logo from "@/assets/courtside-logo-horizontal-light.svg";
 import kcLogo from "@/assets/logos/kc-markham-logo.png";
 import { FEATURED_SPORTS, MENU_SPORTS, SPORTS } from "@/data/sports";
@@ -584,9 +585,13 @@ export const EarlyAccess = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
-    const { error } = await supabase.from("courtside_waitlist").insert({ name: f.name.trim(), email: f.email.trim(), company: f.company.trim() || null, phone: f.phone.trim() || null });
+    const lead = { name: f.name.trim(), email: f.email.trim(), company: f.company.trim() || null, phone: f.phone.trim() || null };
+    const [{ error }, emailed] = await Promise.all([
+      supabase.from("courtside_waitlist").insert(lead),
+      emailLead(`New get-started request: ${lead.company || lead.name}`, { name: lead.name, email: lead.email, facility: lead.company, phone: lead.phone }),
+    ]);
     setBusy(false);
-    if (error) return toast.error("Couldn't submit. Please try again.");
+    if (error && !emailed) return toast.error("Couldn't submit. Please try again.");
     setDone(true);
     setF({ name: "", email: "", company: "", phone: "" });
   };

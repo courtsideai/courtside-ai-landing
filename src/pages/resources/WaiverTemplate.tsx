@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { Nav } from "@/components/home/Sections";
 import { btnPrimary, btnSecondary, card, DEMO_URL, gradText, themeStyle } from "@/components/home/theme";
 import { supabase } from "@/integrations/supabase/client";
+import { emailLead } from "@/lib/notify";
 
 // PLACEHOLDER TEXT: replace with the counsel-drafted template from Courtside before linking this page
 // (footer, automation step, sitemap). Then update the intro to say it was drafted by counsel and used at our facility.
@@ -65,14 +66,13 @@ const WaiverTemplate = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
-    const { error } = await supabase.from("courtside_waitlist").insert({
-      name: f.name.trim(),
-      email: f.email.trim(),
-      company: `${f.facility.trim() || "Unknown facility"} [waiver template]`,
-      phone: null,
-    });
+    const company = `${f.facility.trim() || "Unknown facility"} [waiver template]`;
+    const [{ error }, emailed] = await Promise.all([
+      supabase.from("courtside_waitlist").insert({ name: f.name.trim(), email: f.email.trim(), company, phone: null }),
+      emailLead(`Waiver template download: ${company}`, { name: f.name.trim(), email: f.email.trim(), facility: f.facility.trim() }),
+    ]);
     setBusy(false);
-    if (error) return toast.error("Couldn't send that. Please try again.");
+    if (error && !emailed) return toast.error("Couldn't send that. Please try again.");
     setUnlocked(true);
   };
 
