@@ -34,7 +34,11 @@ const BackToTop = () => {
   );
 };
 
-export const LegalPage = ({ title, updated, wide, children }: { title: string; updated?: string; wide?: boolean; children: ReactNode }) => (
+export const LegalPage = ({ title, updated, wide, children }: { title: string; updated?: string; wide?: boolean; children: ReactNode }) => {
+  useEffect(() => {
+    if (title) document.title = `${title} | Courtside AI`;
+  }, [title]);
+  return (
   <div style={darkStyle} className="v3 min-h-screen bg-[var(--bg)] text-[var(--fg)]">
     <Nav theme="dark" prefix="/" />
     <main className={`container mx-auto px-4 py-28 sm:px-6 ${wide ? "max-w-4xl" : "max-w-3xl"}`}>
@@ -45,7 +49,8 @@ export const LegalPage = ({ title, updated, wide, children }: { title: string; u
     <Footer />
     <BackToTop />
   </div>
-);
+  );
+};
 
 export const LegalSection = ({ title, children }: { title: string; children: ReactNode }) => (
   <section className="space-y-3">

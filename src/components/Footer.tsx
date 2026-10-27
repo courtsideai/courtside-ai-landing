@@ -57,7 +57,7 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-8 pb-0">
           <div className="flex justify-between items-center">
             <p className="text-sm text-gray-300">
-              © 2026 Courtside AI. Proudly Canadian
+              © 2026 Courtside AI Inc. Proudly Canadian
             </p>
             
             <div className="flex gap-4">
