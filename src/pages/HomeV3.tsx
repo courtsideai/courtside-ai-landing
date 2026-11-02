@@ -152,14 +152,12 @@ const Platform = () => (
         </div>
         <p className="hidden text-lg text-[var(--muted)] sm:block">Everything you're used to from facility software, and more. One platform replaces the booking app, the payment tool and the waiver forms, and AI takes the phone.</p>
       </div>
-      <div className="stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="stagger grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
         {FEATURES.map(([Icon, t, d]) => (
-          <div key={t} className="flex gap-4 rounded-2xl border border-[var(--line)] bg-white p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(10,15,28,0.25)] sm:block sm:p-7">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#dff5f5] sm:mb-5 sm:h-11 sm:w-11"><Icon className="h-5 w-5 text-[#0a0f1c]" /></span>
-            <div>
-              <h3 className="mb-1 text-base font-semibold sm:mb-2 sm:text-lg">{t}</h3>
-              <p className="text-sm leading-relaxed text-[var(--muted)] sm:text-base">{d}</p>
-            </div>
+          <div key={t} className="rounded-2xl border border-[var(--line)] bg-white p-4 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(10,15,28,0.25)] sm:p-7">
+            <span className="mb-3 grid h-10 w-10 place-items-center rounded-xl bg-[#dff5f5] sm:mb-5 sm:h-11 sm:w-11"><Icon className="h-5 w-5 text-[#0a0f1c]" /></span>
+            <h3 className="text-sm font-semibold leading-snug sm:mb-2 sm:text-lg">{t}</h3>
+            <p className="hidden leading-relaxed text-[var(--muted)] sm:block">{d}</p>
           </div>
         ))}
       </div>
@@ -208,20 +206,21 @@ const AddOns = () => (
 );
 
 const OperatorStory = () => (
-  <section className="pb-24">
+  <section className="pb-12 sm:pb-24">
     <div className="container mx-auto px-4 sm:px-6">
-      <div style={DARK} className="grid gap-10 rounded-3xl bg-[var(--bg)] p-8 text-[var(--fg)] sm:p-14 lg:grid-cols-[1.4fr_1fr]">
+      <div style={DARK} className="grid gap-8 rounded-3xl bg-[var(--bg)] p-6 text-[var(--fg)] sm:gap-10 sm:p-14 lg:grid-cols-[1.4fr_1fr]">
         <div className="space-y-5">
           <Eyebrow>For operators, by operators</Eyebrow>
           <h2 className="text-3xl font-bold sm:text-5xl">We're our own first customer.</h2>
-          <p className="text-lg leading-relaxed text-[var(--muted)]">Courtside started inside Kings Court Markham. We own and run sports facilities across the GTA, and every feature has to survive a busy Saturday at our own courts before it ships to yours.</p>
+          <p className="leading-relaxed text-[var(--muted)] sm:hidden">Courtside started inside Kings Court Markham. Every feature survives a busy Saturday at our courts before it ships to yours.</p>
+          <p className="hidden text-lg leading-relaxed text-[var(--muted)] sm:block">Courtside started inside Kings Court Markham. We own and run sports facilities across the GTA, and every feature has to survive a busy Saturday at our own courts before it ships to yours.</p>
           <a href="/about" className="inline-flex items-center gap-1 font-semibold text-[#3fd6d6] hover:underline">Our story <ArrowRight className="h-4 w-4" /></a>
         </div>
-        <dl className="divide-y divide-[var(--line)]">
+        <dl className="grid grid-cols-3 gap-3 border-t border-[var(--line)] pt-6 lg:block lg:divide-y lg:divide-[var(--line)] lg:border-0 lg:pt-0">
           {[["2", "Facilities we own and operate"], ["24/7", "Call coverage with the AI front desk"], ["1", "Platform for bookings, members and calls"]].map(([n, l]) => (
-            <div key={l} className="py-5 first:pt-0 last:pb-0">
-              <dt className={`text-5xl font-bold ${accent}`} style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{n}</dt>
-              <dd className="mt-1 text-[var(--muted)]">{l}</dd>
+            <div key={l} className="lg:py-5 lg:first:pt-0 lg:last:pb-0">
+              <dt className={`text-3xl font-bold sm:text-5xl ${accent}`} style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{n}</dt>
+              <dd className="mt-1 text-xs leading-snug text-[var(--muted)] sm:text-base">{l}</dd>
             </div>
           ))}
         </dl>

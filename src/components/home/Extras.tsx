@@ -50,10 +50,11 @@ export const MissedCallCalculator = () => {
   return (
     <section id="calculator" className="py-24">
       <div className="container mx-auto grid items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
-        <div className="space-y-5">
+        <div className="space-y-5 text-center sm:text-left">
           <span className="inline-flex rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1 text-xs font-medium text-[var(--muted)]">Missed revenue</span>
           <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Every missed call is <span className={gradText}>a court you didn't book.</span></h2>
-          <p className="text-lg text-[var(--muted)]">Callers who reach voicemail book somewhere else. Plug in your own numbers to see what that costs you each month. Maya answers every one of those calls.</p>
+          <p className="text-[var(--muted)] sm:hidden">Callers who reach voicemail book somewhere else. Try your numbers.</p>
+          <p className="hidden text-lg text-[var(--muted)] sm:block">Callers who reach voicemail book somewhere else. Plug in your own numbers to see what that costs you each month. Maya answers every one of those calls.</p>
           <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={`${btnSecondary} hidden lg:inline-flex`}>Get a free missed-revenue audit <ArrowRight className="ml-2 h-4 w-4" /></a>
         </div>
         <div className={`${card} space-y-6 p-6 sm:p-8`}>
@@ -75,7 +76,7 @@ export const MissedCallCalculator = () => {
 };
 
 export const TrustStrip = () => (
-  <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-[var(--muted)]">
+  <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-[var(--muted)] sm:gap-x-8 sm:gap-y-3 sm:text-sm">
     <span className="flex items-center gap-2"><CreditCard className="h-4 w-4" />Payments by Stripe</span>
     <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4" />Built in Canada, PIPEDA privacy</span>
     <span className="flex items-center gap-2"><Lock className="h-4 w-4" />Encrypted in transit and at rest</span>

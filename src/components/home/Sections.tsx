@@ -21,11 +21,11 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   <span className="inline-flex items-center rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1 text-xs font-medium text-[var(--muted)]">{children}</span>
 );
 
-const SectionHead = ({ eyebrow, title, sub }: { eyebrow: string; title: React.ReactNode; sub?: string }) => (
-  <div className="mx-auto mb-14 max-w-3xl space-y-4 text-center">
+const SectionHead = ({ eyebrow, title, sub, subOnPhones = true }: { eyebrow: string; title: React.ReactNode; sub?: string; subOnPhones?: boolean }) => (
+  <div className="mx-auto mb-10 max-w-3xl space-y-4 text-center sm:mb-14">
     <Eyebrow>{eyebrow}</Eyebrow>
     <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">{title}</h2>
-    {sub && <p className="text-lg text-[var(--muted)]">{sub}</p>}
+    {sub && <p className={`text-[var(--muted)] sm:text-lg ${subOnPhones ? "" : "hidden sm:block"}`}>{sub}</p>}
   </div>
 );
 
@@ -515,19 +515,20 @@ export const Compare = () => (
 export const HowItWorks = () => (
   <section id="how-it-works" className="py-24">
     <Wrap>
-      <SectionHead eyebrow="Getting started" title={<>Live in <span className={gradText}>three steps.</span></>} sub="No long projects. We set it up with you, on your courts and your rules." />
+      <SectionHead eyebrow="Getting started" title={<>Live in <span className={gradText}>three steps.</span></>} sub="No long projects. We set it up with you, on your courts and your rules." subOnPhones={false} />
       <div className="stagger grid gap-5 md:grid-cols-3">
         {[
-          ["1", "Demo", "A short walkthrough on your own courts, pricing and rules. You see exactly how it would run your facility."],
-          ["2", "Go live", "We set up your courts, pricing, waivers and booking page. Coming from AllBooked, CourtReserve or a spreadsheet? We migrate your members and bookings for free."],
-          ["3", "Grow", "Players book online, Maya covers the phone, and reports show what's filling and what isn't."],
-        ].map(([n, t, d]) => (
-          <div key={t} className={`${card} p-5 sm:p-6`}>
-            <div className="mb-2 flex items-center gap-3 sm:mb-0 sm:block">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[var(--a)] to-[var(--b)] font-bold text-[var(--on-primary)] sm:mb-4 sm:h-10 sm:w-10">{n}</span>
-              <h3 className="text-lg font-semibold sm:mb-2 sm:text-xl">{t}</h3>
+          ["1", "Demo", "A short walkthrough on your own courts, pricing and rules. You see exactly how it would run your facility.", "See it run on your courts and rules."],
+          ["2", "Go live", "We set up your courts, pricing, waivers and booking page. Coming from AllBooked, CourtReserve or a spreadsheet? We migrate your members and bookings for free.", "We set it up and migrate your members free."],
+          ["3", "Grow", "Players book online, Maya covers the phone, and reports show what's filling and what isn't.", "Players book online and Maya takes the phone."],
+        ].map(([n, t, d, short]) => (
+          <div key={t} className={`${card} flex items-center gap-4 p-4 sm:block sm:p-6`}>
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[var(--a)] to-[var(--b)] font-bold text-[var(--on-primary)] sm:mb-4 sm:h-10 sm:w-10">{n}</span>
+            <div>
+              <h3 className="font-semibold sm:mb-2 sm:text-xl">{t}</h3>
+              <p className="text-sm text-[var(--muted)] sm:hidden">{short}</p>
+              <p className="hidden text-[var(--muted)] sm:block">{d}</p>
             </div>
-            <p className="text-[var(--muted)]">{d}</p>
           </div>
         ))}
       </div>
@@ -564,6 +565,7 @@ export const Sports = ({ current }: { current?: string }) => (
 );
 
 export const Faqs = () => {
+  const [all, setAll] = useState(false);
   const faqs: [string, React.ReactNode][] = [
     ["Which AI features are live today?", "Maya, the AI receptionist, and 24/7 booking, payment and access automation are live. Revenue recovery and the agentic operator are coming soon, and early access customers get them first."],
     ["Do I need Maya to use the platform?", "No. Maya is an add-on. The booking, member, payment and reporting platform works on its own."],
@@ -576,15 +578,20 @@ export const Faqs = () => {
   return (
     <section id="faqs" className="py-24">
       <Wrap>
-        <SectionHead eyebrow="FAQ" title="Questions owners ask" sub="Thinking about Courtside for your facility? Start here." />
+        <SectionHead eyebrow="FAQ" title="Questions owners ask" sub="Thinking about Courtside for your facility? Start here." subOnPhones={false} />
         <Accordion type="single" collapsible className="mx-auto max-w-3xl space-y-3">
           {faqs.map(([q, a], i) => (
-            <AccordionItem key={q} value={`i${i}`} className="rounded-xl border border-[var(--line)] bg-[var(--card)] px-5">
+            <AccordionItem key={q} value={`i${i}`} className={`rounded-xl border border-[var(--line)] bg-[var(--card)] px-5 ${i >= 4 && !all ? "hidden sm:block" : ""}`}>
               <AccordionTrigger className="text-left font-semibold hover:no-underline">{q}</AccordionTrigger>
               <AccordionContent className="text-[var(--muted)]">{a}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
+        {!all && (
+          <div className="mt-4 text-center sm:hidden">
+            <button type="button" onClick={() => setAll(true)} className="text-sm font-semibold text-[var(--a)] underline-offset-4 hover:underline">Show all {faqs.length} questions</button>
+          </div>
+        )}
         <p className="mt-8 text-center text-sm text-[var(--muted)]">Booking a court or need help with your account? Visit <a className="underline hover:text-[var(--fg)]" href="/support">Support</a>.</p>
       </Wrap>
     </section>
@@ -629,7 +636,7 @@ export const EarlyAccess = () => {
           ) : (
           <form onSubmit={submit} className={`${card} space-y-3 p-6`}>
             <h3 className="text-lg font-semibold">Get started</h3>
-            <p className="text-sm text-[var(--muted)]">Tell us about your facility and we'll set you up with early access.</p>
+            <p className="hidden text-sm text-[var(--muted)] sm:block">Tell us about your facility and we'll set you up with early access.</p>
             <input required maxLength={100} className={inputCls} placeholder="Full name" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} />
             <input required type="email" maxLength={255} className={inputCls} placeholder="Email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} />
             <input maxLength={100} className={inputCls} placeholder="Facility name" value={f.company} onChange={(e) => setF({ ...f, company: e.target.value })} />
@@ -640,7 +647,7 @@ export const EarlyAccess = () => {
           <div className={`${card} flex flex-col gap-4 p-6`}>
             <CalendarDays className="h-7 w-7 text-[var(--b)]" />
             <h3 className="text-lg font-semibold">Rather talk it through?</h3>
-            <p className="flex-1 text-[var(--muted)]">Book a walkthrough on your own courts, pricing and rules. See exactly how Courtside would run your facility.</p>
+            <p className="hidden flex-1 text-[var(--muted)] sm:block">Book a walkthrough on your own courts, pricing and rules. See exactly how Courtside would run your facility.</p>
             <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={`${btnSecondary} w-full`}>Book a demo <ArrowRight className="ml-2 h-4 w-4" /></a>
             <p className="text-sm text-[var(--muted)]">Questions? <a className="underline hover:text-[var(--fg)]" href="mailto:support@court-side.ai">support@court-side.ai</a></p>
           </div>
