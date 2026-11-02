@@ -38,6 +38,7 @@ const App = () => (
           <Route path="/compare/:slug" element={<CompareOne />} />
           <Route path="/resources/liability-waiver-template" element={<WaiverTemplate />} />
           <Route path="/venues" element={<Venues />} />
+          <Route path="/venues/kings-court-markham-2" element={<Navigate to="/venues/sports-facility-a" replace />} />
           <Route path="/venues/:slug" element={<VenuePage />} />
           <Route path="/support" element={<Support />} />
           <Route path="/delete-account" element={<DeleteAccount />} />

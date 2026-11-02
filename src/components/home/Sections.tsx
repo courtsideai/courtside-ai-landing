@@ -228,7 +228,7 @@ const BEYOND: [LucideIcon, string, string, Status][] = [
   [ListChecks, "Staff checklists", "Opening, closing and cleaning checklists go to the right staff member for each shift.", "Coming soon"],
   [Lightbulb, "Lights and HVAC", "Court lights and HVAC switch on before a booking and off when the facility is empty.", "Coming soon"],
   [CircleDollarSign, "Revenue recovery", "Chases failed payments and no-shows and wins back members who've gone quiet.", "Coming soon"],
-  [Bot, "Agentic operator", "Handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Coming soon"],
+  [Bot, "AI operator", "Handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Live"],
 ];
 
 const StatusBadge = ({ status }: { status: Status }) => (
@@ -313,7 +313,7 @@ const AI_ITEMS: [string, boolean][] = [
   ["Takes payment and sends access codes, 24/7", true],
   ["Preps courts and reminds players", true],
   ["Recovers missed revenue", false],
-  ["Runs the front desk as your AI operator", false],
+  ["Runs the front desk as your AI operator", true],
 ];
 
 export const Pitch = () => (
@@ -585,7 +585,7 @@ export const Sports = ({ current }: { current?: string }) => (
 export const Faqs = () => {
   const [all, setAll] = useState(false);
   const faqs: [string, React.ReactNode][] = [
-    ["Which AI features are live today?", "Maya, the AI receptionist, and 24/7 booking, payment and access automation are live. Revenue recovery and the agentic operator are coming soon, and early access customers get them first."],
+    ["Which AI features are live today?", "Maya, the AI receptionist, the AI operator, and 24/7 booking, payment and access automation are live. Revenue recovery is coming soon, and early access customers get it first."],
     ["Do I need Maya to use the platform?", "No. Maya is an add-on. The booking, member, payment and reporting platform works on its own."],
     ["How long does setting up Maya take?", "About 72 hours. We collect your pricing, rules and scripts, configure Maya, test her on real scenarios and take her live."],
     ["Can it connect to the tools I already use?", "Yes. Courtside has an open API and webhooks, so it can connect to your door locks, accounting and other systems."],

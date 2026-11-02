@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { Nav, Sports } from "@/components/home/Sections";
 import { btnPrimary, btnSecondary, card, gradText, themeStyle } from "@/components/home/theme";
 import { getVenue } from "@/data/venues";
+import { SPORTS } from "@/data/sports";
 import NotFound from "@/pages/NotFound";
 
 const VenuePage = () => {
@@ -13,7 +14,8 @@ const VenuePage = () => {
 
   useEffect(() => {
     if (!v) return;
-    document.title = `Book a court at ${v.name} | Courtside AI`;
+    document.title = v.demo ? `Try the booking flow: ${v.name} | Courtside AI` : `Book a court at ${v.name} | Courtside AI`;
+    if (v.demo) return;
     // Structured data so search engines can understand the venue.
     const ld = document.createElement("script");
     ld.type = "application/ld+json";
@@ -45,12 +47,18 @@ const VenuePage = () => {
               {v.hours && <span className="flex items-center gap-1.5"><Clock className="h-4 w-4" />{v.hours}</span>}
             </div>
             <div className="flex flex-wrap gap-2">
-              {v.sports.map((s) => (
-                <a key={s} href={`/sports/${s.toLowerCase()}`} className="rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1 text-sm hover:border-[var(--a)]">{s}</a>
-              ))}
+              {v.sports.map((s) => {
+                const page = SPORTS.find((x) => x.slug === s.toLowerCase());
+                const cls = "rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1 text-sm";
+                return page ? <a key={s} href={`/sports/${page.slug}`} className={`${cls} hover:border-[var(--a)]`}>{s}</a> : <span key={s} className={cls}>{s}</span>;
+              })}
             </div>
-            <p className="max-w-xl text-lg text-[var(--muted)]">Book a court online, pay at checkout and get your access details in the confirmation. {v.name} runs on Courtside.</p>
-            <a href={v.bookingUrl} target="_blank" rel="noopener noreferrer" className={`group ${btnPrimary}`}>Book a court <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
+            <p className="max-w-xl text-lg text-[var(--muted)]">
+              {v.demo
+                ? "A sample facility running on Courtside. Pick a court and a time to see the booking flow your players get."
+                : `Book a court online, pay at checkout and get your access details in the confirmation. ${v.name} runs on Courtside.`}
+            </p>
+            <a href={v.bookingUrl} target="_blank" rel="noopener noreferrer" className={`group ${btnPrimary}`}>{v.demo ? "Try the booking flow" : "Book a court"} <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
           </div>
           <div className={`${card} space-y-3 p-6`}>
             <h2 className="text-lg font-semibold">Run a facility?</h2>

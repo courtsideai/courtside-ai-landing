@@ -160,8 +160,8 @@ const Platform = () => (
 const ADDONS: [typeof Phone, string, string, string][] = [
   [Plug, "Integrations", "Connect door locks, accounting, CRM and the tools you already run, so bookings flow straight into them.", "Add-on"],
   [Workflow, "Custom automations", "Your own rules for follow-ups, setup notes and member messages, running on your live schedule.", "Add-on"],
-  [CircleDollarSign, "Revenue recovery", "Chases failed payments and no-shows and wins back members who've gone quiet.", "Coming soon"],
-  [Bot, "AI operator", "Handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Coming soon"],
+  [Bot, "AI operator", "Handles the day-to-day: answers messages, updates the schedule, flags problems and sends you a daily briefing.", "Add-on"],
+  [CircleDollarSign, "Revenue recovery", "The next step for your AI operator: chases failed payments and no-shows and wins back members who've gone quiet.", "Coming soon"],
 ];
 
 const AddOnsIntro = () => (
@@ -175,7 +175,7 @@ const AddOnsIntro = () => (
 );
 
 const AddOns = () => (
-  <section className="pb-24">
+  <section className="pb-12 sm:pb-16">
     <div className="container mx-auto px-4 sm:px-6">
       <div className="stagger -mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
         {ADDONS.map(([Icon, t, d, tag]) => (

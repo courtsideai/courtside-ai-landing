@@ -32,7 +32,7 @@ const TOKENS: Record<HomeTheme, Record<string, string>> = {
 
 export const themeStyle = (t: HomeTheme): CSSProperties => TOKENS[t] as CSSProperties;
 
-export const SANDBOX_URL = "https://book.court-side.ai/kings-court-markham-2";
+export const SANDBOX_URL = "https://book.court-side.ai/booking?facility=27aff0bd-ac5f-4bd8-adae-e88e211db724";
 // Demo booking page (Google Calendar appointment schedule).
 export const DEMO_URL = "https://calendar.app.google/tfcHwc6zAmuhpAw6A";
 
