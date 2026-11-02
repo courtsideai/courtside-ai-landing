@@ -504,7 +504,7 @@ POST https://your-app.com/hooks/courtside
 const COMPARE_POINTS: [LucideIcon, string, string][] = [
   [Phone, "AI receptionist, live today", "Maya answers and books by phone. AllBooked, CourtReserve and Swift don't have one live."],
   [KeyRound, "Door codes included", "Automatic access codes come standard. Elsewhere they're a paid add-on."],
-  [Check, "3-month free trial, then month to month", "No setup fees, and we migrate your data for free."],
+  [Check, "1-month free trial, then month to month", "No setup fees, and we migrate your data for free."],
 ];
 
 export const Compare = () => (
@@ -591,7 +591,7 @@ export const Faqs = () => {
     ["Can it connect to the tools I already use?", "Yes. Courtside has an open API and webhooks, so it can connect to your door locks, accounting and other systems."],
     ["Is the AI bilingual?", "English is standard. Most other languages are supported."],
     ["What about privacy?", <>We follow Canadian privacy law (PIPEDA). Read the <a className="underline" href="/privacy">Privacy Policy</a> for what we collect and how long we keep it.</>],
-    ["How much does it cost?", "Start with a 3-month free trial. There are no setup fees, it's month to month, and we migrate your data for free. Pricing after the trial depends on your facility, so book a demo and we'll walk you through it."],
+    ["How much does it cost?", "Start with a 1-month free trial. There are no setup fees, it's month to month, and we migrate your data for free. Pricing after the trial depends on your facility, so book a demo and we'll walk you through it."],
   ];
   return (
     <section id="faqs" className="py-24">
@@ -640,7 +640,7 @@ export const EarlyAccess = () => {
       <Wrap className="relative">
         <div className="mx-auto mb-12 max-w-2xl space-y-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Your facility <span className={gradText}>on autopilot.</span></h2>
-          <p className="text-lg text-[var(--muted)]">Get early access, or talk it through with us first. We run courts too.</p>
+          <p className="text-lg text-[var(--muted)]">Get early access, or talk it through with us first.</p>
           <OfferStrip className="justify-center" />
         </div>
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-[1.2fr_1fr]">

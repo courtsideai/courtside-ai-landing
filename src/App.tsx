@@ -2,12 +2,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import About from "./pages/About";
 import LegalDoc from "./pages/LegalDoc";
 import NotFound from "./pages/NotFound";
-import HomeV2 from "./pages/HomeV2";
 import HomeV3 from "./pages/HomeV3";
 import VenuePage from "./pages/VenuePage";
 import SportPage from "./pages/SportPage";
@@ -28,13 +26,13 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeV3 />} />
-          <Route path="/classic" element={<Index />} />
+          <Route path="/classic" element={<Navigate to="/" replace />} />
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<LegalDoc slug="terms" />} />
           <Route path="/privacy" element={<LegalDoc slug="privacy" />} />
           <Route path="/legal/:doc" element={<LegalDoc />} />
-          <Route path="/new" element={<HomeV2 />} />
-          <Route path="/new/:theme" element={<HomeV2 />} />
+          <Route path="/new" element={<Navigate to="/" replace />} />
+          <Route path="/new/:theme" element={<Navigate to="/" replace />} />
           <Route path="/sports/:sport" element={<SportPage />} />
           <Route path="/compare" element={<Compare />} />
           <Route path="/compare/:slug" element={<CompareOne />} />

@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { emailLead } from "@/lib/notify";
 
 // PLACEHOLDER TEXT: replace with the counsel-drafted template from Courtside before linking this page
-// (footer, automation step, sitemap). Then update the intro to say it was drafted by counsel and used at our facility.
+// (footer, automation step, sitemap). Then update the intro to say it was drafted by counsel (check wording with counsel before naming any founder-owned facility).
 const TEMPLATE = `[FACILITY NAME] — RELEASE OF LIABILITY, WAIVER OF CLAIMS AND ASSUMPTION OF RISK
 
 PLEASE READ CAREFULLY. BY SIGNING, YOU GIVE UP CERTAIN LEGAL RIGHTS.

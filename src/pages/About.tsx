@@ -5,7 +5,7 @@ import { Nav } from "@/components/home/Sections";
 import { btnPrimary, btnSecondary, card, DEMO_URL, gradText, themeStyle } from "@/components/home/theme";
 
 const BELIEFS = [
-  [Trophy, "Built on the court", "We run a facility. Every feature exists because we needed it at our own front desk first."],
+  [Trophy, "Built by operators", "Our founders own and run sports facilities, so we design for how a front desk actually works."],
   [Bot, "Software should do the work", "Booking software records what happened. Ours answers the phone, takes the payment and sends the door code."],
   [Users, "Owners first", "We build what we'd pay for ourselves: simple to set up, fair to switch to, and built around how courts actually run."],
   [Eye, "Honest about what's live", "If a feature is still coming, we say so. You'll always know what works today."],
@@ -34,7 +34,7 @@ const About = () => {
               Built by facility operators, <span className={gradText}>for facility operators.</span>
             </h1>
             <p className="text-lg text-[var(--muted)]">
-              We run courts. We got tired of missed calls, empty slots and admin that never ends, so we built the software we wished we had: facility management software that does the work.
+              Our founders own and operate sports facilities. We know the missed calls, empty slots and admin that never ends, so we built the software we wished existed: facility management software that does the work.
             </p>
           </div>
         </section>
@@ -46,10 +46,10 @@ const About = () => {
               Every facility owner knows the pattern. The phone rings during peak hours and nobody can pick up. A court sits empty because a cancellation never got rebooked. Someone at the desk spends the evening chasing payments and waivers.
             </p>
             <p>
-              We lived it at our own facility. We tried more staff and we tried booking software. The software kept a record of what happened, but it didn't do anything about it. We still had to answer every call, chase every payment and hand out every door code.
+              As facility owners, our founders have lived it. More staff and booking software only go so far. The software keeps a record of what happened, but it doesn't do anything about it. Someone still has to answer every call, chase every payment and hand out every door code.
             </p>
             <p>
-              So we built Courtside: everything you're used to from facility software, plus AI that does the work. It answers the phone, books the court, takes payment and sends access details, 24/7. We run it at our own courts first, so it has to work.
+              So we built Courtside: everything you're used to from facility software, plus AI that does the work. It answers the phone, books the court, takes payment and sends access details, 24/7.
             </p>
             <p className="border-l-2 border-[var(--a)] pl-4 font-semibold text-[var(--fg)]">Our goal is simple: your facility on autopilot.</p>
           </div>
@@ -88,12 +88,11 @@ const About = () => {
 
         <section className="px-4 py-20 sm:px-6">
           <div className="container mx-auto max-w-3xl space-y-6 text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">See it running <span className={gradText}>at our own courts.</span></h2>
-            <p className="text-lg text-[var(--muted)]">Kings Court runs on Courtside. Book a court there, or talk to us about putting your facility on autopilot.</p>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Put your facility <span className={gradText}>on autopilot.</span></h2>
+            <p className="text-lg text-[var(--muted)]">Book a demo and see Courtside run on your own courts, pricing and rules.</p>
             <div className="flex flex-wrap justify-center gap-3">
               <a href="/#early-access" className={`group ${btnPrimary}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
               <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={btnSecondary}>Book a demo</a>
-              <a href="/venues/kings-court-markham-2" className={btnSecondary}>Visit Kings Court</a>
             </div>
           </div>
         </section>

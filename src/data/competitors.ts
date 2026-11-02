@@ -46,7 +46,7 @@ export const MATRIX: { label: string; cells: Cell[] }[] = [
   {
     label: "Pricing",
     cells: [
-      { kind: "text", note: "3-month free trial, then month to month" },
+      { kind: "text", note: "1-month free trial, then month to month" },
       { kind: "text", note: "$99–$199/mo by number of spaces" },
       { kind: "text", note: "$199–$549/mo by number of courts" },
       { kind: "text", note: "Not published" },
@@ -57,7 +57,7 @@ export const MATRIX: { label: string; cells: Cell[] }[] = [
 export const SWITCH_CARDS: { from: string; headline: string; points: string[] }[] = [
   {
     from: "AllBooked",
-    headline: "We're moving our own facility off AllBooked.",
+    headline: "Built for courts, not meeting rooms.",
     points: [
       "Built for courts, not desks, studios and meeting rooms",
       "Memberships included, not gated behind a $199/mo plan",
@@ -81,13 +81,13 @@ export const SWITCH_CARDS: { from: string; headline: string; points: string[] }[
     points: [
       "Maya answers calls and books courts now. Swift's AI front desk hasn't shipped",
       "Real e-signed waivers, stored with the version each player agreed to",
-      "Built and proven on courts, at our own facility",
-      "Start with a 3-month free trial",
+      "Built only for courts and sports facilities",
+      "Start with a 1-month free trial",
     ],
   },
 ];
 
-export const OFFER = ["3-month free trial", "Free migration", "No setup fees", "Month to month"];
+export const OFFER = ["1-month free trial", "Free migration", "No setup fees", "Month to month"];
 
 // Individual comparison pages (/compare/:slug). `col` is the competitor's column in MATRIX.
 export const COMPARE_PAGES: { slug: string; name: string; col: number; title: string; intro: string }[] = [
@@ -96,7 +96,7 @@ export const COMPARE_PAGES: { slug: string; name: string; col: number; title: st
     name: "AllBooked",
     col: 1,
     title: "Courtside vs AllBooked: an AllBooked alternative for sports facilities",
-    intro: "AllBooked by Skedda is booking software for every kind of space, from meeting rooms to courts. Courtside is built only for sports facilities, with an AI receptionist that answers your phone. We're moving our own facility off AllBooked.",
+    intro: "AllBooked by Skedda is booking software for every kind of space, from meeting rooms to courts. Courtside is built only for sports facilities, with an AI receptionist that answers your phone.",
   },
   {
     slug: "courtreserve",

@@ -74,7 +74,7 @@ const CourtFloor = () => (
   </div>
 );
 
-const CHECKS = ["3-month free trial", "Free migration", "No setup fees", "Month to month", "Open API"];
+const CHECKS = ["1-month free trial", "Free migration", "No setup fees", "Month to month", "Open API"];
 
 const Hero = () => (
   <section id="top" className="relative overflow-hidden pb-16 pt-28 sm:pb-28 sm:pt-44">
@@ -118,18 +118,6 @@ const Hero = () => (
   </section>
 );
 
-const ProofStrip = () => (
-  <section className="border-y border-[var(--line)] py-7">
-    <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 text-center sm:px-6 lg:flex-row lg:text-left">
-      <p className="text-sm text-[var(--muted)]">Built inside facilities we own and operate</p>
-      <div className="flex flex-wrap justify-center gap-x-10 gap-y-2 text-lg font-semibold" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
-        <a href="/venues/kings-court-markham-2" className="hover:text-[#3fd6d6]">Kings Court Markham</a>
-        <span>Kings Court Oakville</span>
-      </div>
-    </div>
-  </section>
-);
-
 const FEATURES: [typeof Phone, string, string][] = [
   [CalendarDays, "Built for multi-sport courts", "Basketball, volleyball and pickleball on the same floor, full or split, kept in sync on one calendar. No double bookings, with rules per court."],
   [Users, "Members, memberships and passes", "Player profiles, recurring memberships, passes and gift cards, with booking history in one place."],
@@ -163,7 +151,7 @@ const Platform = () => (
       </div>
       <p className="mt-10 flex items-center justify-center gap-2 text-center text-sm text-[var(--muted)]"><Code2 className="h-4 w-4" />Open API and webhooks included, so your data is never locked in.</p>
       <div className="mt-8 text-center">
-        <a href="#early-access" className={tealBtn}>Start your 3-month free trial <ArrowRight className="ml-2 h-4 w-4" /></a>
+        <a href="#early-access" className={tealBtn}>Start your 1-month free trial <ArrowRight className="ml-2 h-4 w-4" /></a>
       </div>
     </div>
   </section>
@@ -211,13 +199,13 @@ const OperatorStory = () => (
       <div style={DARK} className="grid gap-8 rounded-3xl bg-[var(--bg)] p-6 text-[var(--fg)] sm:gap-10 sm:p-14 lg:grid-cols-[1.4fr_1fr]">
         <div className="space-y-5">
           <Eyebrow>For operators, by operators</Eyebrow>
-          <h2 className="text-3xl font-bold sm:text-5xl">We're our own first customer.</h2>
-          <p className="leading-relaxed text-[var(--muted)] sm:hidden">Courtside started inside Kings Court Markham. Every feature survives a busy Saturday at our courts before it ships to yours.</p>
-          <p className="hidden text-lg leading-relaxed text-[var(--muted)] sm:block">Courtside started inside Kings Court Markham. We own and run sports facilities across the GTA, and every feature has to survive a busy Saturday at our own courts before it ships to yours.</p>
+          <h2 className="text-3xl font-bold sm:text-5xl">Built by people who run facilities.</h2>
+          <p className="leading-relaxed text-[var(--muted)] sm:hidden">Our founders own and operate sports facilities, so we know the front desk from the other side of the counter.</p>
+          <p className="hidden text-lg leading-relaxed text-[var(--muted)] sm:block">Our founders own and operate sports facilities in the GTA. We know the missed calls, empty slots and endless admin first-hand, and we build Courtside to take that work off your plate.</p>
           <a href="/about" className="inline-flex items-center gap-1 font-semibold text-[#3fd6d6] hover:underline">Our story <ArrowRight className="h-4 w-4" /></a>
         </div>
         <dl className="grid grid-cols-3 gap-3 border-t border-[var(--line)] pt-6 lg:block lg:divide-y lg:divide-[var(--line)] lg:border-0 lg:pt-0">
-          {[["2", "Facilities we own and operate"], ["24/7", "Call coverage with the AI front desk"], ["1", "Platform for bookings, members and calls"]].map(([n, l]) => (
+          {[["24/7", "Call coverage with Maya"], ["1", "Platform for bookings, members and calls"], ["$0", "Setup fees"]].map(([n, l]) => (
             <div key={l} className="lg:py-5 lg:first:pt-0 lg:last:pb-0">
               <dt className={`text-3xl font-bold sm:text-5xl ${accent}`} style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{n}</dt>
               <dd className="mt-1 text-xs leading-snug text-[var(--muted)] sm:text-base">{l}</dd>
@@ -251,7 +239,6 @@ const HomeV3 = () => {
       <Nav theme="dark" />
       <main>
         <Hero />
-        <ProofStrip />
         <StatsStrip />
         <Tone style={LIGHT}><Platform /><Sports /></Tone>
         <Tone style={DARK}><AddOnsIntro /><Maya /><AddOns /><MissedCallCalculator /></Tone>
