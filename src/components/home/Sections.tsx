@@ -436,23 +436,36 @@ const MayaForm = () => {
   );
 };
 
+// The form stays tucked behind a button so the section leads with the live call, not inputs.
+const MayaTry = () => {
+  const [open, setOpen] = useState(false);
+  if (open) return <MayaForm />;
+  return (
+    <div className={`${card} flex flex-col gap-3 p-5`}>
+      <h4 className="font-semibold">Hear her for yourself</h4>
+      <p className="text-sm text-[var(--muted)]">Leave your number and Maya calls you for a live demo.</p>
+      <button type="button" onClick={() => setOpen(true)} className={`${btnPrimary} mt-auto w-full`}><Phone className="mr-2 h-4 w-4" />Get a call from Maya</button>
+    </div>
+  );
+};
+
 export const Maya = () => (
-  <section id="maya" className="py-24">
-    <Wrap className="grid items-center gap-14 lg:grid-cols-2">
-      <div className="space-y-6">
+  <section id="maya" className="pb-24 pt-12 sm:pt-24">
+    <Wrap className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <div className="space-y-5 text-center sm:space-y-6 sm:text-left">
         <Eyebrow>AI receptionist · add-on</Eyebrow>
         <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">Meet Maya. She <span className={gradText}>never misses a call.</span></h2>
-        <p className="text-lg text-[var(--muted)]">Maya picks up every call to your facility, checks real court availability, books the court, takes payment and texts the door code. She works from your live schedule, so she never double-books.</p>
-        <ul className="space-y-2.5">
-          {["Answers 24/7, including when you're mid-game", "Books, changes and cancels from your real calendar", "Shares door codes and answers your FAQs", "Hands off to a person or takes a message when needed"].map((x) => (
+        <p className="mx-auto max-w-md text-[var(--muted)] sm:mx-0 sm:max-w-none sm:text-lg">She answers every call, books the court, takes payment and texts the door code. 24/7.</p>
+        <ul className="hidden space-y-2.5 sm:block">
+          {["Works from your live schedule, so she never double-books", "Changes and cancels bookings, answers your FAQs", "Hands off to a person or takes a message when needed"].map((x) => (
             <li key={x} className="flex items-start gap-2"><Check className="mt-0.5 h-5 w-5 shrink-0 text-[var(--b)]" />{x}</li>
           ))}
         </ul>
-        <p className="text-sm text-[var(--muted)]">Callers are told they're speaking with an AI assistant and that the call is recorded.</p>
       </div>
       <div className="grid gap-5 sm:grid-cols-[1.2fr_1fr] lg:grid-cols-1 xl:grid-cols-[1.2fr_1fr]">
         <CallMock />
-        <MayaForm />
+        <MayaTry />
+        <p className="text-center text-xs text-[var(--muted)] sm:col-span-full sm:text-left">Callers are told they're speaking with an AI assistant and that the call is recorded.</p>
       </div>
     </Wrap>
   </section>

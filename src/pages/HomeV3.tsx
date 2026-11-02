@@ -34,33 +34,86 @@ const Eyebrow = ({ children, dark = true }: { children: React.ReactNode; dark?: 
   <p className={`text-xs font-semibold uppercase tracking-[0.14em] ${dark ? accent : "text-[#0e7c80]"}`}>{children}</p>
 );
 
+// A court floor drawn in perspective behind the hero, with drifting teal light. Static under reduced motion.
+const CourtFloor = () => (
+  <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div className="orb absolute -right-24 -top-24 h-[28rem] w-[28rem] rounded-full bg-[#1cabb0]/20 blur-[110px]" />
+    <div className="orb absolute -left-32 top-1/3 h-80 w-80 rounded-full bg-[#3fd6d6]/10 blur-[100px]" style={{ animationDelay: "-7s" }} />
+    <div
+      className="absolute inset-0 opacity-[0.35]"
+      style={{
+        backgroundImage: "linear-gradient(rgba(63,214,214,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(63,214,214,0.07) 1px, transparent 1px)",
+        backgroundSize: "56px 56px",
+        maskImage: "radial-gradient(70% 60% at 50% 30%, black, transparent)",
+        WebkitMaskImage: "radial-gradient(70% 60% at 50% 30%, black, transparent)",
+      }}
+    />
+    <svg
+      viewBox="0 0 940 540"
+      className="absolute bottom-[-6%] left-1/2 w-[230%] max-w-none -translate-x-1/2 sm:w-[140%] lg:w-[115%]"
+      style={{ transform: "translateX(-50%) perspective(900px) rotateX(62deg)", transformOrigin: "50% 100%", maskImage: "linear-gradient(to top, black 30%, transparent 95%)", WebkitMaskImage: "linear-gradient(to top, black 30%, transparent 95%)" }}
+      fill="none"
+      stroke="rgba(63,214,214,0.45)"
+      strokeWidth="2"
+    >
+      {[
+        "M20 20H920V520H20Z",
+        "M470 20V520",
+        "M410 270a60 60 0 1 0 120 0a60 60 0 1 0 -120 0",
+        "M20 190H210V350H20",
+        "M150 270a60 60 0 1 0 120 0a60 60 0 1 0 -120 0",
+        "M920 190H730V350H920",
+        "M670 270a60 60 0 1 0 120 0a60 60 0 1 0 -120 0",
+        "M20 50H160A245 245 0 0 1 160 490H20",
+        "M920 50H780A245 245 0 0 0 780 490H920",
+      ].map((d, i) => (
+        <path key={i} d={d} pathLength={1} className="court-line" style={{ animationDelay: `${0.15 * i}s` }} vectorEffect="non-scaling-stroke" />
+      ))}
+    </svg>
+    <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--bg)] to-transparent" />
+  </div>
+);
+
+const CHECKS = ["3-month free trial", "Free migration", "No setup fees", "Month to month", "Open API"];
+
 const Hero = () => (
-  <section id="top" className="relative overflow-hidden pb-24 pt-36 sm:pt-44">
-    <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: "radial-gradient(50% 45% at 75% 20%, rgba(28,171,176,0.16), transparent)" }} />
-    <div className="container relative mx-auto grid items-center gap-16 px-4 sm:px-6 lg:grid-cols-[1fr_1.05fr]">
-      <div className="space-y-7">
-        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium text-[var(--muted)]">
-          <span className="h-2 w-2 rounded-full bg-[#3fd6d6]" />
+  <section id="top" className="relative overflow-hidden pb-16 pt-28 sm:pb-28 sm:pt-44">
+    <CourtFloor />
+    <div className="container relative mx-auto grid items-center gap-9 px-4 sm:px-6 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+      <div className="space-y-5 text-center sm:space-y-7 sm:text-left">
+        <span className="inline-flex items-center gap-2 rounded-full border border-[#1cabb0]/40 bg-[#1cabb0]/10 px-3 py-1.5 text-xs font-medium text-[#bff3f3] backdrop-blur">
+          <span className="relative flex h-2 w-2"><span className="absolute inset-0 animate-ping rounded-full bg-[#3fd6d6] motion-reduce:hidden" /><span className="relative h-2 w-2 rounded-full bg-[#3fd6d6]" /></span>
           <span className="sm:hidden">First FMS with a live AI receptionist</span>
           <span className="hidden sm:inline">The first facility management software with a live AI receptionist</span>
         </span>
-        <h1 className="text-5xl font-bold leading-[1.02] sm:text-6xl xl:text-7xl">
+        <h1 className="text-[3.1rem] font-bold leading-[0.98] tracking-tight sm:text-6xl xl:text-[5.25rem]">
           Your facility<br />on <span className="bg-[linear-gradient(90deg,#1cabb0,#3fd6d6,#1cabb0)] bg-clip-text text-transparent text-shimmer">autopilot.</span>
         </h1>
-        <p className="max-w-xl text-lg leading-relaxed text-[var(--muted)]">
+        <p className="mx-auto max-w-sm text-base leading-relaxed text-[var(--muted)] sm:hidden">
+          Bookings, members, payments and waivers in one platform. Maya answers every call, 24/7.
+        </p>
+        <p className="hidden max-w-xl text-lg leading-relaxed text-[var(--muted)] sm:block">
           Facility management software for courts and sports facilities: bookings, members, payments and waivers in one platform. Add Maya, our AI receptionist, and every call gets answered and booked, 24/7.
         </p>
-        <div className="flex flex-wrap gap-3">
-          <a href="#early-access" className={`group ${tealBtn}`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
+        <div className="hidden flex-wrap gap-3 sm:flex">
+          <a href="#early-access" className={`group ${tealBtn} shadow-[0_0_40px_-8px_rgba(28,171,176,0.8)]`}>Get started <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /></a>
           <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" className={ghostBtn}>Book a demo</a>
         </div>
-        <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-[var(--muted)]">
-          {["3-month free trial", "Free migration", "No setup fees", "Month to month", "Open API"].map((x) => (
+        <ul className="hidden flex-wrap gap-x-5 gap-y-2 text-sm text-[var(--muted)] sm:flex">
+          {CHECKS.map((x) => (
             <li key={x} className="flex items-center gap-1.5"><Check className={`h-4 w-4 ${accent}`} />{x}</li>
           ))}
         </ul>
       </div>
-      <ScheduleMock />
+      <div className="relative">
+        <div className="pointer-events-none absolute -inset-8 rounded-[2.5rem] bg-[#1cabb0]/15 blur-3xl" aria-hidden="true" />
+        <div className="relative"><ScheduleMock /></div>
+        <ul className="relative mt-6 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-xs text-[var(--muted)] sm:hidden">
+          {CHECKS.map((x) => (
+            <li key={x} className="flex items-center gap-1"><Check className={`h-3.5 w-3.5 ${accent}`} />{x}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 );
@@ -97,7 +150,7 @@ const Platform = () => (
             <span key={t} className="rounded-full border border-[var(--line)] bg-white px-3 py-1 font-medium text-[var(--muted)]"><span className="text-[#0e7c80]">✓</span> {t}</span>
           ))}
         </div>
-        <p className="text-lg text-[var(--muted)]">Everything you're used to from facility software, and more. One platform replaces the booking app, the payment tool and the waiver forms, and AI takes the phone.</p>
+        <p className="hidden text-lg text-[var(--muted)] sm:block">Everything you're used to from facility software, and more. One platform replaces the booking app, the payment tool and the waiver forms, and AI takes the phone.</p>
       </div>
       <div className="stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {FEATURES.map(([Icon, t, d]) => (
@@ -130,7 +183,7 @@ const AddOnsIntro = () => (
     <div className="container mx-auto max-w-3xl space-y-4 px-4 text-center sm:px-6">
       <Eyebrow>Upgrades</Eyebrow>
       <h2 className="text-3xl font-bold sm:text-5xl">Turn on <span className={accent}>autopilot</span> when you're ready.</h2>
-      <p className="text-lg text-[var(--muted)]">The platform runs your facility. Autopilot takes the work off your plate, starting with an AI receptionist that answers every call.</p>
+      <p className="text-[var(--muted)] sm:text-lg">The platform runs your facility. Autopilot takes the work off your plate.</p>
     </div>
   </section>
 );

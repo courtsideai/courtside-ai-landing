@@ -89,7 +89,8 @@ export const MobileCta = () => {
     const onScroll = () => {
       const form = document.getElementById("early-access");
       const nearForm = form ? form.getBoundingClientRect().top < window.innerHeight : false;
-      setShow(window.scrollY > 600 && !nearForm);
+      // On phones the hero buttons are hidden, so this bar is the CTA from the first screen.
+      setShow(!nearForm);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
