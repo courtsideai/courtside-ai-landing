@@ -9,7 +9,7 @@ import kcLogo from "@/assets/logos/kc-markham-logo.png";
 import { FEATURED_SPORTS, MENU_SPORTS, SPORTS } from "@/data/sports";
 import { PROOF } from "@/data/proof";
 import { btnPrimary, btnSecondary, card, gradText, SANDBOX_URL, DEMO_URL, HomeTheme } from "./theme";
-import { CompareMatrix, OfferStrip } from "./CompareMatrix";
+import { OfferStrip } from "./CompareMatrix";
 import { SectionCta, TrustStrip } from "./Extras";
 import { CallMock, CourtsMock, MembersMock, PaymentsMock, ReportsMock, ScheduleMock } from "./Mocks";
 
@@ -500,13 +500,31 @@ POST https://your-app.com/hooks/courtside
   </div>
 );
 
+// Homepage keeps a short teaser; the full feature-by-feature table lives on /compare.
+const COMPARE_POINTS: [LucideIcon, string, string][] = [
+  [Phone, "AI receptionist, live today", "Maya answers and books by phone. AllBooked, CourtReserve and Swift don't have one live."],
+  [KeyRound, "Door codes included", "Automatic access codes come standard. Elsewhere they're a paid add-on."],
+  [Check, "3-month free trial, then month to month", "No setup fees, and we migrate your data for free."],
+];
+
 export const Compare = () => (
   <section id="compare" className="py-24">
     <Wrap>
       <SectionHead eyebrow="Compare" title={<>Not another <span className={gradText}>booking tool.</span></>} sub="Every booking tool takes reservations. Only Courtside answers your phone." />
-      <CompareMatrix />
+      <div className="stagger mx-auto grid max-w-5xl gap-3 sm:grid-cols-3 sm:gap-5">
+        {COMPARE_POINTS.map(([Icon, t, d]) => (
+          <div key={t} className={`${card} flex items-center gap-4 p-4 sm:block sm:p-6`}>
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[color-mix(in_srgb,var(--b)_18%,transparent)] sm:mb-4"><Icon className="h-5 w-5 text-[var(--a)]" /></span>
+            <div>
+              <h3 className="font-semibold sm:mb-1.5 sm:text-lg">{t}</h3>
+              <p className="hidden text-[var(--muted)] sm:block">{d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
       <div className="mt-8 text-center">
         <a href="/compare" className={btnSecondary}>See the full comparison <ArrowRight className="ml-2 h-4 w-4" /></a>
+        <p className="mt-3 text-xs text-[var(--muted)]">Side by side with AllBooked, CourtReserve and Swift</p>
       </div>
     </Wrap>
   </section>
