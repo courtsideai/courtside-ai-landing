@@ -3,7 +3,7 @@ import { LegalPage, LegalSection, MailLink, APP_URL } from "@/components/LegalPa
 const ext = "text-primary underline hover:text-primary/80 transition-smooth";
 
 const faqs: [string, string][] = [
-  ["I can't sign in.", "Use the email you booked with. If you don't remember your password, use the reset link on the sign-in screen. Your email is your sign-in, and only your facility can change it."],
+  ["I can't sign in.", "Sign in with the email you booked with. We'll email you a one-time code. Check your spam folder, or email support@court-side.ai if it doesn't arrive. Your email is your sign-in, and only your facility can change it."],
   ["I need to change or cancel a booking.", "Open My Bookings, select the booking and choose cancel or change. Cancellation windows and fees are set by each facility, so contact the facility if the option isn't available."],
   ["I was charged and don't see a booking.", "Check My Bookings and your email for the confirmation. If it isn't there, email us with the amount and date and we'll sort it out."],
   ["How do I find my door code?", "Door codes are shared by your facility in your booking confirmation and reminders."],
