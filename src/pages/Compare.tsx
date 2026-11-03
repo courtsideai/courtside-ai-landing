@@ -48,7 +48,7 @@ const Compare = () => {
                   </ul>
                   <div className="flex flex-col gap-2">
                     <a href={`/compare/${c.from.toLowerCase()}`} className={`${btnSecondary} w-full`}>Courtside vs {c.from} <ArrowRight className="ml-2 h-4 w-4" /></a>
-                    <a href="/#early-access" className="text-center text-sm font-semibold text-[var(--b)] hover:underline">Switch to Courtside</a>
+                    <a href="/#early-access" className="-my-2 py-3 text-center text-sm font-semibold text-[var(--b)] hover:underline">Switch to Courtside</a>
                   </div>
                 </div>
               ))}

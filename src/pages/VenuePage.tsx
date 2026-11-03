@@ -44,7 +44,7 @@ const VenuePage = () => {
         <section className="relative overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-36">
           <CourtFloor />
           <div className="container relative mx-auto px-4 sm:px-6">
-            <a href="/venues" className="mb-8 inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]"><ArrowLeft className="h-4 w-4" /> All venues</a>
+            <a href="/venues" className="-my-3 mb-5 inline-flex items-center gap-1 py-3 text-sm text-[var(--muted)] hover:text-[var(--fg)]"><ArrowLeft className="h-4 w-4" /> All venues</a>
             <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.15fr]">
               <div className="min-w-0 space-y-6">
                 {v.demo && (

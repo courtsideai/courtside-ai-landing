@@ -607,7 +607,7 @@ export const Faqs = () => {
         </Accordion>
         {!all && (
           <div className="mt-4 text-center sm:hidden">
-            <button type="button" onClick={() => setAll(true)} className="text-sm font-semibold text-[var(--a)] underline-offset-4 hover:underline">Show all {faqs.length} questions</button>
+            <button type="button" onClick={() => setAll(true)} className="px-3 py-3 text-sm font-semibold text-[var(--a)] underline-offset-4 hover:underline">Show all {faqs.length} questions</button>
           </div>
         )}
         <p className="mt-8 text-center text-sm text-[var(--muted)]">Booking a court or need help with your account? Visit <a className="underline hover:text-[var(--fg)]" href="/support">Support</a>.</p>

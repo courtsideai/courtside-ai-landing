@@ -33,7 +33,7 @@ const CompareOne = () => {
         <section className="relative overflow-hidden px-4 pb-16 pt-36 sm:px-6">
           <div className="pointer-events-none absolute inset-0 opacity-70" style={{ backgroundImage: "radial-gradient(60% 50% at 50% 0%, var(--glow), transparent)" }} />
           <div className="container relative mx-auto max-w-3xl space-y-6 text-center">
-            <a href="/compare" className="inline-flex items-center gap-1 text-sm text-[var(--muted)] hover:text-[var(--fg)]"><ArrowLeft className="h-4 w-4" /> All comparisons</a>
+            <a href="/compare" className="-my-3 inline-flex items-center gap-1 py-3 text-sm text-[var(--muted)] hover:text-[var(--fg)]"><ArrowLeft className="h-4 w-4" /> All comparisons</a>
             <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
               Courtside vs <span className={gradText}>{page.name}</span>
             </h1>
